@@ -1,0 +1,23 @@
+/**
+ * Project: Smart Task Management
+ * Layer: DTO (Data Transfer Object)
+ * Component: Board
+ * Description: Data transfer object for API request/response.
+ */
+package com.smarttask.board.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class BoardListRenameRequestDTO {
+    @NotBlank(message = "Name cannot be empty")
+    private String name;
+}
+

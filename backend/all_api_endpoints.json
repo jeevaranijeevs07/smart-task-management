@@ -1,0 +1,587 @@
+﻿{
+    "generatedAt":  "2026-03-10T17:16:30",
+    "source":  "backend/src/main/java/**/*Controller.java",
+    "totalEndpoints":  58,
+    "endpoints":  [
+                      {
+                          "controller":  "ActivityLogController",
+                          "method":  "GET",
+                          "path":  "/api/activities/recent",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "getRecentActivities"
+                      },
+                      {
+                          "controller":  "BoardController",
+                          "method":  "POST",
+                          "path":  "/api/workspaces/{workspaceId}/boards",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "createBoard"
+                      },
+                      {
+                          "controller":  "BoardController",
+                          "method":  "GET",
+                          "path":  "/api/workspaces/{workspaceId}/boards",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "getWorkspaceBoards"
+                      },
+                      {
+                          "controller":  "BoardController",
+                          "method":  "GET",
+                          "path":  "/api/boards/{id}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "getBoardById"
+                      },
+                      {
+                          "controller":  "BoardController",
+                          "method":  "PUT",
+                          "path":  "/api/boards/{id}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "updateBoard"
+                      },
+                      {
+                          "controller":  "BoardController",
+                          "method":  "DELETE",
+                          "path":  "/api/boards/{id}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "deleteBoard"
+                      },
+                      {
+                          "controller":  "BoardController",
+                          "method":  "POST",
+                          "path":  "/api/boards/{id}/members",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "addMember"
+                      },
+                      {
+                          "controller":  "BoardController",
+                          "method":  "DELETE",
+                          "path":  "/api/boards/{id}/members/{userId}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "removeMember"
+                      },
+                      {
+                          "controller":  "BoardListController",
+                          "method":  "POST",
+                          "path":  "/api/boards/{boardId}/lists",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "createList"
+                      },
+                      {
+                          "controller":  "BoardListController",
+                          "method":  "GET",
+                          "path":  "/api/boards/{boardId}/lists",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "getBoardLists"
+                      },
+                      {
+                          "controller":  "BoardListController",
+                          "method":  "PUT",
+                          "path":  "/api/boards/{boardId}/lists/{id}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "updateList"
+                      },
+                      {
+                          "controller":  "BoardListController",
+                          "method":  "DELETE",
+                          "path":  "/api/boards/{boardId}/lists/{id}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "deleteList"
+                      },
+                      {
+                          "controller":  "BoardListController",
+                          "method":  "PUT",
+                          "path":  "/api/boards/{boardId}/lists/reorder",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "reorderLists"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "POST",
+                          "path":  "/api/workspaces/{workspaceId}/cards",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "createCard"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "GET",
+                          "path":  "/api/workspaces/{workspaceId}/cards",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "getWorkspaceCards"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "GET",
+                          "path":  "/api/cards/{cardId}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "getCard"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "PUT",
+                          "path":  "/api/cards/{cardId}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "updateCard"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "DELETE",
+                          "path":  "/api/cards/{cardId}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "deleteCard"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "PUT",
+                          "path":  "/api/cards/{cardId}/move",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "moveCard"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "POST",
+                          "path":  "/api/cards/{cardId}/assign",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "assignUser"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "DELETE",
+                          "path":  "/api/cards/{cardId}/assign/{userId}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "removeAssignment"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "POST",
+                          "path":  "/api/cards/{cardId}/checklists",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "createChecklist"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "DELETE",
+                          "path":  "/api/checklists/{checklistId}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "deleteChecklist"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "POST",
+                          "path":  "/api/checklists/{checklistId}/items",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "addChecklistItem"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "PUT",
+                          "path":  "/api/checklist-items/{itemId}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "updateChecklistItem"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "DELETE",
+                          "path":  "/api/checklist-items/{itemId}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "deleteChecklistItem"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "POST",
+                          "path":  "/api/cards/{cardId}/comments",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "addComment"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "POST",
+                          "path":  "/api/cards/{cardId}/attachments",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "addAttachment"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "DELETE",
+                          "path":  "/api/cards/{cardId}/attachments/{attachmentId}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "deleteAttachment"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "POST",
+                          "path":  "/api/cards/{cardId}/members/{userId}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "addMemberToCard"
+                      },
+                      {
+                          "controller":  "CardController",
+                          "method":  "DELETE",
+                          "path":  "/api/cards/{cardId}/members/{userId}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "removeMemberFromCard"
+                      },
+                      {
+                          "controller":  "NotificationController",
+                          "method":  "GET",
+                          "path":  "/api/notifications",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "getUserNotifications"
+                      },
+                      {
+                          "controller":  "NotificationController",
+                          "method":  "PUT",
+                          "path":  "/api/notifications/{id}/read",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "markAsRead"
+                      },
+                      {
+                          "controller":  "NotificationController",
+                          "method":  "PUT",
+                          "path":  "/api/notifications/read-all",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "markAllAsRead"
+                      },
+                      {
+                          "controller":  "NotificationController",
+                          "method":  "DELETE",
+                          "path":  "/api/notifications/{id}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "deleteNotification"
+                      },
+                      {
+                          "controller":  "SseController",
+                          "method":  "GET",
+                          "path":  "/api/sse/updates",
+                          "auth":  "Public",
+                          "queryParams":  [
+                                              "token"
+                                          ],
+                          "handler":  "streamUpdates"
+                      },
+                      {
+                          "controller":  "UserController",
+                          "method":  "POST",
+                          "path":  "/api/users/register",
+                          "auth":  "Public",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "register"
+                      },
+                      {
+                          "controller":  "UserController",
+                          "method":  "POST",
+                          "path":  "/api/users/login",
+                          "auth":  "Public",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "login"
+                      },
+                      {
+                          "controller":  "UserController",
+                          "method":  "POST",
+                          "path":  "/api/users/forgot-password",
+                          "auth":  "Public",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "forgotPassword"
+                      },
+                      {
+                          "controller":  "UserController",
+                          "method":  "POST",
+                          "path":  "/api/users/reset-password",
+                          "auth":  "Public",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "resetPassword"
+                      },
+                      {
+                          "controller":  "UserController",
+                          "method":  "GET",
+                          "path":  "/api/users/test",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "test"
+                      },
+                      {
+                          "controller":  "UserController",
+                          "method":  "GET",
+                          "path":  "/api/users/me",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "getCurrentUser"
+                      },
+                      {
+                          "controller":  "UserController",
+                          "method":  "PUT",
+                          "path":  "/api/users/me",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "updateCurrentUser"
+                      },
+                      {
+                          "controller":  "UserController",
+                          "method":  "DELETE",
+                          "path":  "/api/users/me",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "deleteCurrentUser"
+                      },
+                      {
+                          "controller":  "UserController",
+                          "method":  "GET",
+                          "path":  "/api/users/admin",
+                          "auth":  "AdminRole",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "adminTest"
+                      },
+                      {
+                          "controller":  "UserSearchController",
+                          "method":  "GET",
+                          "path":  "/api/users/search",
+                          "auth":  "JWT",
+                          "queryParams":  [
+                                              "query"
+                                          ],
+                          "handler":  "searchUsers"
+                      },
+                      {
+                          "controller":  "InvitationController",
+                          "method":  "POST",
+                          "path":  "/api/workspaces/{id}/invitations",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "inviteMember"
+                      },
+                      {
+                          "controller":  "InvitationController",
+                          "method":  "POST",
+                          "path":  "/api/invitations/accept",
+                          "auth":  "JWT",
+                          "queryParams":  [
+                                              "token"
+                                          ],
+                          "handler":  "acceptInvitation"
+                      },
+                      {
+                          "controller":  "WorkspaceController",
+                          "method":  "POST",
+                          "path":  "/api/workspaces",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "createWorkspace"
+                      },
+                      {
+                          "controller":  "WorkspaceController",
+                          "method":  "GET",
+                          "path":  "/api/workspaces/{id}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "getWorkspaceById"
+                      },
+                      {
+                          "controller":  "WorkspaceController",
+                          "method":  "GET",
+                          "path":  "/api/workspaces",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "getMyWorkspaces"
+                      },
+                      {
+                          "controller":  "WorkspaceController",
+                          "method":  "GET",
+                          "path":  "/api/workspaces/user/{userId}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "getWorkspacesByUserId"
+                      },
+                      {
+                          "controller":  "WorkspaceController",
+                          "method":  "PUT",
+                          "path":  "/api/workspaces/{id}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "updateWorkspace"
+                      },
+                      {
+                          "controller":  "WorkspaceController",
+                          "method":  "DELETE",
+                          "path":  "/api/workspaces/{id}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "deleteWorkspace"
+                      },
+                      {
+                          "controller":  "WorkspaceController",
+                          "method":  "GET",
+                          "path":  "/api/workspaces/{id}/members",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "getWorkspaceMembers"
+                      },
+                      {
+                          "controller":  "WorkspaceController",
+                          "method":  "POST",
+                          "path":  "/api/workspaces/{id}/members",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "addMemberToWorkspace"
+                      },
+                      {
+                          "controller":  "WorkspaceController",
+                          "method":  "PUT",
+                          "path":  "/api/workspaces/{id}/members/{userId}/role",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "updateMemberRole"
+                      },
+                      {
+                          "controller":  "WorkspaceController",
+                          "method":  "DELETE",
+                          "path":  "/api/workspaces/{id}/members/{userId}",
+                          "auth":  "JWT",
+                          "queryParams":  [
+
+                                          ],
+                          "handler":  "removeMember"
+                      }
+                  ]
+}
