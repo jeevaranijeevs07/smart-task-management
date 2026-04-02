@@ -28,6 +28,9 @@ import java.util.stream.Collectors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CacheEvict;
+
 @Service
 @RequiredArgsConstructor
 public class CardService {
@@ -167,6 +170,7 @@ public class CardService {
                 }
         }
 
+        @CacheEvict(value = "cards", allEntries = true)
         public Mono<CardResponseDTO> createCard(Long workspaceId, Long userId, CreateCardRequestDTO request) {
                 return boardListRepository.findById(request.getBoardListId())
                                 .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND,
@@ -236,6 +240,7 @@ public class CardService {
                                 }));
         }
 
+        @CacheEvict(value = "cards", key = "#cardId")
         public Mono<CardResponseDTO> updateCard(Long cardId, Long userId, UpdateCardRequestDTO request) {
                 return cardRepository.findById(cardId)
                                 .switchIfEmpty(Mono.error(
@@ -289,6 +294,7 @@ public class CardService {
                                 });
         }
 
+        @CacheEvict(value = "cards", key = "#cardId", allEntries = true)
         public Mono<Void> deleteCard(Long cardId, Long userId) {
                 return cardRepository.findById(cardId)
                                 .switchIfEmpty(Mono.error(
@@ -304,6 +310,7 @@ public class CardService {
                                                 .then(cardRepository.delete(card)));
         }
 
+        @Cacheable(value = "cards", key = "#cardId")
         public Mono<CardResponseDTO> getCard(Long cardId, Long userId) {
                 return cardRepository.findById(cardId)
                                 .switchIfEmpty(Mono.error(
@@ -330,6 +337,7 @@ public class CardService {
                                 .flatMap(this::mapToResponseDTO);
         }
 
+        @CacheEvict(value = "cards", key = "#cardId")
         public Mono<Void> assignUser(Long cardId, Long userId, CardAssignRequestDTO request) {
                 return cardRepository.findById(cardId)
                                 .switchIfEmpty(Mono.error(
@@ -373,6 +381,7 @@ public class CardService {
                                 });
         }
 
+        @CacheEvict(value = "cards", key = "#cardId")
         public Mono<Void> removeAssignment(Long cardId, Long adminId, Long targetUserId) {
                 return cardRepository.findById(cardId)
                                 .switchIfEmpty(Mono.error(
@@ -408,6 +417,7 @@ public class CardService {
                                 });
         }
 
+        @CacheEvict(value = "cards", key = "#cardId")
         public Mono<CardResponseDTO.CardChecklistResponseDTO> createChecklist(Long cardId, Long userId, String name) {
                 return cardRepository.findById(cardId)
                                 .switchIfEmpty(Mono.error(
@@ -428,6 +438,7 @@ public class CardService {
                                                 .build());
         }
 
+        @CacheEvict(value = "cards", allEntries = true)
         public Mono<Void> deleteChecklist(Long checklistId, Long userId) {
                 return cardChecklistRepository.findById(checklistId)
                                 .flatMap(cl -> cardRepository.findById(cl.getCardId())
@@ -439,6 +450,7 @@ public class CardService {
                                                 .then(cardChecklistRepository.delete(cl)));
         }
 
+        @CacheEvict(value = "cards", allEntries = true)
         public Mono<CardResponseDTO.CardChecklistItemResponseDTO> addChecklistItem(Long checklistId, Long userId,
                         String content) {
                 return cardChecklistRepository.findById(checklistId)
@@ -461,6 +473,7 @@ public class CardService {
                                                 .build());
         }
 
+        @CacheEvict(value = "cards", allEntries = true)
         public Mono<CardResponseDTO.CardChecklistItemResponseDTO> updateChecklistItem(Long itemId, Long userId,
                         ChecklistItemUpdateRequestDTO request) {
                 return cardChecklistItemRepository.findById(itemId)
@@ -483,6 +496,7 @@ public class CardService {
                                                 .build());
         }
 
+        @CacheEvict(value = "cards", allEntries = true)
         public Mono<Void> deleteChecklistItem(Long itemId, Long userId) {
                 return cardChecklistItemRepository.findById(itemId)
                                 .flatMap(item -> cardChecklistRepository.findById(item.getChecklistId())
@@ -547,6 +561,7 @@ public class CardService {
                                 .then();
         }
 
+        @CacheEvict(value = "cards", key = "#cardId")
         public Mono<CardResponseDTO.CardCommentResponseDTO> addComment(Long cardId, Long userId, String content) {
                 return cardRepository.findById(cardId)
                                 .switchIfEmpty(Mono.error(
@@ -591,6 +606,7 @@ public class CardService {
                                                 }));
         }
 
+        @CacheEvict(value = "cards", key = "#cardId")
         public Mono<CardResponseDTO.CardAttachmentResponseDTO> addAttachment(Long cardId, Long userId, String fileName,
                         String fileUrl, String fileType) {
                 return cardRepository.findById(cardId)
@@ -619,6 +635,7 @@ public class CardService {
                                                 .build());
         }
 
+        @CacheEvict(value = "cards", key = "#cardId")
         public Mono<Void> deleteAttachment(Long cardId, Long actorId, Long attachmentId) {
                 return cardRepository.findById(cardId)
                                 .switchIfEmpty(Mono.error(
@@ -644,6 +661,7 @@ public class CardService {
                                                                 })));
         }
 
+        @CacheEvict(value = "cards", key = "#cardId")
         public Mono<Void> addMemberToCard(Long cardId, Long adminId, Long targetUserId) {
                 return cardRepository.findById(cardId)
                                 .switchIfEmpty(Mono.error(
@@ -692,6 +710,7 @@ public class CardService {
                                                 .then());
         }
 
+        @CacheEvict(value = "cards", key = "#cardId")
         public Mono<Void> removeMemberFromCard(Long cardId, Long actorId, Long targetUserId) {
                 return cardRepository.findById(cardId)
                                 .switchIfEmpty(Mono.error(
@@ -726,6 +745,7 @@ public class CardService {
                                                 }));
         }
 
+        @CacheEvict(value = "cards", key = "#cardId", allEntries = true)
         public Mono<CardResponseDTO> moveCard(Long cardId, Long userId, CardMoveRequestDTO request) {
                 return cardRepository.findById(cardId)
                                 .switchIfEmpty(Mono.error(

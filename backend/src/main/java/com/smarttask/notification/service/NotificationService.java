@@ -24,9 +24,12 @@ import com.smarttask.common.security.JwtService;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 @Service
 @Slf4j
@@ -39,6 +42,16 @@ public class NotificationService {
 
         private final Sinks.Many<NotificationResponseDTO> sseSink = Sinks.many().multicast().onBackpressureBuffer();
         private static final long DUPLICATE_WINDOW_SECONDS = 10;
+        private static final String PARAM_USER_ID = "userId";
+        private static final String PARAM_TYPE = "type";
+        private static final String PARAM_MESSAGE = "message";
+        private static final String PARAM_CUTOFF = "cutoff";
+        private static final String PARAM_CARD_ID = "cardId";
+        private static final String PARAM_WORKSPACE_ID = "workspaceId";
+        private static final String PARAM_BOARD_ID = "boardId";
+        private static final String PARAM_ACTION_TOKEN = "actionToken";
+        private static final String PARAM_IS_READ = "isRead";
+        private static final String PARAM_NOTIFICATION_ID = "notificationId";
 
         public NotificationService(
                         NotificationRepository notificationRepository,
@@ -129,31 +142,11 @@ public class NotificationService {
                                 + "AND created_at >= :cutoff";
 
                 DatabaseClient.GenericExecuteSpec spec = databaseClient.sql(sql)
-                                .bind("userId", userId)
-                                .bind("type", type.name())
-                                .bind("message", Objects.toString(message, ""))
-                                .bind("cutoff", cutoff);
-
-                if (cardId != null) {
-                        spec = spec.bind("cardId", cardId);
-                } else {
-                        spec = spec.bindNull("cardId", Long.class);
-                }
-                if (workspaceId != null) {
-                        spec = spec.bind("workspaceId", workspaceId);
-                } else {
-                        spec = spec.bindNull("workspaceId", Long.class);
-                }
-                if (boardId != null) {
-                        spec = spec.bind("boardId", boardId);
-                } else {
-                        spec = spec.bindNull("boardId", Long.class);
-                }
-                if (actionToken != null) {
-                        spec = spec.bind("actionToken", actionToken);
-                } else {
-                        spec = spec.bindNull("actionToken", String.class);
-                }
+                                .bind(PARAM_USER_ID, userId)
+                                .bind(PARAM_TYPE, type.name())
+                                .bind(PARAM_MESSAGE, Objects.toString(message, ""))
+                                .bind(PARAM_CUTOFF, cutoff);
+                spec = bindNotificationContext(spec, cardId, workspaceId, boardId, actionToken);
 
                 return spec.map((row, meta) -> {
                                 Object raw = row.get("cnt");
@@ -161,11 +154,8 @@ public class NotificationService {
                                         return n.longValue();
                                 }
                                 if (raw instanceof String s) {
-                                        try {
-                                                return Long.parseLong(s.trim());
-                                        } catch (Exception ignored) {
-                                                return 0L;
-                                        }
+                                        Long parsed = parseLongValue(s);
+                                        return parsed != null ? parsed : 0L;
                                 }
                                 return 0L;
                         })
@@ -204,70 +194,21 @@ public class NotificationService {
 
                 org.springframework.r2dbc.core.DatabaseClient.GenericExecuteSpec spec = databaseClient
                                 .sql(sql)
-                                .bind("userId", userId)
-                                .bind("message", message)
-                                .bind("type", type.name())
-                                .bind("isRead", false);
-
-                if (cardId != null) {
-                        spec = spec.bind("cardId", cardId);
-                } else {
-                        spec = spec.bindNull("cardId", Long.class);
-                }
-                if (workspaceId != null) {
-                        spec = spec.bind("workspaceId", workspaceId);
-                } else {
-                        spec = spec.bindNull("workspaceId", Long.class);
-                }
-                if (boardId != null) {
-                        spec = spec.bind("boardId", boardId);
-                } else {
-                        spec = spec.bindNull("boardId", Long.class);
-                }
-                if (actionToken != null) {
-                        spec = spec.bind("actionToken", actionToken);
-                } else {
-                        spec = spec.bindNull("actionToken", String.class);
-                }
+                                .bind(PARAM_USER_ID, userId)
+                                .bind(PARAM_MESSAGE, message)
+                                .bind(PARAM_TYPE, type.name())
+                                .bind(PARAM_IS_READ, false);
+                spec = bindNotificationContext(spec, cardId, workspaceId, boardId, actionToken);
 
                 return spec.fetch()
                                 .rowsUpdated()
                                 .doOnNext(rows -> {
-                                        LocalDateTime now = LocalDateTime.now();
                                         log.info(
                                                         "Notification insert attempted for user {} type {} rowsUpdated={}",
                                                         userId, type, rows);
-                                        // Push via WebSocket in real time
                                         if (rows > 0) {
-                                                try {
-                                                        String json = String.format(
-                                                                        "{\"type\":\"%s\",\"message\":\"%s\",\"cardId\":%s,\"workspaceId\":%s,\"boardId\":%s,\"isRead\":false,\"createdAt\":\"%s\"}",
-                                                                        type.name(),
-                                                                        escapeJson(message),
-                                                                        cardId != null ? cardId : "null",
-                                                                        workspaceId != null ? workspaceId : "null",
-                                                                        boardId != null ? boardId : "null",
-                                                                        now.toString());
-                                                        webSocketHandler.sendToUser(userId, json);
-
-                                                        // Push via SSE
-                                                        NotificationResponseDTO sseDto = NotificationResponseDTO
-                                                                        .builder()
-                                                                        .userId(userId)
-                                                                        .message(message)
-                                                                        .type(type)
-                                                                        .cardId(cardId)
-                                                                        .workspaceId(workspaceId)
-                                                                        .boardId(boardId)
-                                                                        .isRead(false)
-                                                                        .createdAt(now)
-                                                                        .build();
-                                                        sseSink.tryEmitNext(sseDto);
-
-                                                } catch (Exception e) {
-                                                        log.warn("WebSocket push failed for user {}: {}", userId,
-                                                                        e.getMessage());
-                                                }
+                                                pushRealtimeNotification(userId, message, type, cardId, workspaceId,
+                                                                boardId);
                                         }
                                 })
                                 .flatMap(rows -> rows > 0 ? Mono.<Void>empty()
@@ -281,6 +222,69 @@ public class NotificationService {
                                 });
         }
 
+        private DatabaseClient.GenericExecuteSpec bindNotificationContext(
+                        DatabaseClient.GenericExecuteSpec spec,
+                        Long cardId,
+                        Long workspaceId,
+                        Long boardId,
+                        String actionToken) {
+                DatabaseClient.GenericExecuteSpec withCard = bindNullableLong(spec, PARAM_CARD_ID, cardId);
+                DatabaseClient.GenericExecuteSpec withWorkspace = bindNullableLong(withCard, PARAM_WORKSPACE_ID,
+                                workspaceId);
+                DatabaseClient.GenericExecuteSpec withBoard = bindNullableLong(withWorkspace, PARAM_BOARD_ID, boardId);
+                return bindNullableString(withBoard, PARAM_ACTION_TOKEN, actionToken);
+        }
+
+        private DatabaseClient.GenericExecuteSpec bindNullableLong(
+                        DatabaseClient.GenericExecuteSpec spec,
+                        String paramName,
+                        Long value) {
+                return value != null ? spec.bind(paramName, value) : spec.bindNull(paramName, Long.class);
+        }
+
+        private DatabaseClient.GenericExecuteSpec bindNullableString(
+                        DatabaseClient.GenericExecuteSpec spec,
+                        String paramName,
+                        String value) {
+                return value != null ? spec.bind(paramName, value) : spec.bindNull(paramName, String.class);
+        }
+
+        private void pushRealtimeNotification(
+                        Long userId,
+                        String message,
+                        NotificationType type,
+                        Long cardId,
+                        Long workspaceId,
+                        Long boardId) {
+                LocalDateTime now = LocalDateTime.now();
+                try {
+                        String json = String.format(
+                                        "{\"type\":\"%s\",\"message\":\"%s\",\"cardId\":%s,\"workspaceId\":%s,\"boardId\":%s,\"isRead\":false,\"createdAt\":\"%s\"}",
+                                        type.name(),
+                                        escapeJson(message),
+                                        cardId != null ? cardId : "null",
+                                        workspaceId != null ? workspaceId : "null",
+                                        boardId != null ? boardId : "null",
+                                        now);
+                        webSocketHandler.sendToUser(userId, json);
+
+                        NotificationResponseDTO sseDto = NotificationResponseDTO
+                                        .builder()
+                                        .userId(userId)
+                                        .message(message)
+                                        .type(type)
+                                        .cardId(cardId)
+                                        .workspaceId(workspaceId)
+                                        .boardId(boardId)
+                                        .isRead(false)
+                                        .createdAt(now)
+                                        .build();
+                        sseSink.tryEmitNext(sseDto);
+                } catch (Exception e) {
+                        log.warn("WebSocket push failed for user {}: {}", userId, e.getMessage());
+                }
+        }
+
         /**
          * Retrieves the user's notification list, ordered by most recent.
          */
@@ -289,7 +293,7 @@ public class NotificationService {
                                 .sql("SELECT id, card_id, workspace_id, board_id, message, type, action_token, IF(is_read, 1, 0) AS is_read, created_at "
                                                 + "FROM notifications WHERE user_id = :userId "
                                                 + "ORDER BY created_at DESC")
-                                .bind("userId", userId)
+                                .bind(PARAM_USER_ID, userId)
                                 .map((row, metadata) -> NotificationResponseDTO.builder()
                                                 .id(parseLongValue(row.get("id")))
                                                 .userId(userId)
@@ -324,8 +328,8 @@ public class NotificationService {
         public Mono<Void> markAsRead(Long notificationId, Long userId) {
                 return databaseClient
                                 .sql("UPDATE notifications SET is_read = TRUE WHERE id = :notificationId AND user_id = :userId")
-                                .bind("notificationId", notificationId)
-                                .bind("userId", userId)
+                                .bind(PARAM_NOTIFICATION_ID, notificationId)
+                                .bind(PARAM_USER_ID, userId)
                                 .fetch()
                                 .rowsUpdated()
                                 .flatMap(rows -> {
@@ -343,7 +347,7 @@ public class NotificationService {
         public Mono<Void> markAllAsRead(Long userId) {
                 return databaseClient
                                 .sql("UPDATE notifications SET is_read = TRUE WHERE user_id = :userId AND is_read = FALSE")
-                                .bind("userId", userId)
+                                .bind(PARAM_USER_ID, userId)
                                 .fetch()
                                 .rowsUpdated()
                                 .then();
@@ -369,8 +373,8 @@ public class NotificationService {
         public Mono<Void> deleteNotification(Long notificationId, Long userId) {
                 return databaseClient
                                 .sql("DELETE FROM notifications WHERE id = :notificationId AND user_id = :userId")
-                                .bind("notificationId", notificationId)
-                                .bind("userId", userId)
+                                .bind(PARAM_NOTIFICATION_ID, notificationId)
+                                .bind(PARAM_USER_ID, userId)
                                 .fetch()
                                 .rowsUpdated()
                                 .flatMap(rows -> {
@@ -492,6 +496,9 @@ public class NotificationService {
          * Utility method for robustly parsing raw database results into LocalDateTime.
          */
         private LocalDateTime parseDateTimeValue(Object raw) {
+                if (raw == null) {
+                        return null;
+                }
                 if (raw instanceof LocalDateTime dateTime) {
                         return dateTime;
                 }
@@ -502,15 +509,53 @@ public class NotificationService {
                         return timestamp.toLocalDateTime();
                 }
                 if (raw instanceof Instant instant) {
-                        return LocalDateTime.ofInstant(instant, java.time.ZoneId.systemDefault());
+                        return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+                }
+                if (raw instanceof LocalDate localDate) {
+                        return localDate.atStartOfDay();
+                }
+                if (raw instanceof java.util.Date date) {
+                        return LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+                }
+                if (raw instanceof byte[] bytes) {
+                        return parseDateTimeString(new String(bytes).trim());
                 }
                 if (raw instanceof String str) {
-                        try {
-                                return LocalDateTime.parse(str);
-                        } catch (Exception ex) {
-                                return null;
-                        }
+                        return parseDateTimeString(str.trim());
                 }
                 return null;
+        }
+
+        private LocalDateTime parseDateTimeString(String raw) {
+                if (raw == null || raw.isEmpty()) {
+                        return null;
+                }
+
+                LocalDateTime local = tryParseDateTime(() -> LocalDateTime.parse(raw));
+                if (local != null) {
+                        return local;
+                }
+
+                LocalDateTime offset = tryParseDateTime(() -> OffsetDateTime.parse(raw).toLocalDateTime());
+                if (offset != null) {
+                        return offset;
+                }
+
+                LocalDateTime instant = tryParseDateTime(
+                                () -> Instant.parse(raw).atZone(ZoneId.systemDefault()).toLocalDateTime());
+                if (instant != null) {
+                        return instant;
+                }
+
+                String normalizedSqlValue = raw.replace('T', ' ');
+                return tryParseDateTime(() -> Timestamp.valueOf(normalizedSqlValue).toLocalDateTime());
+        }
+
+        private LocalDateTime tryParseDateTime(Supplier<LocalDateTime> parser) {
+                try {
+                        return parser.get();
+                } catch (RuntimeException ex) {
+                        return null;
+                }
         }
 }

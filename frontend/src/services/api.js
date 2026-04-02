@@ -45,7 +45,7 @@ api.interceptors.response.use(
           }
           break;
         case 403:
-          toast.error("You don't have permission to perform this action.");
+          // Let component-level error handlers show specific messages
           break;
         case 404:
           toast.error("The requested resource was not found.");

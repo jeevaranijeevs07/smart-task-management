@@ -2,15 +2,17 @@ import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
-import { Layout, LogOut, User, Menu, X, Bell } from 'lucide-react';
+import { Layout, LogOut, User, Menu, X, Bell, Layers, History, Settings } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import NotificationPanel from './NotificationPanel';
+import { useUI } from '../context/UIContext';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [isNotifOpen, setIsNotifOpen] = React.useState(false);
     const [avatarFailed, setAvatarFailed] = React.useState(false);
     const [showLogoutConfirm, setShowLogoutConfirm] = React.useState(false);
+    const { toggleSidebar, isSidebarOpen } = useUI();
     const location = useLocation();
     const navigate = useNavigate();
     const { user, logout, isAuthenticated } = useAuth();
@@ -21,7 +23,10 @@ const Navbar = () => {
 
     const isAuthPage = ['/login', '/register', '/forgot-password', '/reset-password'].includes(location.pathname);
     const isDashboard = location.pathname === '/dashboard' || location.pathname === '/settings';
-    if (isAuthPage || isDashboard) return null;
+    
+    // Auth pages never show Navbar. 
+    // Dashboard pages only show Navbar on mobile (handled via CSS class below).
+    if (isAuthPage) return null;
 
     const isHome = location.pathname === '/';
 
@@ -32,8 +37,20 @@ const Navbar = () => {
         navigate('/login');
     };
 
+    const handleHamburger = () => {
+        if (isAuthenticated && !isHome) {
+            toggleSidebar();
+            setIsOpen(false);
+        } else {
+            setIsOpen((prev) => !prev);
+        }
+    };
+
+    const hamburgerOpen = (isAuthenticated && !isHome) ? isSidebarOpen : isOpen;
+    const shouldShowMobileMenu = isOpen && (!isAuthenticated || isHome);
+
     return (
-        <nav className="glass navbar">
+        <nav className={`glass navbar ${isDashboard ? 'hide-desktop' : ''}`}>
             <div className="navbar-inner">
                 <Link to="/" className="navbar-brand">
                     <div className="navbar-brand-icon">
@@ -74,9 +91,9 @@ const Navbar = () => {
                                 <button
                                     className="hide-desktop btn-ghost"
                                     style={{ padding: '0.5rem' }}
-                                    onClick={() => setIsOpen(!isOpen)}
+                                    onClick={handleHamburger}
                                 >
-                                    {isOpen ? <X size={22} /> : <Menu size={22} />}
+                                    {hamburgerOpen ? <X size={22} /> : <Menu size={22} />}
                                 </button>
                                 <button
                                     onClick={() => setShowLogoutConfirm(true)}
@@ -95,9 +112,9 @@ const Navbar = () => {
                             <button
                                 className="hide-desktop btn-ghost"
                                 style={{ padding: '0.5rem' }}
-                                onClick={() => setIsOpen(!isOpen)}
+                                onClick={handleHamburger}
                             >
-                                {isOpen ? <X size={22} /> : <Menu size={22} />}
+                                {hamburgerOpen ? <X size={22} /> : <Menu size={22} />}
                             </button>
                         </div>
                     )}
@@ -106,7 +123,7 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             <AnimatePresence>
-                {isOpen && (
+                {shouldShowMobileMenu && (
                     <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
@@ -117,9 +134,25 @@ const Navbar = () => {
                         <div className="mobile-menu glass-heavy" style={{ margin: '0 1rem', borderRadius: 'var(--radius-lg)' }}>
                             {(!isHome && isAuthenticated) ? (
                                 <>
+                                    <Link to="/dashboard" onClick={() => setIsOpen(false)} className="mobile-menu-item">
+                                        <Layout size={18} /> Dashboard
+                                    </Link>
+                                    <Link to="/dashboard#workspaces" onClick={() => setIsOpen(false)} className="mobile-menu-item">
+                                        <Layers size={18} /> Workspaces
+                                    </Link>
+                                    <Link to="/dashboard#notifications" onClick={() => setIsOpen(false)} className="mobile-menu-item">
+                                        <Bell size={18} /> Notifications
+                                    </Link>
+                                    <Link to="/dashboard#activity" onClick={() => setIsOpen(false)} className="mobile-menu-item">
+                                        <History size={18} /> Activity
+                                    </Link>
+                                    <Link to="/settings" onClick={() => setIsOpen(false)} className="mobile-menu-item">
+                                        <Settings size={18} /> Settings
+                                    </Link>
+                                    <div className="profile-menu-divider" />
                                     <button
                                         className="btn-secondary"
-                                        style={{ width: '100%', justifyContent: 'center', color: 'var(--color-danger)' }}
+                                        style={{ width: '100%', justifyContent: 'center', color: 'var(--color-danger)', border: 'none', background: 'transparent' }}
                                         onClick={() => { setIsOpen(false); setShowLogoutConfirm(true); }}
                                     >
                                         <LogOut size={16} /> Sign Out

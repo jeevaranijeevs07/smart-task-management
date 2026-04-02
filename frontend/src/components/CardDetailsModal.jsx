@@ -46,10 +46,54 @@ const encodeLabelString = (color, name) => `${color}:${name}`;
 const COMMENT_MENTION_TRIGGER_REGEX = /@(\w*)$/;
 const COMMENT_MENTION_TOKEN_REGEX = /@\[(.*?)\]\((\d+)\)/;
 
-const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members, onClose, onUpdated, isViewer }) => { // NOSONAR
+const CardDetailsModal = ({
+    cardId,
+    isNewCard,
+    boardListId,
+    workspaceId,
+    members,
+    onClose,
+    onUpdated,
+    workspaceRole,
+    boardRole,
+}) => { // NOSONAR
     const [card, setCard] = useState(null);
     const [loading, setLoading] = useState(true);
     const { user } = useAuth();
+
+    const normalizedWorkspaceRole = (workspaceRole || '').toUpperCase();
+    const normalizedBoardRole = (boardRole || '').toUpperCase();
+
+    const isWorkspaceOwner = normalizedWorkspaceRole === 'OWNER';
+    const isWorkspaceAdmin = normalizedWorkspaceRole === 'ADMIN';
+    const isWorkspaceMember = normalizedWorkspaceRole === 'MEMBER';
+    const isBoardAdmin = normalizedBoardRole === 'ADMIN';
+    const isBoardMember = normalizedBoardRole === 'MEMBER';
+
+    const canBoardView = Boolean(normalizedWorkspaceRole);
+    const canWorkspaceNonViewer = isWorkspaceOwner || isWorkspaceAdmin || isWorkspaceMember;
+    const canBoardAdmin = isWorkspaceOwner || isWorkspaceAdmin || isBoardAdmin;
+    const canBoardMember = isWorkspaceOwner || isWorkspaceAdmin || (isWorkspaceMember && (isBoardMember || isBoardAdmin));
+    const canEditCardDetails = isNewCard ? canBoardAdmin : canBoardMember;
+    const canDeleteThisCard = canBoardAdmin;
+    const canCreateChecklist = canBoardMember;
+    const canManageChecklistItems = canBoardMember;
+
+    const isCurrentUserAssignee = String(card?.assignedTo ?? '') === String(user?.id ?? '');
+    const isCurrentUserCardMember = (card?.members || []).some((m) => String(m.userId) === String(user?.id));
+    const canCardParticipantMutate = isWorkspaceOwner
+        || isWorkspaceAdmin
+        || (isWorkspaceMember && (isCurrentUserAssignee || isCurrentUserCardMember));
+
+    const canUpdateChecklistItemState = canCardParticipantMutate;
+    const canComment = canCardParticipantMutate;
+    const canAddAttachment = canWorkspaceNonViewer && canBoardView;
+
+    const canToggleAssignmentFor = (targetUserId) => {
+        if (!canWorkspaceNonViewer || !canBoardView || !user?.id || !card) return false;
+        if (String(targetUserId) === String(user.id)) return true;
+        return isWorkspaceOwner || isWorkspaceAdmin;
+    };
 
     // Editable fields (local state, saved on explicit Save)
     const [title, setTitle] = useState('');
@@ -136,6 +180,10 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
     // ── SAVE (explicit button) ──
     const handleSave = async () => {
         if (!isDirty && !isNewCard) return;
+        if (!canEditCardDetails) {
+            toast.error('You do not have permission to edit this card.');
+            return;
+        }
         if (isNewCard && !title.trim()) {
             toast.error('Card title is required.');
             return;
@@ -173,6 +221,10 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
 
     // ── Assign / Unassign ──
     const handleToggleAssign = async (userId) => {
+        if (!canToggleAssignmentFor(userId)) {
+            toast.error('You do not have permission to change this assignment.');
+            return;
+        }
         setAssigning(userId);
         try {
             if (card.assignedTo === userId) {
@@ -206,6 +258,10 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
 
     // ── Checklists ──
     const handleAddChecklist = async () => {
+        if (!canCreateChecklist) {
+            toast.error('You do not have permission to add checklists.');
+            return;
+        }
         if (!newChecklistName.trim()) return;
         setAddingChecklist(true);
         try {
@@ -219,6 +275,10 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
     };
 
     const handleAddChecklistItem = async (checklistId) => {
+        if (!canManageChecklistItems) {
+            toast.error('You do not have permission to add checklist items.');
+            return;
+        }
         const text = newItemTexts[checklistId]?.trim();
         if (!text) return;
         setAddingItem(checklistId);
@@ -231,6 +291,10 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
     };
 
     const handleToggleChecklistItem = async (itemId, currentChecked) => {
+        if (!canUpdateChecklistItemState) {
+            toast.error('You do not have permission to update this checklist item.');
+            return;
+        }
         try {
             await api.put(API_ENDPOINTS.CARDS.CHECKLIST_ITEM_UPDATE(itemId), { isChecked: !currentChecked });
             await fetchCard();
@@ -238,6 +302,10 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
     };
 
     const handleDeleteChecklistItem = async (itemId) => {
+        if (!canManageChecklistItems) {
+            toast.error('You do not have permission to delete checklist items.');
+            return;
+        }
         try {
             await api.delete(API_ENDPOINTS.CARDS.CHECKLIST_ITEM_DELETE(itemId));
             await fetchCard();
@@ -245,6 +313,10 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
     };
 
     const handleAddComment = async () => {
+        if (!canComment) {
+            toast.error('You do not have permission to comment on this card.');
+            return;
+        }
         const content = extractCommentContent();
         if (!content.trim()) return;
         setAddingComment(true);
@@ -357,6 +429,10 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
 
     // ── Attachments ──
     const handleAddAttachment = async () => {
+        if (!canAddAttachment) {
+            toast.error('You do not have permission to add attachments.');
+            return;
+        }
         if (!attachFileName.trim() || !attachFileUrl.trim()) return;
         setAddingAttachment(true);
         try {
@@ -372,6 +448,10 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
     };
 
     const handleDeleteAttachment = async (attachmentId) => {
+        if (!canAddAttachment) {
+            toast.error('You do not have permission to delete attachments.');
+            return;
+        }
         if (!attachmentId) return;
         if (!globalThis.confirm('Delete this attachment?')) return;
         setDeletingAttachmentId(attachmentId);
@@ -388,6 +468,10 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
 
     // ── Delete card ──
     const handleDelete = async () => {
+        if (!canDeleteThisCard) {
+            toast.error('You do not have permission to delete this card.');
+            return;
+        }
         if (!globalThis.confirm('Delete this card permanently?')) return;
         setDeleting(true);
         try {
@@ -433,7 +517,7 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
                                 onChange={e => { setTitle(e.target.value); markDirty(); }}
                                 onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); titleRef.current?.blur(); } }}
                                 placeholder="Card title..."
-                                disabled={isViewer}
+                                disabled={!canEditCardDetails}
                             />
                             <button className="cdm-close-btn" onClick={onClose}><X size={18} /></button>
                         </div>
@@ -447,8 +531,8 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
                                     className="cdm-desc-textarea"
                                     value={description}
                                     onChange={e => { setDescription(e.target.value); markDirty(); }}
-                                    placeholder={isViewer && !description ? "No description provided." : "Add a more detailed description..."}
-                                    disabled={isViewer}
+                                    placeholder={!canEditCardDetails && !description ? "No description provided." : "Add a more detailed description..."}
+                                    disabled={!canEditCardDetails}
                                 />
                             </div>
 
@@ -466,7 +550,7 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
                                             className="cdm-select"
                                             value={priority}
                                             onChange={e => { setPriority(e.target.value); markDirty(); }}
-                                            disabled={isViewer}
+                                            disabled={!canEditCardDetails}
                                             style={{ color: (PRIORITY_OPTIONS.find(o => o.value === priority) || PRIORITY_OPTIONS[0]).color, fontWeight: 600 }}
                                         >
                                             {PRIORITY_OPTIONS.map(o => <option key={o.value} value={o.value} style={{ color: o.color, fontWeight: 600 }}>{o.label}</option>)}
@@ -494,10 +578,10 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
                                         dateFormat="MMM d, yyyy h:mm aa"
                                         placeholderText="Set due date & time..."
                                         className="cdm-date-input"
-                                        isClearable={!isViewer}
+                                        isClearable={canEditCardDetails}
                                         wrapperClassName="cdm-datepicker-wrapper"
                                         portalId="datepicker-portal"
-                                        disabled={isViewer}
+                                        disabled={!canEditCardDetails}
                                     />
                                 </div>
                             </div>
@@ -524,11 +608,11 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
                                                 textShadow: '0 1px 2px rgba(0,0,0,0.2)',
                                             }}>
                                                 {parsed.name}
-                                                {!isViewer && <button className="cdm-label-remove" onClick={() => handleRemoveLabel(i)} style={{ color: '#fff' }}><X size={10} /></button>}
+                                                {canEditCardDetails && <button className="cdm-label-remove" onClick={() => handleRemoveLabel(i)} style={{ color: '#fff' }}><X size={10} /></button>}
                                             </span>
                                         );
                                     })}
-                                    {!isViewer && (
+                                    {canEditCardDetails && (
                                         !showLabelForm ? (
                                             <button className="cdm-add-btn" onClick={() => setShowLabelForm(true)} style={{ marginTop: labels.length > 0 ? '0.25rem' : 0 }}>
                                                 <Plus size={14} /> Add Label
@@ -594,14 +678,14 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
                                                 <div className="cdm-progress-bar"><div className="cdm-progress-fill" style={{ width: `${pct}%` }} /></div>
                                                 {cl.items?.map(item => (
                                                     <div key={item.id} className="cdm-checklist-item">
-                                                        <button className="cdm-check-btn" onClick={() => !isViewer && handleToggleChecklistItem(item.id, item.isChecked)} disabled={isViewer}>
+                                                        <button className="cdm-check-btn" onClick={() => canUpdateChecklistItemState && handleToggleChecklistItem(item.id, item.isChecked)} disabled={!canUpdateChecklistItemState}>
                                                             {item.isChecked ? <Check size={13} /> : <Square size={13} />}
                                                         </button>
                                                         <span className={`cdm-check-text ${item.isChecked ? 'done' : ''}`}>{item.content}</span>
-                                                        {!isViewer && <button className="cdm-check-delete" onClick={() => handleDeleteChecklistItem(item.id)}><X size={11} /></button>}
+                                                        {canManageChecklistItems && <button className="cdm-check-delete" onClick={() => handleDeleteChecklistItem(item.id)}><X size={11} /></button>}
                                                     </div>
                                                 ))}
-                                                {!isViewer && (
+                                                {canManageChecklistItems && (
                                                     <div className="cdm-comment-form" style={{ marginTop: '0.35rem' }}>
                                                         <input
                                                             className="cdm-comment-input"
@@ -621,7 +705,7 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
                                         );
                                     })}
 
-                                    {!isViewer && (
+                                    {canCreateChecklist && (
                                         showAddChecklist ? (
                                             <div className="cdm-comment-form">
                                                 <input className="cdm-comment-input" placeholder="Checklist name..." value={newChecklistName}
@@ -649,10 +733,11 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
                                         {members.map(member => {
                                             const isAssigned = card.assignedTo === member.userId;
                                             const isBusy = assigning === member.userId;
+                                            const canToggleMember = canToggleAssignmentFor(member.userId);
                                             return (
-                                                <div key={member.userId} className={`cdm-member-row ${isViewer ? '' : 'clickable'}`}
-                                                    onClick={() => !isViewer && !isBusy && handleToggleAssign(member.userId)}
-                                                    style={{ opacity: isBusy ? 0.6 : 1, cursor: isViewer ? 'default' : 'pointer' }}>
+                                                <div key={member.userId} className={`cdm-member-row ${canToggleMember ? 'clickable' : ''}`}
+                                                    onClick={() => canToggleMember && !isBusy && handleToggleAssign(member.userId)}
+                                                    style={{ opacity: isBusy ? 0.6 : 1, cursor: canToggleMember ? 'pointer' : 'default' }}>
                                                     <div className={`cdm-member-check ${isAssigned ? 'checked' : ''}`}>
                                                         {isAssigned && <Check size={12} color="#fff" />}
                                                     </div>
@@ -678,7 +763,7 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
                                                     <a href={att.fileUrl} target="_blank" rel="noopener noreferrer" className="cdm-attachment-item cdm-attachment-link">
                                                         <Paperclip size={13} /><span>{att.fileName}</span><span className="cdm-attachment-type">{att.fileType}</span>
                                                     </a>
-                                                    {!isViewer && user?.id && att.userId != null && String(att.userId) === String(user.id) && (
+                                                    {canAddAttachment && user?.id && att.userId != null && String(att.userId) === String(user.id) && (
                                                         <button
                                                             type="button"
                                                             className="cdm-attachment-delete"
@@ -694,7 +779,7 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
                                             ))}
                                         </div>
                                     )}
-                                    {!isViewer && (
+                                    {canAddAttachment && (
                                         showAddAttachment ? (
                                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                                                 <input className="cdm-comment-input" placeholder="File name" value={attachFileName}
@@ -735,13 +820,12 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
                                             ))}
                                         </div>
                                     )}
-                                    {!isViewer && (
+                                    {canComment && (
                                         <div className="cdm-comment-form" style={{ position: 'relative' }}>
                                             {showMentions && (
                                                 <div className="cdm-mentions-dropdown">
                                                     {members
-                                                        .filter(m => String(m.role || '').toUpperCase() !== 'VIEWER'
-                                                            && m.name.toLowerCase().includes(mentionQuery))
+                                                        .filter(m => (m.name || '').toLowerCase().includes(mentionQuery))
                                                         .map(m => (
                                                             <div
                                                                 key={m.userId}
@@ -786,10 +870,10 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
                         </div>
 
                         {/* ── Footer: Save + Delete ── */}
-                        {!isViewer && (
+                        {(canEditCardDetails || (!isNewCard && canDeleteThisCard)) && (
                             <div className="cdm-footer">
                                 <div className="cdm-footer-left">
-                                    {!isNewCard && (
+                                    {!isNewCard && canDeleteThisCard && (
                                         <button
                                             className="btn btn-danger"
                                             style={{ fontSize: '0.78rem', padding: '0.4rem 0.85rem', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '0.35rem' }}
@@ -800,16 +884,18 @@ const CardDetailsModal = ({ cardId, isNewCard, boardListId, workspaceId, members
                                     )}
                                 </div>
 
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                                    {justSaved && <span className="cdm-save-indicator"><Check size={13} /> Saved</span>}
-                                    <button
-                                        className="cdm-save-btn"
-                                        onClick={handleSave}
-                                        disabled={saving || (!isDirty && !isNewCard)}
-                                    >
-                                        <Save size={15} /> {saving ? (isNewCard ? 'Creating...' : 'Saving...') : (isNewCard ? 'Create Card' : 'Save Changes')}
-                                    </button>
-                                </div>
+                                {canEditCardDetails && (
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                                        {justSaved && <span className="cdm-save-indicator"><Check size={13} /> Saved</span>}
+                                        <button
+                                            className="cdm-save-btn"
+                                            onClick={handleSave}
+                                            disabled={saving || (!isDirty && !isNewCard)}
+                                        >
+                                            <Save size={15} /> {saving ? (isNewCard ? 'Creating...' : 'Saving...') : (isNewCard ? 'Create Card' : 'Save Changes')}
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         )}
                     </>

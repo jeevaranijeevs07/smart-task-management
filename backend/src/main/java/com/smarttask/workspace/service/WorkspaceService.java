@@ -1,5 +1,6 @@
 package com.smarttask.workspace.service;
 
+import com.smarttask.common.entities.enums.NotificationType;
 import com.smarttask.common.entities.enums.WorkspaceRole;
 import com.smarttask.workspace.dto.AddMemberRequestDTO;
 import com.smarttask.workspace.dto.WorkspaceRequestDTO;
@@ -12,7 +13,10 @@ import com.smarttask.workspace.repository.WorkspaceRepository;
 import com.smarttask.workspace.dto.WorkspaceMemberResponseDTO;
 import com.smarttask.user.repository.UserRepository;
 import com.smarttask.activity.service.ActivityLogService;
+import com.smarttask.notification.service.EmailService;
+import com.smarttask.notification.service.NotificationService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -21,9 +25,12 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class WorkspaceService {
 
         private final WorkspaceRepository workspaceRepository;
@@ -32,6 +39,8 @@ public class WorkspaceService {
         private final com.smarttask.board.repository.BoardRepository boardRepository;
         private final com.smarttask.board.repository.BoardMemberRepository boardMemberRepository;
         private final ActivityLogService activityLogService;
+        private final NotificationService notificationService;
+        private final EmailService emailService;
 
         private static int roleRank(WorkspaceRole role) {
                 if (role == null) {
@@ -100,9 +109,13 @@ public class WorkspaceService {
                                 });
         }
 
+        @Cacheable(value = "workspaces", key = "#id")
         public Mono<WorkspaceResponseDTO> getWorkspaceById(Long id) {
+                log.debug("[DEBUG] Fetching workspace by ID: {}", id);
                 return workspaceRepository.findById(id)
-                                .flatMap(this::populateMembers);
+                                .doOnNext(ws -> log.debug("[DEBUG] Found workspace entity: {}", ws.getName()))
+                                .flatMap(this::populateMembers)
+                                .doOnError(err -> log.error("[ERROR] Failed to fetch workspace {}: {}", id, err.getMessage(), err));
         }
 
         public Flux<WorkspaceResponseDTO> getWorkspacesByUserId(Long userId) {
@@ -154,6 +167,7 @@ public class WorkspaceService {
                                                                 .build()));
         }
 
+        @CacheEvict(value = "workspaces", key = "#id")
         public Mono<WorkspaceResponseDTO> updateWorkspace(Long id, Long userId, WorkspaceRequestDTO request) {
                 return checkWorkspacePrivileges(id, userId, true)
                                 .then(workspaceRepository.findById(id))
@@ -165,6 +179,7 @@ public class WorkspaceService {
                                 .flatMap(this::populateMembers);
         }
 
+        @CacheEvict(value = "workspaces", key = "#id")
         public Mono<Void> deleteWorkspace(Long id, Long userId) {
                 return checkWorkspacePrivileges(id, userId, false)
                                 .then(workspaceMemberRepository.findByWorkspaceId(id)
@@ -172,6 +187,7 @@ public class WorkspaceService {
                                                 .then(workspaceRepository.deleteById(id)));
         }
 
+        @CacheEvict(value = "workspaces", key = "#workspaceId")
         public Mono<WorkspaceResponseDTO> addMemberToWorkspace(Long workspaceId, Long adminId,
                         AddMemberRequestDTO request) {
                 return checkWorkspacePrivileges(workspaceId, adminId, true)
@@ -215,6 +231,11 @@ public class WorkspaceService {
                                                                         adminId,
                                                                         "MEMBER_ADDED",
                                                                         "added user to workspace")
+                                                                        .then(sendMemberAddedNotification(
+                                                                                user.getId(),
+                                                                                user.getEmail(),
+                                                                                workspaceId,
+                                                                                workspace.getName()))
                                                                         .then(populateMembers(workspace)));
                                                             });
                                                         });
@@ -222,6 +243,7 @@ public class WorkspaceService {
                                         }));
         }
 
+        @CacheEvict(value = "workspaces", key = "#workspaceId")
         public Mono<WorkspaceResponseDTO> updateMemberRole(Long workspaceId, Long adminId, Long targetUserId,
                         UpdateMemberRoleRequestDTO request) {
                 return workspaceRepository.findById(workspaceId)
@@ -279,6 +301,7 @@ public class WorkspaceService {
                                                                 })));
         }
 
+        @CacheEvict(value = "workspaces", key = "#workspaceId")
         public Mono<Void> removeMemberFromWorkspace(Long workspaceId, Long adminId, Long targetUserId) {
                 return findEffectiveMembership(workspaceId, adminId)
                                 .switchIfEmpty(Mono.error(new org.springframework.web.server.ResponseStatusException(
@@ -366,9 +389,11 @@ public class WorkspaceService {
         }
 
         private Mono<WorkspaceResponseDTO> populateMembers(Workspace workspace) {
+                log.debug("[DEBUG] Populating members for workspace: {}", workspace.getId());
                 return workspaceMemberRepository.findByWorkspaceId(workspace.getId())
                                 .collectList()
                                 .map(all -> {
+                                        log.debug("[DEBUG] Found {} member records", all.size());
                                         Map<Long, WorkspaceMember> byUserId = new LinkedHashMap<>();
                                         for (WorkspaceMember m : all) {
                                                 if (m.getUserId() == null) {
@@ -398,6 +423,37 @@ public class WorkspaceService {
                                                         .members(members)
                                                         .build();
                                 });
+        }
+
+        private Mono<Void> sendMemberAddedNotification(Long userId, String userEmail, Long workspaceId,
+                        String workspaceName) {
+                String safeWorkspaceName = (workspaceName == null || workspaceName.isBlank())
+                                ? "Workspace"
+                                : workspaceName;
+                String message = "You've been added to '" + safeWorkspaceName + "'.";
+
+                Mono<Void> inAppNotification = notificationService.createNotification(
+                                userId,
+                                message,
+                                NotificationType.WORKSPACE_INVITATION,
+                                null,
+                                null,
+                                workspaceId,
+                                null)
+                                .onErrorResume(error -> {
+                                        log.warn("Failed to create workspace add notification for user {}: {}",
+                                                        userId, error.getMessage());
+                                        return Mono.empty();
+                                });
+
+                Mono<Void> emailNotification = emailService.sendWorkspaceAddedEmail(userEmail, safeWorkspaceName)
+                                .onErrorResume(error -> {
+                                        log.warn("Failed to send workspace add email to {}: {}",
+                                                        userEmail, error.getMessage());
+                                        return Mono.empty();
+                                });
+
+                return inAppNotification.then(emailNotification);
         }
 
 }

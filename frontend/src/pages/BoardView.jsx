@@ -8,6 +8,7 @@ import api from '../services/api';
 import { API_ENDPOINTS } from '../config/apiConfig';
 import CardDetailsModal from '../components/CardDetailsModal';
 import { useAuth } from '../context/AuthContext';
+import Sidebar from '../components/Sidebar';
 
 const PRIORITY_COLORS = {
     LOW: '#22c55e',
@@ -61,6 +62,7 @@ const BoardView = () => {
     // Board rename state
     const [isRenamingBoard, setIsRenamingBoard] = useState(false);
     const [isSavingBoardName, setIsSavingBoardName] = useState(false);
+    const [boardDraftName, setBoardDraftName] = useState('');
     const [showBackgroundPicker, setShowBackgroundPicker] = useState(false);
     const [updatingBackground, setUpdatingBackground] = useState(false);
 
@@ -84,8 +86,23 @@ const BoardView = () => {
 
     const { user } = useAuth();
 
-    const currentUserRole = members.find(m => String(m.userId) === String(user?.id))?.role;
-    const isViewer = currentUserRole === 'VIEWER';
+    const currentUserRole = (members.find(m => String(m.userId) === String(user?.id))?.role || '').toUpperCase();
+    const currentBoardRole = (board?.members?.find(m => String(m.userId) === String(user?.id))?.role || '').toUpperCase();
+
+    const isWorkspaceOwner = currentUserRole === 'OWNER';
+    const isWorkspaceAdmin = currentUserRole === 'ADMIN';
+    const isWorkspaceMember = currentUserRole === 'MEMBER';
+    const isBoardAdmin = currentBoardRole === 'ADMIN';
+    const isBoardMember = currentBoardRole === 'MEMBER';
+
+    const canBoardAdmin = isWorkspaceOwner || isWorkspaceAdmin || isBoardAdmin;
+    const canBoardMember = isWorkspaceOwner || isWorkspaceAdmin || (isWorkspaceMember && (isBoardMember || isBoardAdmin));
+    const canMoveCards = canBoardMember;
+    const canCreateList = canBoardAdmin;
+    const canRenameList = canBoardMember;
+    const canDeleteList = canBoardAdmin;
+    const canCreateTopLevelCard = canBoardAdmin;
+    const canDeleteCard = canBoardAdmin;
 
     useEffect(() => {
         fetchData();
@@ -137,6 +154,7 @@ const BoardView = () => {
 
     // --- List Actions ---
     const handleAddList = async () => {
+        if (!canCreateList) return;
         if (!newListName.trim()) return;
         setAddingList(true);
         try {
@@ -153,6 +171,7 @@ const BoardView = () => {
     };
 
     const handleRenameList = async (listId) => {
+        if (!canRenameList) return;
         if (!renameValue.trim()) return;
         try {
             await api.put(API_ENDPOINTS.BOARDS.LIST_BY_ID(boardId, listId), { name: renameValue.trim() });
@@ -166,6 +185,7 @@ const BoardView = () => {
     };
 
     const handleDeleteList = async (listId) => {
+        if (!canDeleteList) return;
         try {
             await api.delete(API_ENDPOINTS.BOARDS.LIST_BY_ID(boardId, listId));
             setActiveListMenu(null);
@@ -183,6 +203,7 @@ const BoardView = () => {
         if (destination.droppableId === source.droppableId && destination.index === source.index) return;
 
         if (type === 'list') {
+            if (!canBoardMember) return;
             const newLists = Array.from(lists);
             const [movedList] = newLists.splice(source.index, 1);
             newLists.splice(destination.index, 0, movedList);
@@ -203,6 +224,7 @@ const BoardView = () => {
         }
 
         if (type === 'card') {
+            if (!canMoveCards) return;
             const sourceListId = Number(source.droppableId.split('-')[1]);
             const destListId = Number(destination.droppableId.split('-')[1]);
             const cardId = Number(draggableId.split('-')[1]);
@@ -280,6 +302,7 @@ const BoardView = () => {
     // --- Card Actions ---
 
     const handleDeleteCard = async (cardId) => {
+        if (!canDeleteCard) return;
         try {
             await api.delete(API_ENDPOINTS.CARDS.DELETE(cardId));
             await fetchData();
@@ -289,8 +312,8 @@ const BoardView = () => {
         }
     };
 
-    const canRenameBoard = currentUserRole === 'OWNER' || currentUserRole === 'ADMIN';
-    const canChangeBoardBackground = currentUserRole === 'OWNER' || currentUserRole === 'ADMIN';
+    const canRenameBoard = canBoardAdmin;
+    const canChangeBoardBackground = canBoardAdmin;
 
     const startBoardRename = () => {
         if (!canRenameBoard || !board?.name) return;
@@ -398,29 +421,32 @@ const BoardView = () => {
     } : { height: 'calc(100vh - 72px)', display: 'flex', flexDirection: 'column', overflow: 'hidden' };
 
     return (
-        <div style={boardStyles}>
-            {board?.background && (
-                <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundColor: 'rgba(0, 0, 0, 0.45)', // Darker overlay for better visibility
-                    zIndex: 0,
-                    pointerEvents: 'none'
-                }} />
-            )}
-            {/* Header */}
-            <div style={{
-                padding: '1rem 1.5rem',
-                borderBottom: '1px solid var(--border-glass)',
-                background: board?.background ? 'rgba(var(--bg-primary-rgb), 0.85)' : 'var(--bg-primary)', // Higher opacity
-                backdropFilter: board?.background ? 'blur(16px)' : 'none', // Stronger blur
-                flexShrink: 0,
-                position: 'relative',
-                zIndex: 10,
-            }}>
+        <div className="dashboard-layout">
+            <Sidebar />
+            <div className="dashboard-main" style={{ padding: 0 }}>
+                <div style={boardStyles}>
+                    {board?.background && (
+                        <div style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            backgroundColor: 'rgba(0, 0, 0, 0.45)', // Darker overlay for better visibility
+                            zIndex: 0,
+                            pointerEvents: 'none'
+                        }} />
+                    )}
+                    {/* Header */}
+                    <div style={{
+                        padding: '1rem 1.5rem',
+                        borderBottom: '1px solid var(--border-glass)',
+                        background: board?.background ? 'rgba(var(--bg-primary-rgb), 0.85)' : 'var(--bg-primary)', // Higher opacity
+                        backdropFilter: board?.background ? 'blur(16px)' : 'none', // Stronger blur
+                        flexShrink: 0,
+                        position: 'relative',
+                        zIndex: 10,
+                    }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
                     {/* Breadcrumb */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.82rem', color: 'var(--text-muted)' }}>
@@ -493,7 +519,7 @@ const BoardView = () => {
                     </div>
 
                     {/* Add List Controls and Background Picker */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    <div className="flex-wrap" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', justifyContent: 'flex-end' }}>
                         {canChangeBoardBackground && (
                             <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
                                 <button
@@ -583,7 +609,7 @@ const BoardView = () => {
                             </div>
                         )}
 
-                        {!isViewer && (
+                        {canCreateList && (
                             <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
                                 {showAddList ? (
                                     <div style={{
@@ -670,7 +696,7 @@ const BoardView = () => {
                             {lists.map((list, index) => {
                                 const listCards = getCardsForList(list.id).sort((a, b) => a.position - b.position);
                                 return (
-                                    <Draggable key={list.id} draggableId={`list-${list.id}`} index={index} isDragDisabled={isViewer}>
+                                    <Draggable key={list.id} draggableId={`list-${list.id}`} index={index} isDragDisabled={!canBoardMember}>
                                         {(providedList) => (
                                             <div
                                                 ref={providedList.innerRef}
@@ -699,7 +725,7 @@ const BoardView = () => {
                                                         alignItems: 'center',
                                                         justifyContent: 'space-between',
                                                         flexShrink: 0,
-                                                        cursor: isViewer ? 'default' : 'grab',
+                                                        cursor: canBoardMember ? 'grab' : 'default',
                                                     }}
                                                 >
                                                     {renamingListId === list.id ? (
@@ -737,7 +763,7 @@ const BoardView = () => {
                                                         </h3>
                                                     )}
                                                     <div style={{ position: 'relative' }}>
-                                                        {!isViewer && (
+                                                        {(canRenameList || canDeleteList) && (
                                                             <>
                                                                 <button
                                                                     onClick={() => setActiveListMenu(activeListMenu === list.id ? null : list.id)}
@@ -772,7 +798,8 @@ const BoardView = () => {
                                                                                 boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
                                                                             }}
                                                                         >
-                                                                            <button
+                                                                            {canRenameList && (
+                                                                                <button
                                                                                 onClick={() => {
                                                                                     setRenamingListId(list.id);
                                                                                     setRenameValue(list.name);
@@ -795,7 +822,10 @@ const BoardView = () => {
                                                                             >
                                                                                 ✏️ Rename
                                                                             </button>
-                                                                            <button
+
+                                                                            )}
+                                                                            {canDeleteList && (
+                                                                                <button
                                                                                 onClick={() => handleDeleteList(list.id)}
                                                                                 style={{
                                                                                     display: 'block',
@@ -814,6 +844,8 @@ const BoardView = () => {
                                                                             >
                                                                                 🗑️ Delete
                                                                             </button>
+
+                                                                            )}
                                                                         </motion.div>
                                                                     )}
                                                                 </AnimatePresence>
@@ -839,7 +871,7 @@ const BoardView = () => {
                                                         >
                                                             <AnimatePresence>
                                                                 {listCards.map((card, cardIndex) => (
-                                                                    <Draggable key={card.id} draggableId={`card-${card.id}`} index={cardIndex} isDragDisabled={isViewer}>
+                                                                    <Draggable key={card.id} draggableId={`card-${card.id}`} index={cardIndex} isDragDisabled={!canMoveCards}>
                                                                         {(providedCard, snapshot) => (
                                                                             <div
                                                                                 ref={providedCard.innerRef}
@@ -851,7 +883,7 @@ const BoardView = () => {
                                                                                     borderRadius: '12px',
                                                                                     padding: '0.75rem 0.85rem',
                                                                                     border: '1px solid var(--border-glass)',
-                                                                                    cursor: isViewer ? 'pointer' : 'grab',
+                                                                                    cursor: canMoveCards ? 'grab' : 'pointer',
                                                                                     position: 'relative',
                                                                                     transition: 'border-color 0.2s, box-shadow 0.2s',
                                                                                     boxShadow: snapshot.isDragging ? '0 10px 25px rgba(0,0,0,0.2)' : 'none',
@@ -973,7 +1005,7 @@ const BoardView = () => {
                                                                                 )}
 
                                                                                 {/* Delete button (top-right) */}
-                                                                                {!isViewer && (
+                                                                                {canDeleteCard && (
                                                                                     <button
                                                                                         onClick={(e) => { e.stopPropagation(); handleDeleteCard(card.id); }}
                                                                                         style={{
@@ -1003,7 +1035,7 @@ const BoardView = () => {
                                                             {providedCards.placeholder}
 
                                                             {/* Add Card Button */}
-                                                            {!isViewer && (
+                                                            {canCreateTopLevelCard && (
                                                                 <button
                                                                     onClick={() => setCreatingCardListId(list.id)}
                                                                     style={{
@@ -1057,7 +1089,8 @@ const BoardView = () => {
                         workspaceId={workspaceId}
                         cardId={selectedCardId}
                         members={members}
-                        isViewer={isViewer}
+                        workspaceRole={currentUserRole}
+                        boardRole={currentBoardRole}
                         onClose={() => {
                             setSelectedCardId(null);
                             setCreatingCardListId(null);
@@ -1066,7 +1099,9 @@ const BoardView = () => {
                     />
                 )}
             </AnimatePresence >
-        </div >
+                </div>
+            </div>
+        </div>
     );
 };
 

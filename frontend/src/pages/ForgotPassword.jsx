@@ -16,7 +16,7 @@ const ForgotPassword = () => {
         try {
             await api.post('/users/forgot-password', { email });
             setIsSent(true);
-            toast.success("Reset link sent! Please check your console (dev) or email.");
+            toast.success("If that email is registered, a reset link has been sent.");
         } catch (error) {
             toast.error(error.response?.data?.message || "Something went wrong. Please try again.");
         } finally {
@@ -78,7 +78,7 @@ const ForgotPassword = () => {
                             We've sent a password reset link to <strong>{email}</strong>.
                         </p>
                         <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-                            (In development, check the backend console for the link)
+                            Please check your inbox and spam folder.
                         </p>
                     </div>
                 )}
@@ -94,3 +94,4 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
+

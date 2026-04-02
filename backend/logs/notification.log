@@ -1,0 +1,367 @@
+2026-04-02 18:38:39.092 [reactor-tcp-nio-2] INFO  c.s.notification.service.NotificationService - Notifications table ensure completed, rows: 0
+2026-04-02 18:38:41.202 [scheduling-1] DEBUG c.s.n.scheduler.DeadlineNotificationScheduler - [TRACE][ENTER] com.smarttask.notification.scheduler.DeadlineNotificationScheduler.checkApproachingDeadlines()
+2026-04-02 18:38:41.209 [scheduling-1] INFO  c.s.n.scheduler.DeadlineNotificationScheduler - ? Deadline check running — scanning cards due between 2026-04-02T18:38:41.209157300 and 2026-04-03T18:38:41.209157300
+2026-04-02 18:38:41.526 [scheduling-1] DEBUG c.s.n.scheduler.DeadlineNotificationScheduler - [TRACE][EXIT] com.smarttask.notification.scheduler.DeadlineNotificationScheduler.checkApproachingDeadlines() completed in 324 ms
+2026-04-02 18:38:41.600 [reactor-tcp-nio-3] INFO  c.s.n.scheduler.DeadlineNotificationScheduler - ? Deadline check complete.
+2026-04-02 19:08:38.442 [scheduling-1] DEBUG c.s.n.scheduler.DeadlineNotificationScheduler - [TRACE][ENTER] com.smarttask.notification.scheduler.DeadlineNotificationScheduler.checkApproachingDeadlines()
+2026-04-02 19:08:38.560 [scheduling-1] INFO  c.s.n.scheduler.DeadlineNotificationScheduler - ? Deadline check running — scanning cards due between 2026-04-02T19:08:38.551638200 and 2026-04-03T19:08:38.551638200
+2026-04-02 19:08:39.267 [scheduling-1] DEBUG c.s.n.scheduler.DeadlineNotificationScheduler - [TRACE][EXIT] com.smarttask.notification.scheduler.DeadlineNotificationScheduler.checkApproachingDeadlines() completed in 840 ms
+2026-04-02 19:08:39.728 [reactor-tcp-nio-3] INFO  c.s.n.scheduler.DeadlineNotificationScheduler - ? Deadline check complete.
+2026-04-02 19:14:46.435 [reactor-tcp-nio-2] INFO  c.s.notification.service.NotificationService - Notifications table ensure completed, rows: 0
+2026-04-02 19:14:47.342 [scheduling-1] DEBUG c.s.n.scheduler.DeadlineNotificationScheduler - [TRACE][ENTER] com.smarttask.notification.scheduler.DeadlineNotificationScheduler.checkApproachingDeadlines()
+2026-04-02 19:14:47.343 [scheduling-1] INFO  c.s.n.scheduler.DeadlineNotificationScheduler - ? Deadline check running — scanning cards due between 2026-04-02T19:14:47.343229900 and 2026-04-03T19:14:47.343229900
+2026-04-02 19:14:47.515 [scheduling-1] DEBUG c.s.n.scheduler.DeadlineNotificationScheduler - [TRACE][EXIT] com.smarttask.notification.scheduler.DeadlineNotificationScheduler.checkApproachingDeadlines() completed in 173 ms
+2026-04-02 19:14:47.553 [reactor-tcp-nio-3] INFO  c.s.n.scheduler.DeadlineNotificationScheduler - ? Deadline check complete.
+2026-04-02 19:15:13.935 [parallel-3] DEBUG c.smarttask.notification.controller.SseController - [TRACE][ENTER] com.smarttask.notification.controller.SseController.streamUpdates()
+2026-04-02 19:15:13.936 [parallel-3] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getSseFlux()
+2026-04-02 19:15:14.055 [parallel-3] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getSseFlux() completed in 120 ms
+2026-04-02 19:15:14.058 [parallel-3] DEBUG c.smarttask.notification.controller.SseController - [TRACE][EXIT] com.smarttask.notification.controller.SseController.streamUpdates() completed in 122 ms
+2026-04-02 19:15:14.069 [parallel-5] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:15:14.084 [parallel-5] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 1)
+2026-04-02 19:15:14.118 [parallel-3] INFO  c.s.notification.service.NotificationService - ? User 15 subscribed to SSE
+2026-04-02 19:15:14.120 [parallel-3] INFO  c.smarttask.notification.controller.SseController - ? SSE connection established via token
+2026-04-02 19:15:14.131 [parallel-5] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 61 ms
+2026-04-02 19:15:14.141 [parallel-8] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:15:14.202 [parallel-8] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 2)
+2026-04-02 19:15:14.202 [parallel-8] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 60 ms
+2026-04-02 19:15:14.203 [parallel-6] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:15:14.210 [parallel-6] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:15:14.234 [parallel-6] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 23 ms
+2026-04-02 19:15:14.234 [parallel-6] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 30 ms
+2026-04-02 19:15:14.366 [parallel-1] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:15:14.366 [parallel-1] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:15:14.367 [parallel-1] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:15:14.367 [parallel-1] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 1 ms
+2026-04-02 19:15:14.467 [parallel-3] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:15:14.468 [parallel-3] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:15:14.468 [parallel-3] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:15:14.469 [parallel-3] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 1 ms
+2026-04-02 19:15:14.537 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:15:14.538 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:15:14.541 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 2 ms
+2026-04-02 19:15:14.541 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 4 ms
+2026-04-02 19:15:14.877 [reactor-http-nio-3] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:15:14.883 [reactor-http-nio-3] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 3)
+2026-04-02 19:15:14.884 [reactor-http-nio-3] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 6 ms
+2026-04-02 19:15:14.918 [reactor-http-nio-4] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:15:14.929 [reactor-http-nio-4] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 4)
+2026-04-02 19:15:14.929 [reactor-http-nio-4] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 10 ms
+2026-04-02 19:15:21.386 [parallel-7] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:15:21.387 [parallel-7] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:15:21.387 [parallel-7] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:15:21.388 [parallel-7] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 1 ms
+2026-04-02 19:15:22.874 [parallel-8] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:15:22.874 [parallel-8] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:15:22.874 [parallel-8] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:15:22.874 [parallel-8] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:15:22.905 [parallel-1] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:15:22.906 [parallel-1] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:15:22.907 [parallel-1] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:15:22.907 [parallel-1] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 1 ms
+2026-04-02 19:15:24.581 [parallel-2] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:15:24.583 [parallel-2] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:15:24.584 [parallel-2] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:15:24.584 [parallel-2] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 2 ms
+2026-04-02 19:15:25.742 [reactor-http-nio-3] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:15:25.742 [reactor-http-nio-4] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:15:25.756 [reactor-http-nio-6] INFO  c.smarttask.notification.controller.SseController - ? SSE connection closed: cancel
+2026-04-02 19:15:25.825 [reactor-http-nio-5] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:15:25.828 [reactor-http-nio-5] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 3)
+2026-04-02 19:15:25.829 [reactor-http-nio-5] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 3 ms
+2026-04-02 19:15:25.832 [parallel-5] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:15:25.833 [parallel-5] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:15:25.833 [parallel-5] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:15:25.833 [parallel-5] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:15:25.950 [parallel-6] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:15:25.951 [parallel-6] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:15:25.951 [parallel-6] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:15:25.951 [parallel-6] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:15:26.755 [reactor-http-nio-6] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:15:26.764 [reactor-http-nio-6] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 4)
+2026-04-02 19:15:26.765 [reactor-http-nio-6] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 10 ms
+2026-04-02 19:15:54.080 [reactor-http-nio-6] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:15:59.585 [reactor-http-nio-7] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:15:59.595 [reactor-http-nio-7] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 4)
+2026-04-02 19:15:59.597 [reactor-http-nio-7] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 11 ms
+2026-04-02 19:15:59.612 [reactor-http-nio-7] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:15:59.619 [reactor-http-nio-8] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:15:59.630 [reactor-http-nio-8] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 4)
+2026-04-02 19:15:59.630 [reactor-http-nio-8] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 11 ms
+2026-04-02 19:15:59.642 [parallel-3] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:15:59.642 [parallel-3] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:15:59.643 [parallel-3] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:15:59.643 [parallel-3] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 1 ms
+2026-04-02 19:15:59.800 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:15:59.800 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:15:59.800 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:15:59.800 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:00.610 [reactor-http-nio-1] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:16:00.617 [reactor-http-nio-1] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 5)
+2026-04-02 19:16:00.617 [reactor-http-nio-1] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 6 ms
+2026-04-02 19:16:05.839 [reactor-http-nio-1] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:16:05.888 [reactor-http-nio-2] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:16:05.894 [parallel-8] DEBUG c.smarttask.notification.controller.SseController - [TRACE][ENTER] com.smarttask.notification.controller.SseController.streamUpdates()
+2026-04-02 19:16:05.899 [parallel-8] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getSseFlux()
+2026-04-02 19:16:05.911 [reactor-http-nio-3] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:16:05.912 [reactor-http-nio-2] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 5)
+2026-04-02 19:16:05.916 [reactor-http-nio-2] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 27 ms
+2026-04-02 19:16:05.943 [parallel-8] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getSseFlux() completed in 44 ms
+2026-04-02 19:16:05.943 [parallel-8] DEBUG c.smarttask.notification.controller.SseController - [TRACE][EXIT] com.smarttask.notification.controller.SseController.streamUpdates() completed in 49 ms
+2026-04-02 19:16:05.945 [reactor-http-nio-3] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 6)
+2026-04-02 19:16:05.947 [parallel-8] INFO  c.s.notification.service.NotificationService - ? User 15 subscribed to SSE
+2026-04-02 19:16:05.949 [reactor-http-nio-3] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 38 ms
+2026-04-02 19:16:05.952 [parallel-2] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:05.949 [parallel-8] INFO  c.smarttask.notification.controller.SseController - ? SSE connection established via token
+2026-04-02 19:16:05.952 [parallel-2] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:05.953 [parallel-2] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:05.961 [parallel-2] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 9 ms
+2026-04-02 19:16:06.044 [parallel-8] INFO  c.smarttask.notification.controller.SseController - ? SSE connection closed: onComplete
+2026-04-02 19:16:06.049 [reactor-http-nio-2] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:16:06.094 [reactor-http-nio-4] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:16:06.096 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:06.098 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:06.098 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:06.098 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 1 ms
+2026-04-02 19:16:06.102 [reactor-http-nio-4] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 6)
+2026-04-02 19:16:06.104 [reactor-http-nio-4] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 9 ms
+2026-04-02 19:16:06.152 [parallel-6] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:06.153 [parallel-6] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:06.153 [parallel-6] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:06.153 [parallel-6] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:06.213 [parallel-7] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:06.219 [parallel-7] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:06.248 [parallel-7] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 29 ms
+2026-04-02 19:16:06.266 [parallel-7] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 52 ms
+2026-04-02 19:16:06.864 [reactor-http-nio-5] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:16:06.868 [reactor-http-nio-5] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 7)
+2026-04-02 19:16:06.868 [reactor-http-nio-5] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 5 ms
+2026-04-02 19:16:06.891 [reactor-http-nio-6] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:16:06.895 [reactor-http-nio-6] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 8)
+2026-04-02 19:16:06.895 [reactor-http-nio-6] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 5 ms
+2026-04-02 19:16:16.091 [parallel-5] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:16.092 [parallel-5] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:16.092 [parallel-5] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:16.093 [parallel-5] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 2 ms
+2026-04-02 19:16:17.396 [reactor-http-nio-6] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:16:17.396 [reactor-http-nio-5] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:16:18.627 [parallel-5] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:18.627 [parallel-5] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:18.632 [parallel-5] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 4 ms
+2026-04-02 19:16:18.634 [parallel-5] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 7 ms
+2026-04-02 19:16:18.643 [reactor-http-nio-8] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:16:18.662 [reactor-http-nio-8] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 7)
+2026-04-02 19:16:18.663 [reactor-http-nio-8] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 20 ms
+2026-04-02 19:16:18.700 [parallel-7] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:18.701 [parallel-7] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:18.701 [parallel-7] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:18.701 [parallel-7] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 1 ms
+2026-04-02 19:16:19.613 [reactor-http-nio-1] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:16:19.619 [reactor-http-nio-1] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 8)
+2026-04-02 19:16:19.619 [reactor-http-nio-1] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 5 ms
+2026-04-02 19:16:28.316 [parallel-1] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:28.316 [parallel-1] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:28.318 [parallel-1] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:28.318 [parallel-1] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:28.377 [parallel-2] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:28.377 [parallel-2] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:28.378 [parallel-2] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:28.378 [parallel-2] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:41.781 [reactor-http-nio-1] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:16:41.854 [parallel-3] DEBUG c.smarttask.notification.controller.SseController - [TRACE][ENTER] com.smarttask.notification.controller.SseController.streamUpdates()
+2026-04-02 19:16:41.858 [parallel-3] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getSseFlux()
+2026-04-02 19:16:41.881 [parallel-3] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getSseFlux() completed in 23 ms
+2026-04-02 19:16:41.883 [parallel-3] DEBUG c.smarttask.notification.controller.SseController - [TRACE][EXIT] com.smarttask.notification.controller.SseController.streamUpdates() completed in 28 ms
+2026-04-02 19:16:41.886 [parallel-3] INFO  c.s.notification.service.NotificationService - ? User 15 subscribed to SSE
+2026-04-02 19:16:41.887 [parallel-3] INFO  c.smarttask.notification.controller.SseController - ? SSE connection established via token
+2026-04-02 19:16:41.888 [parallel-3] INFO  c.smarttask.notification.controller.SseController - ? SSE connection closed: onComplete
+2026-04-02 19:16:41.891 [reactor-http-nio-2] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:16:41.893 [parallel-6] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:41.893 [parallel-6] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:41.893 [parallel-6] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:41.893 [parallel-6] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:41.900 [reactor-http-nio-2] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 8)
+2026-04-02 19:16:41.902 [reactor-http-nio-2] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 10 ms
+2026-04-02 19:16:41.918 [reactor-http-nio-3] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:16:41.929 [reactor-http-nio-3] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 9)
+2026-04-02 19:16:41.929 [reactor-http-nio-3] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 10 ms
+2026-04-02 19:16:41.936 [parallel-8] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:41.938 [parallel-8] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:41.940 [parallel-8] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 1 ms
+2026-04-02 19:16:41.940 [parallel-8] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 2 ms
+2026-04-02 19:16:42.015 [parallel-2] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:42.016 [parallel-2] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:42.016 [parallel-2] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:42.016 [parallel-2] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 1 ms
+2026-04-02 19:16:42.057 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:42.057 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:42.057 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:42.057 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:42.795 [reactor-http-nio-4] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:16:42.801 [reactor-http-nio-4] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 10)
+2026-04-02 19:16:42.801 [reactor-http-nio-4] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 6 ms
+2026-04-02 19:16:42.822 [reactor-http-nio-5] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:16:42.828 [reactor-http-nio-5] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 11)
+2026-04-02 19:16:42.828 [reactor-http-nio-5] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 6 ms
+2026-04-02 19:16:43.549 [parallel-8] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:43.549 [parallel-8] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:43.549 [parallel-8] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:43.549 [parallel-8] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:46.339 [parallel-2] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:46.339 [parallel-2] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:46.340 [parallel-2] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:46.340 [parallel-2] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 1 ms
+2026-04-02 19:16:50.337 [parallel-3] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:50.337 [parallel-3] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:50.337 [parallel-3] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:50.337 [parallel-3] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:51.348 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:51.348 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:51.348 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:51.348 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:53.572 [reactor-http-nio-4] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:16:53.572 [reactor-http-nio-5] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:16:53.847 [reactor-http-nio-7] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:16:53.898 [reactor-http-nio-7] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 10)
+2026-04-02 19:16:53.900 [reactor-http-nio-7] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 52 ms
+2026-04-02 19:16:53.914 [parallel-5] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:53.916 [parallel-5] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:53.916 [parallel-5] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:53.916 [parallel-5] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 1 ms
+2026-04-02 19:16:53.991 [parallel-6] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:16:53.995 [parallel-6] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:16:53.995 [parallel-6] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:16:53.995 [parallel-6] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 4 ms
+2026-04-02 19:16:54.774 [reactor-http-nio-8] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:16:54.777 [reactor-http-nio-8] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 11)
+2026-04-02 19:16:54.777 [reactor-http-nio-8] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 3 ms
+2026-04-02 19:17:18.815 [reactor-tcp-nio-3] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.createNotification()
+2026-04-02 19:17:18.818 [reactor-tcp-nio-3] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.createNotification() completed in 2 ms
+2026-04-02 19:17:18.820 [reactor-tcp-nio-3] DEBUG com.smarttask.notification.service.EmailService - [TRACE][ENTER] com.smarttask.notification.service.EmailService.sendWorkspaceAddedEmail()
+2026-04-02 19:17:18.821 [reactor-tcp-nio-3] DEBUG com.smarttask.notification.service.EmailService - [EMAIL][WORKSPACE_ADDED] Preparing message from=jeevaraniarumugam99@gmail.com to=je***@gmail.com host=smtp.gmail.com workspace=Team 1
+2026-04-02 19:17:18.822 [reactor-tcp-nio-3] DEBUG com.smarttask.notification.service.EmailService - [TRACE][EXIT] com.smarttask.notification.service.EmailService.sendWorkspaceAddedEmail() completed in 3 ms
+2026-04-02 19:17:18.861 [reactor-tcp-nio-3] INFO  c.s.notification.service.NotificationService - Notification insert attempted for user 14 type WORKSPACE_INVITATION rowsUpdated=1
+2026-04-02 19:17:18.863 [reactor-tcp-nio-3] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.sendToUser()
+2026-04-02 19:17:18.863 [reactor-tcp-nio-3] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.sendToUser() completed in 0 ms
+2026-04-02 19:17:24.269 [boundedElastic-1] INFO  com.smarttask.notification.service.EmailService - [EMAIL][WORKSPACE_ADDED] Sent workspace-added email to=je***@gmail.com
+2026-04-02 19:17:46.482 [reactor-http-nio-8] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:17:46.890 [reactor-http-nio-2] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:17:46.892 [parallel-1] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:17:46.892 [parallel-1] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:17:46.893 [parallel-1] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:17:46.893 [parallel-1] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:17:46.894 [reactor-http-nio-2] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 11)
+2026-04-02 19:17:46.894 [reactor-http-nio-2] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 4 ms
+2026-04-02 19:17:46.897 [reactor-http-nio-2] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:17:46.924 [reactor-http-nio-3] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:17:46.931 [reactor-http-nio-3] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 11)
+2026-04-02 19:17:46.931 [reactor-http-nio-3] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 7 ms
+2026-04-02 19:17:46.943 [parallel-3] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:17:46.943 [parallel-3] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:17:46.943 [parallel-3] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:17:46.943 [parallel-3] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:17:47.897 [reactor-http-nio-4] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:17:47.902 [reactor-http-nio-4] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 12)
+2026-04-02 19:17:47.903 [reactor-http-nio-4] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 5 ms
+2026-04-02 19:18:37.582 [reactor-http-nio-4] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:18:37.738 [reactor-http-nio-6] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:18:37.745 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:18:37.746 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:18:37.746 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:37.746 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:37.749 [reactor-http-nio-6] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 12)
+2026-04-02 19:18:37.758 [reactor-http-nio-6] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 19 ms
+2026-04-02 19:18:37.809 [parallel-5] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:18:37.810 [parallel-5] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:18:37.810 [parallel-5] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:37.810 [parallel-5] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:38.714 [reactor-http-nio-7] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:18:38.719 [reactor-http-nio-7] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 13)
+2026-04-02 19:18:38.719 [reactor-http-nio-7] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 5 ms
+2026-04-02 19:18:43.699 [reactor-http-nio-7] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:18:43.713 [reactor-http-nio-8] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:18:43.731 [reactor-http-nio-8] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 13)
+2026-04-02 19:18:43.731 [reactor-http-nio-8] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 17 ms
+2026-04-02 19:18:43.734 [reactor-http-nio-8] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:18:43.769 [reactor-http-nio-1] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:18:43.770 [parallel-2] DEBUG c.smarttask.notification.controller.SseController - [TRACE][ENTER] com.smarttask.notification.controller.SseController.streamUpdates()
+2026-04-02 19:18:43.770 [parallel-2] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getSseFlux()
+2026-04-02 19:18:43.792 [parallel-2] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getSseFlux() completed in 21 ms
+2026-04-02 19:18:43.792 [parallel-2] DEBUG c.smarttask.notification.controller.SseController - [TRACE][EXIT] com.smarttask.notification.controller.SseController.streamUpdates() completed in 22 ms
+2026-04-02 19:18:43.794 [parallel-2] INFO  c.s.notification.service.NotificationService - ? User 15 subscribed to SSE
+2026-04-02 19:18:43.794 [parallel-2] INFO  c.smarttask.notification.controller.SseController - ? SSE connection established via token
+2026-04-02 19:18:43.794 [reactor-http-nio-1] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 13)
+2026-04-02 19:18:43.794 [reactor-http-nio-1] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 25 ms
+2026-04-02 19:18:43.796 [parallel-2] INFO  c.smarttask.notification.controller.SseController - ? SSE connection closed: onComplete
+2026-04-02 19:18:43.797 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:18:43.797 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:18:43.797 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:43.799 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 1 ms
+2026-04-02 19:18:43.811 [reactor-http-nio-2] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:18:43.884 [reactor-http-nio-2] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 14)
+2026-04-02 19:18:43.885 [reactor-http-nio-2] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 74 ms
+2026-04-02 19:18:43.949 [parallel-6] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:18:43.954 [parallel-6] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:18:43.958 [parallel-6] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 4 ms
+2026-04-02 19:18:43.960 [parallel-6] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 10 ms
+2026-04-02 19:18:44.113 [parallel-8] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:18:44.113 [parallel-8] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:18:44.116 [parallel-8] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 2 ms
+2026-04-02 19:18:44.116 [parallel-8] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 2 ms
+2026-04-02 19:18:44.247 [parallel-1] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:18:44.247 [parallel-1] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:18:44.248 [parallel-1] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:44.248 [parallel-1] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:44.724 [reactor-http-nio-3] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:18:44.729 [reactor-http-nio-3] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 15)
+2026-04-02 19:18:44.729 [reactor-http-nio-3] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 5 ms
+2026-04-02 19:18:44.741 [reactor-http-nio-4] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:18:44.748 [reactor-http-nio-4] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 16)
+2026-04-02 19:18:44.748 [reactor-http-nio-4] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 6 ms
+2026-04-02 19:18:46.224 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:18:46.225 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:18:46.225 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:46.225 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:47.448 [parallel-5] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:18:47.448 [parallel-5] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:18:47.448 [parallel-5] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:47.448 [parallel-5] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:47.476 [parallel-6] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:18:47.477 [parallel-6] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:18:47.477 [parallel-6] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:47.477 [parallel-6] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:48.831 [parallel-8] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:18:48.831 [parallel-8] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:18:48.831 [parallel-8] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:48.831 [parallel-8] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:49.922 [reactor-http-nio-3] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:18:49.933 [reactor-http-nio-4] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:18:49.969 [reactor-http-nio-6] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:18:49.992 [reactor-http-nio-6] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 15)
+2026-04-02 19:18:49.995 [reactor-http-nio-6] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 26 ms
+2026-04-02 19:18:50.004 [parallel-3] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:18:50.005 [parallel-3] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:18:50.007 [parallel-3] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 1 ms
+2026-04-02 19:18:50.007 [parallel-3] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 3 ms
+2026-04-02 19:18:50.089 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][ENTER] com.smarttask.notification.controller.NotificationController.getUserNotifications()
+2026-04-02 19:18:50.089 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][ENTER] com.smarttask.notification.service.NotificationService.getUserNotifications()
+2026-04-02 19:18:50.090 [parallel-4] DEBUG c.s.notification.service.NotificationService - [TRACE][EXIT] com.smarttask.notification.service.NotificationService.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:50.090 [parallel-4] DEBUG c.s.notification.controller.NotificationController - [TRACE][EXIT] com.smarttask.notification.controller.NotificationController.getUserNotifications() completed in 0 ms
+2026-04-02 19:18:50.935 [reactor-http-nio-7] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][ENTER] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle()
+2026-04-02 19:18:50.939 [reactor-http-nio-7] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket connected: userId=15 (sessions: 16)
+2026-04-02 19:18:50.940 [reactor-http-nio-7] DEBUG c.s.n.websocket.NotificationWebSocketHandler - [TRACE][EXIT] com.smarttask.notification.websocket.NotificationWebSocketHandler.handle() completed in 3 ms
+2026-04-02 19:19:01.449 [reactor-http-nio-7] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:19:14.989 [reactor-http-nio-6] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:19:14.990 [reactor-http-nio-3] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:19:14.990 [reactor-http-nio-8] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:19:14.991 [reactor-http-nio-2] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:19:14.992 [reactor-http-nio-4] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:19:14.992 [reactor-http-nio-2] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:19:14.993 [reactor-http-nio-2] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:19:14.992 [reactor-http-nio-1] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:19:14.993 [reactor-http-nio-1] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:19:14.992 [reactor-http-nio-5] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:19:14.993 [reactor-http-nio-7] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:19:14.994 [reactor-http-nio-3] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:19:14.994 [reactor-http-nio-8] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:19:14.994 [reactor-http-nio-6] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15
+2026-04-02 19:19:14.998 [reactor-http-nio-3] INFO  c.s.n.websocket.NotificationWebSocketHandler - ? WebSocket disconnected: userId=15

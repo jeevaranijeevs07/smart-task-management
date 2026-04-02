@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { createPortal } from "react-dom";
 import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Check, ChevronRight, Layers, Plus, Search, Shield, Trash2, UserPlus, Users, X } from "lucide-react";
+import { AlertCircle, Check, ChevronRight, ChevronDown, Layers, Plus, RefreshCw, Search, Settings, Shield, Trash2, UserPlus, Users, X } from "lucide-react";
 import toast from "react-hot-toast";
 import api from "../services/api";
 import { API_ENDPOINTS } from "../config/apiConfig";
 import { LoadingSkeleton } from "../components/LoadingState";
 import { useAuth } from "../context/AuthContext";
+import Sidebar from "../components/Sidebar";
 
 const NAME_PATTERN = /^[A-Za-z][A-Za-z\s'-]{1,49}$/;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -21,9 +23,11 @@ const WorkspaceMembers = () => {
   const [workspace, setWorkspace] = useState(null);
   const [members, setMembers] = useState([]);
   const [boards, setBoards] = useState([]);
+  const [boardAdminAccess, setBoardAdminAccess] = useState({});
   const [inviteEmail, setInviteEmail] = useState("");
   const [inviteRole, setInviteRole] = useState("MEMBER");
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [isInviting, setIsInviting] = useState(false);
   const [activePanel, setActivePanel] = useState(location.state?.targetTab || "members");
   const [showCreateBoardModal, setShowCreateBoardModal] = useState(false);
@@ -96,6 +100,7 @@ const WorkspaceMembers = () => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
+      setError(null);
       try {
         const [workspaceRes, membersRes, boardsRes] = await Promise.all([
           api.get(API_ENDPOINTS.WORKSPACES.GET_BY_ID(id)),
@@ -105,14 +110,22 @@ const WorkspaceMembers = () => {
         setWorkspace(workspaceRes.data);
         setMembers(membersRes.data || []);
         setBoards(boardsRes.data || []);
-      } catch (error) {
+      } catch (err) {
+        console.error("Error loading workspace:", err);
+        setError(err.response?.data?.message || "Failed to load workspace data.");
         toast.error("Failed to load workspace members.");
       } finally {
         setIsLoading(false);
       }
     };
-    fetchData();
+    if (id) fetchData();
   }, [id]);
+
+  const handleRetry = () => {
+    // This will trigger the effect above since id hasn't changed but we want to re-run it
+    // Actually, it's better to just call fetchData if we extract it, or just use a dummy state.
+    window.location.reload(); 
+  };
 
   const getDisplayName = (member) => {
     const name = member?.name?.trim() || "";
@@ -131,12 +144,162 @@ const WorkspaceMembers = () => {
     setBoards(res.data || []);
   };
 
-  const currentUserRole = members.find((member) => String(member.userId) === String(user?.id))?.role;
+  const currentUserRole = (members.find((member) => String(member.userId) === String(user?.id))?.role || "").toUpperCase();
   const canRenameWorkspace = currentUserRole === "OWNER" || currentUserRole === "ADMIN";
   const canManageMembers = currentUserRole === "OWNER" || currentUserRole === "ADMIN";
   const canCreateBoard = currentUserRole === "OWNER" || currentUserRole === "ADMIN";
   const canInvite = currentUserRole === "OWNER" || currentUserRole === "ADMIN";
   const canDeleteWorkspace = currentUserRole === "OWNER";
+  const canDeleteBoardByRole = (boardId) =>
+    canManageMembers || Boolean(boardAdminAccess[String(boardId)]);
+
+  const RoleSelect = ({ value, onChange, options, disabled = false, width = "100%" }) => {
+    const [open, setOpen] = useState(false);
+    const ref = useRef(null);
+    const [menuStyle, setMenuStyle] = useState(null);
+
+    useEffect(() => {
+      const handler = (e) => {
+        if (ref.current && !ref.current.contains(e.target)) {
+          setOpen(false);
+        }
+      };
+      document.addEventListener("mousedown", handler);
+      return () => document.removeEventListener("mousedown", handler);
+    }, []);
+
+    useEffect(() => {
+      if (!open || !ref.current) return;
+      const updatePos = () => {
+        const rect = ref.current.getBoundingClientRect();
+        const viewportWidth = window.innerWidth;
+        const menuWidth = rect.width;
+        const left = Math.min(Math.max(rect.left, 8), viewportWidth - menuWidth - 8);
+        const top = rect.bottom + 8;
+        setMenuStyle({
+          position: "fixed",
+          top: `${top}px`,
+          left: `${left}px`,
+          width: `${menuWidth}px`,
+          maxWidth: "calc(100vw - 16px)",
+          zIndex: 1000,
+        });
+      };
+      updatePos();
+      window.addEventListener("resize", updatePos);
+      window.addEventListener("scroll", updatePos, true);
+      return () => {
+        window.removeEventListener("resize", updatePos);
+        window.removeEventListener("scroll", updatePos, true);
+      };
+    }, [open]);
+
+    const format = (opt) => opt.charAt(0) + opt.slice(1).toLowerCase();
+
+    return (
+      <div ref={ref} style={{ position: "relative", width }}>
+        <button
+          type="button"
+          className={`input role-select-button${open ? " is-open" : ""}`}
+          onClick={() => {
+            if (disabled) return;
+            setOpen((prev) => !prev);
+          }}
+          disabled={disabled}
+          style={{
+            cursor: disabled ? "not-allowed" : "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            opacity: disabled ? 0.6 : 1,
+          }}
+        >
+          <span>{format(value)}</span>
+          <ChevronDown size={16} style={{ color: "var(--text-muted)" }} />
+        </button>
+        {open && !disabled && menuStyle && typeof document !== "undefined" && (
+          createPortal(
+            <div
+              className="glass"
+              style={{
+                ...menuStyle,
+                borderRadius: "var(--radius-md)",
+                border: "1px solid var(--border-glass)",
+                overflow: "hidden",
+                boxShadow: "var(--shadow-premium)",
+                maxHeight: "260px",
+                overflowY: "auto",
+              }}
+            >
+              {options.map((opt) => (
+                <button
+                  key={opt}
+                  type="button"
+                  onClick={() => {
+                    onChange(opt);
+                    setOpen(false);
+                  }}
+                  style={{
+                    width: "100%",
+                    textAlign: "left",
+                    padding: "0.75rem 1rem",
+                    background: opt === value ? "rgba(79, 70, 229, 0.12)" : "transparent",
+                    color: "var(--text-primary)",
+                    border: "none",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(79, 70, 229, 0.12)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = opt === value ? "rgba(79, 70, 229, 0.12)" : "transparent")}
+                >
+                  {format(opt)}
+                </button>
+              ))}
+            </div>,
+            document.body
+          )
+        )}
+      </div>
+    );
+  };
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    const resolveBoardAdminAccess = async () => {
+      if (!boards.length || !user?.id) {
+        setBoardAdminAccess({});
+        return;
+      }
+
+      if (canManageMembers) {
+        const fullAccess = Object.fromEntries((boards || []).map((board) => [String(board.id), true]));
+        setBoardAdminAccess(fullAccess);
+        return;
+      }
+
+      const entries = await Promise.all(
+        (boards || []).map(async (board) => {
+          try {
+            const res = await api.get(API_ENDPOINTS.BOARDS.GET_BY_ID(board.id));
+            const role = (res.data?.members || []).find((m) => String(m.userId) === String(user?.id))?.role;
+            return [String(board.id), String(role || "").toUpperCase() === "ADMIN"];
+          } catch {
+            return [String(board.id), false];
+          }
+        })
+      );
+
+      if (!isCancelled) {
+        setBoardAdminAccess(Object.fromEntries(entries));
+      }
+    };
+
+    resolveBoardAdminAccess();
+    return () => {
+      isCancelled = true;
+    };
+  }, [boards, canManageMembers, user?.id]);
 
   const handleInvite = async (e) => {
     e.preventDefault();
@@ -148,7 +311,7 @@ const WorkspaceMembers = () => {
 
     setIsInviting(true);
     try {
-      if (selectedUserId) {
+      if (selectedUserId && canManageMembers) {
         // Direct add for existing users
         await api.post(API_ENDPOINTS.WORKSPACES.MEMBERS(id), {
           userId: selectedUserId,
@@ -182,7 +345,7 @@ const WorkspaceMembers = () => {
       await refreshMembers();
       toast.success(`Role updated to ${newRole}`);
     } catch (error) {
-      toast.error("Failed to change role.");
+      toast.error(error.response?.data?.message || "Failed to change role.");
     }
   };
 
@@ -190,8 +353,14 @@ const WorkspaceMembers = () => {
     if (!window.confirm("Remove this member from workspace?")) {
       return;
     }
+    const isSelf = String(userId) === String(user?.id);
     try {
       await api.delete(`${API_ENDPOINTS.WORKSPACES.MEMBERS(id)}/${userId}`);
+      if (isSelf) {
+        toast.success("You left the workspace.");
+        navigate("/dashboard#workspaces");
+        return;
+      }
       await refreshMembers();
       toast.success("Member removed.");
     } catch (error) {
@@ -303,10 +472,49 @@ const WorkspaceMembers = () => {
     );
   }
 
+  if (error) {
+    return (
+      <div className="container py-20 text-center">
+        <div className="glass-card p-12 inline-block" style={{ maxWidth: 500 }}>
+          <AlertCircle size={48} style={{ color: "var(--color-danger)", marginBottom: "1.5rem" }} />
+          <h2 style={{ fontSize: "1.75rem", fontWeight: 700, marginBottom: "1rem" }}>Oops! Something went wrong</h2>
+          <p style={{ color: "var(--text-secondary)", marginBottom: "2rem" }}>{error}</p>
+          <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
+            <button className="btn btn-secondary" onClick={() => navigate("/dashboard")}>
+              Back to Dashboard
+            </button>
+            <button className="btn btn-primary" onClick={handleRetry}>
+              <RefreshCw size={16} />
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!workspace && !isLoading) {
+    return (
+      <div className="container py-20 text-center">
+        <div className="glass-card p-12 inline-block" style={{ maxWidth: 500 }}>
+          <Layers size={48} style={{ color: "var(--accent-secondary)", marginBottom: "1.5rem" }} />
+          <h2 style={{ fontSize: "1.75rem", fontWeight: 700, marginBottom: "1rem" }}>Workspace Not Found</h2>
+          <p style={{ color: "var(--text-secondary)", marginBottom: "2rem" }}>This workspace doesn't exist or you don't have access to it.</p>
+          <button className="btn btn-primary" onClick={() => navigate("/dashboard")}>
+            Back to Dashboard
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (!workspace) return null;
 
   return (
-    <div className="animate-fade-in" style={{ padding: "1.1rem 2rem 2rem", width: "100%", maxWidth: "none" }}>
+    <div className="dashboard-layout">
+      <Sidebar />
+      <div className="dashboard-main">
+        <div className="animate-fade-in" style={{ padding: "1.1rem 2rem 2rem", width: "100%", maxWidth: "none" }}>
       <header style={{ marginBottom: "1rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: "0.82rem", color: "var(--text-muted)", marginBottom: "0.85rem" }}>
           <Link to="/dashboard" style={{ color: "var(--accent-secondary)" }}>Dashboard</Link>
@@ -355,7 +563,7 @@ const WorkspaceMembers = () => {
                     if (!isSavingWorkspaceName) cancelWorkspaceRename();
                   }
                 }}
-                style={{ width: 280, paddingTop: "0.45rem", paddingBottom: "0.45rem", fontSize: "0.82rem" }}
+                style={{ width: '100%', maxWidth: 280, paddingTop: "0.45rem", paddingBottom: "0.45rem", fontSize: "0.82rem" }}
               />
               <button
                 type="button"
@@ -378,17 +586,7 @@ const WorkspaceMembers = () => {
             </motion.div>
           )}
         </div>
-        <div style={{ display: "flex", justifyContent: "flex-end", gap: "0.75rem" }}>
-          {canDeleteWorkspace && (
-            <button
-              className="btn btn-secondary"
-              onClick={handleDeleteWorkspace}
-              style={{ color: "var(--color-danger)", borderColor: "rgba(239, 68, 68, 0.4)" }}
-            >
-              <Trash2 size={16} />
-              Delete Workspace
-            </button>
-          )}
+        <div className="mobile-stack" style={{ justifyContent: "flex-end", gap: "0.75rem" }}>
           {canCreateBoard && (
             <button className="btn btn-primary" onClick={() => setShowCreateBoardModal(true)}>
               <Plus size={16} />
@@ -398,11 +596,11 @@ const WorkspaceMembers = () => {
         </div>
       </header>
 
-      <div style={{ display: "grid", gridTemplateColumns: "280px minmax(0, 1fr)", gap: "1rem", alignItems: "stretch" }}>
-        <div style={{ display: "flex", flexDirection: "column", minHeight: 560 }}>
+      <div className="responsive-grid-2" style={{ alignItems: "stretch" }}>
+        <div style={{ display: "flex", flexDirection: "column", minHeight: 'auto' }}>
           <aside
             className="glass-heavy"
-            style={{ borderRadius: "var(--radius-xl)", padding: "0.9rem", minHeight: 500, display: "flex", flexDirection: "column" }}
+            style={{ borderRadius: "var(--radius-xl)", padding: "0.9rem", minHeight: 'auto', display: "flex", flexDirection: "column" }}
           >
             <button
               className={activePanel === "members" ? "btn btn-primary" : "btn btn-secondary"}
@@ -429,6 +627,14 @@ const WorkspaceMembers = () => {
             >
               <Layers size={16} />
               Boards ({boards.length})
+            </button>
+            <button
+              className={activePanel === "settings" ? "btn btn-primary" : "btn btn-secondary"}
+              style={{ width: "100%", justifyContent: "flex-start", marginBottom: "1rem" }}
+              onClick={() => setActivePanel("settings")}
+            >
+              <Settings size={16} />
+              Workspace Settings
             </button>
           </aside>
         </div>
@@ -472,25 +678,20 @@ const WorkspaceMembers = () => {
 
                     <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
                       {canManageMembers ? (
-                        <select
+                        <RoleSelect
                           value={member.role}
-                          onChange={(e) => handleChangeRole(member.userId, e.target.value)}
-                          className="input"
-                          style={{ width: 190, paddingTop: "0.65rem", paddingBottom: "0.65rem", fontSize: "0.95rem" }}
+                          onChange={(newRole) => handleChangeRole(member.userId, newRole)}
+                          options={WORKSPACE_ROLE_OPTIONS.filter((roleOption) => {
+                            if (currentUserRole === "OWNER") return true;
+                            return roleOption === "MEMBER" || roleOption === "VIEWER";
+                          })}
                           disabled={
-                            String(member.userId) === String(user?.id) ||
-                            (currentUserRole === "ADMIN" && (member.role === "OWNER" || member.role === "ADMIN"))
+                            currentUserRole === "ADMIN" &&
+                            (member.role === "OWNER" || member.role === "ADMIN" || String(member.userId) === String(user?.id))
                           }
-                        >
-                          {WORKSPACE_ROLE_OPTIONS.map((roleOption) => (
-                            <option key={roleOption} value={roleOption}>
-                              {roleOption.charAt(0) + roleOption.slice(1).toLowerCase()}
-                            </option>
-                          ))}
-                        </select>
-                      ) : (
-                        null
-                      )}
+                          width="190px"
+                        />
+                      ) : null}
 
                       {(canManageMembers || String(member.userId) === String(user?.id)) && (
                         <button
@@ -597,17 +798,16 @@ const WorkspaceMembers = () => {
                 </div>
                 <div className="input-group" style={{ marginBottom: "0.8rem" }}>
                   <label className="label">Role</label>
-                  <select
+                  <RoleSelect
                     value={inviteRole}
-                    onChange={(e) => setInviteRole(e.target.value)}
-                    className="input"
-                  >
-                    {WORKSPACE_ROLE_OPTIONS.map((roleOption) => (
-                      <option key={roleOption} value={roleOption}>
-                        {roleOption.charAt(0) + roleOption.slice(1).toLowerCase()}
-                      </option>
-                    ))}
-                  </select>
+                    onChange={setInviteRole}
+                    options={
+                      currentUserRole === "OWNER"
+                        ? WORKSPACE_ROLE_OPTIONS
+                        : WORKSPACE_ROLE_OPTIONS.filter((r) => r === "MEMBER" || r === "VIEWER")
+                    }
+                    disabled={!canInvite}
+                  />
                 </div>
                 <button
                   type="submit"
@@ -615,7 +815,7 @@ const WorkspaceMembers = () => {
                   className="btn btn-primary"
                   style={{ width: "100%", justifyContent: "center", marginBottom: "0.8rem" }}
                 >
-                  {isInviting ? (selectedUserId ? "Adding..." : "Sending...") : (selectedUserId ? "Add to Workspace" : "Send Invitation")}
+                  {isInviting ? (selectedUserId && canManageMembers ? "Adding..." : "Sending...") : (selectedUserId && canManageMembers ? "Add to Workspace" : "Send Invitation")}
                 </button>
               </form>
             </section>
@@ -654,7 +854,7 @@ const WorkspaceMembers = () => {
                     <button className="btn btn-secondary" onClick={() => navigate(`/workspace/${id}/board/${board.id}`)}>
                       Open
                     </button>
-                    {canManageMembers && (
+                    {canDeleteBoardByRole(board.id) && (
                       <button
                         className="btn btn-secondary"
                         style={{ color: "var(--color-danger)", borderColor: "rgba(239,68,68,0.45)" }}
@@ -671,6 +871,42 @@ const WorkspaceMembers = () => {
                   No boards created yet.
                 </div>
               )}
+            </section>
+          )}
+
+          {activePanel === "settings" && (
+            <section className="glass-heavy" style={{ borderRadius: "var(--radius-xl)", padding: "1.5rem" }}>
+              <h2 style={{ fontSize: "2rem", marginBottom: "1rem" }}>Workspace Settings</h2>
+              
+              <div style={{ 
+                padding: "1.25rem", 
+                borderRadius: "var(--radius-lg)", 
+                background: "rgba(239, 68, 68, 0.05)", 
+                border: "1px solid rgba(239, 68, 68, 0.2)",
+                marginTop: "1rem"
+              }}>
+                <h3 style={{ color: "var(--color-danger)", fontSize: "1.1rem", fontWeight: 700, marginBottom: "0.5rem", display: "flex", alignItems: "center", gap: 8 }}>
+                  <AlertCircle size={18} />
+                  Danger Zone
+                </h3>
+                <p style={{ color: "var(--text-secondary)", fontSize: "0.88rem", marginBottom: "1.25rem" }}>
+                  Once you delete a workspace, all its boards and data will be permanently removed. This action cannot be undone.
+                </p>
+                {canDeleteWorkspace ? (
+                  <button
+                    className="btn"
+                    onClick={handleDeleteWorkspace}
+                    style={{ background: "var(--color-danger)", color: "white", fontWeight: 600, border: "none" }}
+                  >
+                    <Trash2 size={16} />
+                    Delete this Workspace
+                  </button>
+                ) : (
+                  <p style={{ fontSize: "0.82rem", color: "var(--color-danger)", fontStyle: "italic" }}>
+                    Only the Workspace Owner can perform this action.
+                  </p>
+                )}
+              </div>
             </section>
           )}
 
@@ -779,6 +1015,8 @@ const WorkspaceMembers = () => {
           </div>
         </div>
       )}
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,16 @@
+2026-04-02 19:17:46.569 [parallel-1] DEBUG com.smarttask.card.controller.CardController - [TRACE][ENTER] com.smarttask.card.controller.CardController.getWorkspaceCards()
+2026-04-02 19:17:46.573 [parallel-1] DEBUG com.smarttask.card.service.CardService - [TRACE][ENTER] com.smarttask.card.service.CardService.getWorkspaceCards()
+2026-04-02 19:17:46.581 [parallel-1] DEBUG com.smarttask.card.service.CardService - [TRACE][EXIT] com.smarttask.card.service.CardService.getWorkspaceCards() completed in 7 ms
+2026-04-02 19:17:46.581 [parallel-1] DEBUG com.smarttask.card.controller.CardController - [TRACE][EXIT] com.smarttask.card.controller.CardController.getWorkspaceCards() completed in 12 ms
+2026-04-02 19:17:46.681 [parallel-3] DEBUG com.smarttask.card.controller.CardController - [TRACE][ENTER] com.smarttask.card.controller.CardController.getWorkspaceCards()
+2026-04-02 19:17:46.690 [parallel-3] DEBUG com.smarttask.card.service.CardService - [TRACE][ENTER] com.smarttask.card.service.CardService.getWorkspaceCards()
+2026-04-02 19:17:46.691 [parallel-3] DEBUG com.smarttask.card.service.CardService - [TRACE][EXIT] com.smarttask.card.service.CardService.getWorkspaceCards() completed in 0 ms
+2026-04-02 19:17:46.691 [parallel-3] DEBUG com.smarttask.card.controller.CardController - [TRACE][EXIT] com.smarttask.card.controller.CardController.getWorkspaceCards() completed in 10 ms
+2026-04-02 19:18:16.837 [parallel-1] DEBUG com.smarttask.card.controller.CardController - [TRACE][ENTER] com.smarttask.card.controller.CardController.getWorkspaceCards()
+2026-04-02 19:18:16.837 [parallel-1] DEBUG com.smarttask.card.service.CardService - [TRACE][ENTER] com.smarttask.card.service.CardService.getWorkspaceCards()
+2026-04-02 19:18:16.837 [parallel-1] DEBUG com.smarttask.card.service.CardService - [TRACE][EXIT] com.smarttask.card.service.CardService.getWorkspaceCards() completed in 0 ms
+2026-04-02 19:18:16.837 [parallel-1] DEBUG com.smarttask.card.controller.CardController - [TRACE][EXIT] com.smarttask.card.controller.CardController.getWorkspaceCards() completed in 0 ms
+2026-04-02 19:18:26.247 [parallel-8] DEBUG com.smarttask.card.controller.CardController - [TRACE][ENTER] com.smarttask.card.controller.CardController.getWorkspaceCards()
+2026-04-02 19:18:26.247 [parallel-8] DEBUG com.smarttask.card.service.CardService - [TRACE][ENTER] com.smarttask.card.service.CardService.getWorkspaceCards()
+2026-04-02 19:18:26.247 [parallel-8] DEBUG com.smarttask.card.service.CardService - [TRACE][EXIT] com.smarttask.card.service.CardService.getWorkspaceCards() completed in 0 ms
+2026-04-02 19:18:26.247 [parallel-8] DEBUG com.smarttask.card.controller.CardController - [TRACE][EXIT] com.smarttask.card.controller.CardController.getWorkspaceCards() completed in 0 ms

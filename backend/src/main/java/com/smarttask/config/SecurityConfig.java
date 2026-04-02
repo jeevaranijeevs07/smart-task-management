@@ -22,6 +22,8 @@ import java.nio.charset.StandardCharsets;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+        private final com.smarttask.common.security.CustomUserDetailsService userDetailsService;
+
         @Bean
         public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http,
                         com.smarttask.common.security.JwtService jwtService) {
@@ -64,6 +66,15 @@ public class SecurityConfig {
                                                 .pathMatchers("/api/users/admin").hasRole("ADMIN")
                                                 .anyExchange().authenticated())
                                 .build();
+        }
+
+        @Bean
+        public org.springframework.security.authentication.ReactiveAuthenticationManager reactiveAuthenticationManager(
+                        PasswordEncoder passwordEncoder) {
+                org.springframework.security.authentication.UserDetailsRepositoryReactiveAuthenticationManager authenticationManager = new org.springframework.security.authentication.UserDetailsRepositoryReactiveAuthenticationManager(
+                                userDetailsService);
+                authenticationManager.setPasswordEncoder(passwordEncoder);
+                return authenticationManager;
         }
 
         @Bean

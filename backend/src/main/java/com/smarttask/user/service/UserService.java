@@ -6,6 +6,8 @@
 package com.smarttask.user.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -25,6 +27,7 @@ import com.smarttask.common.exceptions.InvalidCredentialsException;
 import com.smarttask.common.exceptions.UserAlreadyExistsException;
 import com.smarttask.user.repository.UserRepository;
 import com.smarttask.user.repository.PasswordResetTokenRepository;
+import com.smarttask.notification.service.EmailService;
 import com.smarttask.workspace.service.WorkspaceInvitationService;
 import com.smarttask.common.security.JwtService;
 
@@ -33,6 +36,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserService {
 
         private final UserRepository userRepository;
@@ -40,6 +44,10 @@ public class UserService {
         private final JwtService jwtService;
         private final WorkspaceInvitationService invitationService;
         private final PasswordResetTokenRepository tokenRepository;
+        private final EmailService emailService;
+
+        @Value("${app.frontend-base-url:http://localhost:5173}")
+        private String frontendBaseUrl;
 
         /**
          * Registers a new user after checking if the email is already in use.
@@ -77,9 +85,19 @@ public class UserService {
          */
         public Mono<LoginResponse> login(LoginRequest request) {
                 String email = request.getEmail().toLowerCase().trim();
+                log.info("[LOGIN_ATTEMPT] email={}", email);
+
                 return userRepository.findByEmail(email)
-                                .filter(user -> passwordEncoder.matches(request.getPassword(), user.getPassword()))
+                                .doOnNext(user -> log.debug("[LOGIN_DB] User found in database email={}", user.getEmail()))
+                                .filter(user -> {
+                                        boolean matches = passwordEncoder.matches(request.getPassword(), user.getPassword());
+                                        if (!matches) {
+                                                log.warn("[LOGIN_FAILURE] Password mismatch for email={}", email);
+                                        }
+                                        return matches;
+                                })
                                 .map(user -> {
+                                        log.info("[LOGIN_SUCCESS] userId={} email={}", user.getId(), email);
                                         String token = jwtService.generateToken(user.getId().toString(),
                                                         user.getSystemRole().name());
                                         return LoginResponse.builder()
@@ -93,8 +111,10 @@ public class UserService {
                                                                         .build())
                                                         .build();
                                 })
-                                .switchIfEmpty(Mono
-                                                .error(new InvalidCredentialsException("Invalid email or password")));
+                                .switchIfEmpty(Mono.defer(() -> {
+                                        log.warn("[LOGIN_FAILURE] User not found or criteria not met for email={}", email);
+                                        return Mono.error(new InvalidCredentialsException("Invalid email or password"));
+                                }));
         }
 
         /**
@@ -153,54 +173,87 @@ public class UserService {
          */
         public Mono<Void> processForgotPassword(ForgotPasswordRequest request) {
                 String email = request.getEmail().toLowerCase().trim();
+                log.info("[PASSWORD_RESET][REQUEST] Forgot password requested for email={}", maskEmail(email));
                 return userRepository.findByEmail(email)
+                                .switchIfEmpty(Mono.defer(() -> {
+                                        log.warn("[PASSWORD_RESET][REQUEST] No user found for email={}",
+                                                        maskEmail(email));
+                                        return Mono.empty();
+                                }))
                                 .flatMap(user -> {
                                         String token = UUID.randomUUID().toString();
+                                        LocalDateTime expiry = LocalDateTime.now().plusMinutes(15);
                                         PasswordResetToken resetToken = PasswordResetToken.builder()
                                                         .userId(user.getId())
                                                         .token(token)
-                                                        .expiryDate(LocalDateTime.now().plusMinutes(15))
+                                                        .expiryDate(expiry)
                                                         .createdAt(LocalDateTime.now())
                                                         .build();
 
+                                        log.debug("[PASSWORD_RESET][TOKEN] Generated token for userId={} tokenSuffix={} expiry={}",
+                                                        user.getId(), maskToken(token), expiry);
                                         return tokenRepository.deleteByUserId(user.getId())
+                                                        .doOnSuccess(unused -> log.debug(
+                                                                        "[PASSWORD_RESET][TOKEN] Cleared existing tokens for userId={}",
+                                                                        user.getId()))
                                                         .then(tokenRepository.save(resetToken))
-                                                        .doOnSuccess(saved -> {
-                                                                String resetLink = "http://localhost:5173/reset-password?token="
-                                                                                + token;
-                                                                System.out.println(
-                                                                                "========================================");
-                                                                System.out.println("PASSWORD RESET REQUEST for: "
-                                                                                + user.getEmail());
-                                                                System.out.println("Reset Link: " + resetLink);
-                                                                System.out.println(
-                                                                                "========================================");
-                                                        });
-                                })
-                                .then();
+                                                        .doOnSuccess(saved -> log.info(
+                                                                        "[PASSWORD_RESET][TOKEN] Token persisted tokenId={} userId={} tokenSuffix={}",
+                                                                        saved.getId(), user.getId(), maskToken(token)))
+                                                        .then(emailService.sendPasswordResetEmail(
+                                                                        user.getEmail(),
+                                                                        buildPasswordResetLink(token)))
+                                                        .doOnSuccess(unused -> log.info(
+                                                                        "[PASSWORD_RESET][EMAIL] Reset email queued for userId={} email={}",
+                                                                        user.getId(), maskEmail(user.getEmail())));
+                                }).then();
         }
 
         /**
          * Resets a user's password using a valid reset token.
          */
         public Mono<Void> resetPassword(ResetPasswordRequest request) {
+                String requestedToken = request.getToken();
+                log.info("[PASSWORD_RESET][REQUEST] Reset password requested tokenSuffix={}",
+                                maskToken(requestedToken));
                 return tokenRepository.findByToken(request.getToken())
-                                .switchIfEmpty(Mono.error(new RuntimeException("Invalid reset token")))
+                                .switchIfEmpty(Mono.defer(() -> {
+                                        log.warn("[PASSWORD_RESET][VALIDATION] Invalid token used tokenSuffix={}",
+                                                        maskToken(requestedToken));
+                                        return Mono.error(new RuntimeException("Invalid reset token"));
+                                }))
                                 .flatMap(token -> {
+                                        log.debug("[PASSWORD_RESET][TOKEN] Token found tokenId={} userId={} tokenSuffix={} expiry={}",
+                                                        token.getId(), token.getUserId(), maskToken(token.getToken()),
+                                                        token.getExpiryDate());
                                         if (token.getExpiryDate().isBefore(LocalDateTime.now())) {
+                                                log.warn("[PASSWORD_RESET][VALIDATION] Expired token tokenId={} userId={} tokenSuffix={}",
+                                                                token.getId(), token.getUserId(),
+                                                                maskToken(token.getToken()));
                                                 return Mono.error(new RuntimeException("Reset token expired"));
                                         }
 
                                         return userRepository.findById(token.getUserId())
+                                                        .switchIfEmpty(Mono.defer(() -> {
+                                                                log.error("[PASSWORD_RESET][ERROR] User not found for tokenId={} userId={}",
+                                                                                token.getId(), token.getUserId());
+                                                                return Mono.error(new RuntimeException("User not found"));
+                                                        }))
                                                         .flatMap(user -> {
+                                                                log.info("[PASSWORD_RESET][UPDATE] Updating password for userId={} email={}",
+                                                                                user.getId(),
+                                                                                maskEmail(user.getEmail()));
                                                                 user.setPassword(passwordEncoder
                                                                                 .encode(request.getNewPassword()));
                                                                 return userRepository.save(user)
                                                                                 .then(tokenRepository.deleteById(
-                                                                                                token.getId()));
+                                                                                                token.getId()))
+                                                                                .doOnSuccess(unused -> log.info(
+                                                                                                "[PASSWORD_RESET][COMPLETE] Password updated and token removed tokenId={} userId={}",
+                                                                                                token.getId(),
+                                                                                                user.getId()));
                                                         });
-                                })
-                                .then();
+                                }).then();
         }
 
         /**
@@ -238,6 +291,45 @@ public class UserService {
 
                 String normalized = avatarUrl.trim();
                 return normalized.isEmpty() ? null : normalized;
+        }
+
+        private String buildPasswordResetLink(String token) {
+                String baseUrl = frontendBaseUrl == null ? "http://localhost:5173" : frontendBaseUrl.trim();
+                if (baseUrl.endsWith("/")) {
+                        baseUrl = baseUrl.substring(0, baseUrl.length() - 1);
+                }
+                return baseUrl + "/reset-password?token=" + token;
+        }
+
+        private String maskEmail(String email) {
+                if (email == null || email.isBlank()) {
+                        return "n/a";
+                }
+                String normalized = email.trim().toLowerCase();
+                int atIndex = normalized.indexOf('@');
+                if (atIndex <= 0) {
+                        return "***";
+                }
+                String local = normalized.substring(0, atIndex);
+                String domain = normalized.substring(atIndex);
+                if (local.length() == 1) {
+                        return local.charAt(0) + "***" + domain;
+                }
+                if (local.length() == 2) {
+                        return local.substring(0, 1) + "***" + domain;
+                }
+                return local.substring(0, 2) + "***" + domain;
+        }
+
+        private String maskToken(String token) {
+                if (token == null || token.isBlank()) {
+                        return "n/a";
+                }
+                String compact = token.replace("-", "");
+                if (compact.length() <= 6) {
+                        return "***";
+                }
+                return "***" + compact.substring(compact.length() - 6);
         }
 
 }

@@ -1,0 +1,106 @@
+2026-04-02 19:16:13.630 [parallel-4] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.getWorkspaceBoards()
+2026-04-02 19:16:13.639 [parallel-4] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.getWorkspaceBoards()
+2026-04-02 19:16:13.643 [parallel-4] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.getWorkspaceBoards() completed in 4 ms
+2026-04-02 19:16:13.644 [parallel-4] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.getWorkspaceBoards() completed in 13 ms
+2026-04-02 19:16:17.477 [parallel-6] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.getWorkspaceBoards()
+2026-04-02 19:16:17.478 [parallel-6] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.getWorkspaceBoards()
+2026-04-02 19:16:17.479 [parallel-6] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.getWorkspaceBoards() completed in 0 ms
+2026-04-02 19:16:17.479 [parallel-6] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.getWorkspaceBoards() completed in 1 ms
+2026-04-02 19:16:17.525 [parallel-8] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.getWorkspaceBoards()
+2026-04-02 19:16:17.525 [parallel-8] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.getWorkspaceBoards()
+2026-04-02 19:16:17.526 [parallel-8] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.getWorkspaceBoards() completed in 1 ms
+2026-04-02 19:16:17.527 [parallel-8] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.getWorkspaceBoards() completed in 1 ms
+2026-04-02 19:16:42.017 [parallel-3] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.getWorkspaceBoards()
+2026-04-02 19:16:42.017 [parallel-3] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.getWorkspaceBoards()
+2026-04-02 19:16:42.018 [parallel-3] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.getWorkspaceBoards() completed in 0 ms
+2026-04-02 19:16:42.018 [parallel-3] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.getWorkspaceBoards() completed in 1 ms
+2026-04-02 19:16:42.080 [parallel-5] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.getWorkspaceBoards()
+2026-04-02 19:16:42.081 [parallel-5] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.getWorkspaceBoards()
+2026-04-02 19:16:42.081 [parallel-5] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.getWorkspaceBoards() completed in 0 ms
+2026-04-02 19:16:42.081 [parallel-5] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.getWorkspaceBoards() completed in 1 ms
+2026-04-02 19:16:53.693 [parallel-8] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.getWorkspaceBoards()
+2026-04-02 19:16:53.694 [parallel-8] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.getWorkspaceBoards()
+2026-04-02 19:16:53.701 [parallel-8] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.getWorkspaceBoards() completed in 6 ms
+2026-04-02 19:16:53.703 [parallel-8] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.getWorkspaceBoards() completed in 9 ms
+2026-04-02 19:16:53.754 [parallel-2] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.getWorkspaceBoards()
+2026-04-02 19:16:53.755 [parallel-2] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.getWorkspaceBoards()
+2026-04-02 19:16:53.756 [parallel-2] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.getWorkspaceBoards() completed in 1 ms
+2026-04-02 19:16:53.772 [parallel-2] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.getWorkspaceBoards() completed in 16 ms
+2026-04-02 19:17:37.978 [reactor-http-nio-7] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.createBoard()
+2026-04-02 19:17:37.980 [reactor-http-nio-7] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.createBoard()
+2026-04-02 19:17:37.996 [reactor-http-nio-7] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.createBoard() completed in 15 ms
+2026-04-02 19:17:37.996 [reactor-http-nio-7] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.createBoard() completed in 17 ms
+2026-04-02 19:17:38.095 [parallel-5] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.getWorkspaceBoards()
+2026-04-02 19:17:38.099 [parallel-5] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.getWorkspaceBoards()
+2026-04-02 19:17:38.099 [parallel-5] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.getWorkspaceBoards() completed in 0 ms
+2026-04-02 19:17:38.099 [parallel-5] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.getWorkspaceBoards() completed in 5 ms
+2026-04-02 19:17:46.555 [parallel-7] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.getBoardById()
+2026-04-02 19:17:46.557 [parallel-7] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.getBoardById() completed in 1 ms
+2026-04-02 19:17:46.559 [lettuce-nioEventLoop-5-1] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.getBoardDetailsById()
+2026-04-02 19:17:46.576 [parallel-8] DEBUG c.smarttask.board.controller.BoardListController - [TRACE][ENTER] com.smarttask.board.controller.BoardListController.getBoardLists()
+2026-04-02 19:17:46.576 [parallel-8] DEBUG com.smarttask.board.service.BoardListService - [TRACE][ENTER] com.smarttask.board.service.BoardListService.getBoardLists()
+2026-04-02 19:17:46.578 [lettuce-nioEventLoop-5-1] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.getBoardDetailsById() completed in 18 ms
+2026-04-02 19:17:46.590 [parallel-8] DEBUG com.smarttask.board.service.BoardListService - [TRACE][EXIT] com.smarttask.board.service.BoardListService.getBoardLists() completed in 13 ms
+2026-04-02 19:17:46.590 [parallel-8] DEBUG c.smarttask.board.controller.BoardListController - [TRACE][EXIT] com.smarttask.board.controller.BoardListController.getBoardLists() completed in 14 ms
+2026-04-02 19:17:46.610 [reactor-tcp-nio-2] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.checkBoardViewAccess()
+2026-04-02 19:17:46.615 [reactor-tcp-nio-2] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.checkBoardViewAccess() completed in 5 ms
+2026-04-02 19:17:46.718 [parallel-5] DEBUG c.smarttask.board.controller.BoardListController - [TRACE][ENTER] com.smarttask.board.controller.BoardListController.getBoardLists()
+2026-04-02 19:17:46.718 [parallel-5] DEBUG com.smarttask.board.service.BoardListService - [TRACE][ENTER] com.smarttask.board.service.BoardListService.getBoardLists()
+2026-04-02 19:17:46.721 [parallel-5] DEBUG com.smarttask.board.service.BoardListService - [TRACE][EXIT] com.smarttask.board.service.BoardListService.getBoardLists() completed in 1 ms
+2026-04-02 19:17:46.722 [parallel-5] DEBUG c.smarttask.board.controller.BoardListController - [TRACE][EXIT] com.smarttask.board.controller.BoardListController.getBoardLists() completed in 2 ms
+2026-04-02 19:17:46.730 [reactor-tcp-nio-8] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.checkBoardViewAccess()
+2026-04-02 19:17:46.730 [reactor-tcp-nio-8] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.checkBoardViewAccess() completed in 0 ms
+2026-04-02 19:17:46.827 [parallel-7] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.getBoardById()
+2026-04-02 19:17:46.828 [parallel-7] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.getBoardById() completed in 1 ms
+2026-04-02 19:17:51.711 [reactor-http-nio-4] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.updateBoard()
+2026-04-02 19:17:51.711 [reactor-http-nio-4] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.updateBoard()
+2026-04-02 19:17:51.713 [reactor-http-nio-4] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.updateBoard() completed in 2 ms
+2026-04-02 19:17:51.713 [reactor-http-nio-4] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.updateBoard() completed in 2 ms
+2026-04-02 19:17:56.416 [reactor-http-nio-4] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.updateBoard()
+2026-04-02 19:17:56.416 [reactor-http-nio-4] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.updateBoard()
+2026-04-02 19:17:56.418 [reactor-http-nio-4] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.updateBoard() completed in 2 ms
+2026-04-02 19:17:56.419 [reactor-http-nio-4] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.updateBoard() completed in 2 ms
+2026-04-02 19:18:16.752 [reactor-http-nio-4] DEBUG c.smarttask.board.controller.BoardListController - [TRACE][ENTER] com.smarttask.board.controller.BoardListController.createList()
+2026-04-02 19:18:16.753 [reactor-http-nio-4] DEBUG com.smarttask.board.service.BoardListService - [TRACE][ENTER] com.smarttask.board.service.BoardListService.createList()
+2026-04-02 19:18:16.754 [reactor-http-nio-4] DEBUG com.smarttask.board.service.BoardListService - [TRACE][EXIT] com.smarttask.board.service.BoardListService.createList() completed in 1 ms
+2026-04-02 19:18:16.754 [reactor-http-nio-4] DEBUG c.smarttask.board.controller.BoardListController - [TRACE][EXIT] com.smarttask.board.controller.BoardListController.createList() completed in 3 ms
+2026-04-02 19:18:16.769 [reactor-tcp-nio-2] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.checkBoardAdmin()
+2026-04-02 19:18:16.770 [reactor-tcp-nio-2] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.checkBoardAdmin() completed in 0 ms
+2026-04-02 19:18:16.848 [parallel-2] DEBUG c.smarttask.board.controller.BoardListController - [TRACE][ENTER] com.smarttask.board.controller.BoardListController.getBoardLists()
+2026-04-02 19:18:16.852 [parallel-2] DEBUG com.smarttask.board.service.BoardListService - [TRACE][ENTER] com.smarttask.board.service.BoardListService.getBoardLists()
+2026-04-02 19:18:16.865 [parallel-2] DEBUG com.smarttask.board.service.BoardListService - [TRACE][EXIT] com.smarttask.board.service.BoardListService.getBoardLists() completed in 13 ms
+2026-04-02 19:18:16.866 [parallel-2] DEBUG c.smarttask.board.controller.BoardListController - [TRACE][EXIT] com.smarttask.board.controller.BoardListController.getBoardLists() completed in 19 ms
+2026-04-02 19:18:16.878 [parallel-3] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.getBoardById()
+2026-04-02 19:18:16.881 [parallel-3] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.getBoardById() completed in 2 ms
+2026-04-02 19:18:16.882 [lettuce-nioEventLoop-5-1] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.getBoardDetailsById()
+2026-04-02 19:18:16.883 [lettuce-nioEventLoop-5-1] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.getBoardDetailsById() completed in 1 ms
+2026-04-02 19:18:16.892 [reactor-tcp-nio-1] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.checkBoardViewAccess()
+2026-04-02 19:18:16.895 [reactor-tcp-nio-1] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.checkBoardViewAccess() completed in 2 ms
+2026-04-02 19:18:21.355 [reactor-http-nio-4] DEBUG c.smarttask.board.controller.BoardListController - [TRACE][ENTER] com.smarttask.board.controller.BoardListController.reorderLists()
+2026-04-02 19:18:21.355 [reactor-http-nio-4] DEBUG com.smarttask.board.service.BoardListService - [TRACE][ENTER] com.smarttask.board.service.BoardListService.reorderLists()
+2026-04-02 19:18:21.358 [reactor-http-nio-4] DEBUG com.smarttask.board.service.BoardListService - [TRACE][EXIT] com.smarttask.board.service.BoardListService.reorderLists() completed in 2 ms
+2026-04-02 19:18:21.358 [reactor-http-nio-4] DEBUG c.smarttask.board.controller.BoardListController - [TRACE][EXIT] com.smarttask.board.controller.BoardListController.reorderLists() completed in 2 ms
+2026-04-02 19:18:21.368 [reactor-tcp-nio-3] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.checkBoardMember()
+2026-04-02 19:18:21.369 [reactor-tcp-nio-3] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.checkBoardMember() completed in 1 ms
+2026-04-02 19:18:26.100 [parallel-6] DEBUG c.smarttask.board.controller.BoardListController - [TRACE][ENTER] com.smarttask.board.controller.BoardListController.deleteList()
+2026-04-02 19:18:26.100 [parallel-6] DEBUG com.smarttask.board.service.BoardListService - [TRACE][ENTER] com.smarttask.board.service.BoardListService.deleteList()
+2026-04-02 19:18:26.101 [parallel-6] DEBUG com.smarttask.board.service.BoardListService - [TRACE][EXIT] com.smarttask.board.service.BoardListService.deleteList() completed in 1 ms
+2026-04-02 19:18:26.102 [parallel-6] DEBUG c.smarttask.board.controller.BoardListController - [TRACE][EXIT] com.smarttask.board.controller.BoardListController.deleteList() completed in 2 ms
+2026-04-02 19:18:26.111 [reactor-tcp-nio-3] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.checkBoardAdmin()
+2026-04-02 19:18:26.111 [reactor-tcp-nio-3] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.checkBoardAdmin() completed in 0 ms
+2026-04-02 19:18:26.331 [parallel-3] DEBUG c.smarttask.board.controller.BoardListController - [TRACE][ENTER] com.smarttask.board.controller.BoardListController.getBoardLists()
+2026-04-02 19:18:26.331 [parallel-3] DEBUG com.smarttask.board.service.BoardListService - [TRACE][ENTER] com.smarttask.board.service.BoardListService.getBoardLists()
+2026-04-02 19:18:26.337 [parallel-2] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.getBoardById()
+2026-04-02 19:18:26.339 [parallel-3] DEBUG com.smarttask.board.service.BoardListService - [TRACE][EXIT] com.smarttask.board.service.BoardListService.getBoardLists() completed in 7 ms
+2026-04-02 19:18:26.339 [parallel-3] DEBUG c.smarttask.board.controller.BoardListController - [TRACE][EXIT] com.smarttask.board.controller.BoardListController.getBoardLists() completed in 7 ms
+2026-04-02 19:18:26.345 [parallel-2] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.getBoardById() completed in 8 ms
+2026-04-02 19:18:26.363 [reactor-tcp-nio-3] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.checkBoardViewAccess()
+2026-04-02 19:18:26.380 [reactor-tcp-nio-3] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.checkBoardViewAccess() completed in 17 ms
+2026-04-02 19:18:37.639 [parallel-5] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.getWorkspaceBoards()
+2026-04-02 19:18:37.639 [parallel-5] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.getWorkspaceBoards()
+2026-04-02 19:18:37.640 [parallel-5] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.getWorkspaceBoards() completed in 0 ms
+2026-04-02 19:18:37.640 [parallel-5] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.getWorkspaceBoards() completed in 0 ms
+2026-04-02 19:18:37.683 [parallel-8] DEBUG com.smarttask.board.controller.BoardController - [TRACE][ENTER] com.smarttask.board.controller.BoardController.getWorkspaceBoards()
+2026-04-02 19:18:37.683 [parallel-8] DEBUG com.smarttask.board.service.BoardService - [TRACE][ENTER] com.smarttask.board.service.BoardService.getWorkspaceBoards()
+2026-04-02 19:18:37.685 [parallel-8] DEBUG com.smarttask.board.service.BoardService - [TRACE][EXIT] com.smarttask.board.service.BoardService.getWorkspaceBoards() completed in 2 ms
+2026-04-02 19:18:37.686 [parallel-8] DEBUG com.smarttask.board.controller.BoardController - [TRACE][EXIT] com.smarttask.board.controller.BoardController.getWorkspaceBoards() completed in 2 ms

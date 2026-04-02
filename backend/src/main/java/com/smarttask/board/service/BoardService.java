@@ -31,6 +31,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CacheEvict;
 
 @Service
 @RequiredArgsConstructor
@@ -135,6 +137,7 @@ public class BoardService {
         /**
          * Retrieves comprehensive board details, including members, lists, and cards.
          */
+        @Cacheable(value = "boards", key = "#boardId")
         public Mono<BoardDetailsResponseDTO> getBoardDetailsById(Long boardId, Long userId) {
                 return boardRepository.findById(boardId)
                                 .switchIfEmpty(Mono.error(
@@ -219,6 +222,7 @@ public class BoardService {
         /**
          * Updates a board's metadata. Requires administrative privileges.
          */
+        @CacheEvict(value = "boards", key = "#boardId")
         public Mono<BoardResponseDTO> updateBoard(Long boardId, Long userId, BoardRequestDTO request) {
                 return boardRepository.findById(boardId)
                                 .switchIfEmpty(Mono.error(
@@ -235,6 +239,7 @@ public class BoardService {
         /**
          * Permanently deletes a board.
          */
+        @CacheEvict(value = "boards", key = "#boardId")
         public Mono<Void> deleteBoard(Long boardId, Long userId) {
                 return boardRepository.findById(boardId)
                                 .switchIfEmpty(Mono.error(

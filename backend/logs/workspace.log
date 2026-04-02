@@ -1,0 +1,142 @@
+2026-04-02 18:40:53.108 [reactor-tcp-nio-3] DEBUG c.s.workspace.service.WorkspaceInvitationService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceInvitationService.handleAutoAcceptAfterSignup()
+2026-04-02 18:40:53.201 [reactor-tcp-nio-3] DEBUG c.s.workspace.service.WorkspaceInvitationService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceInvitationService.handleAutoAcceptAfterSignup() completed in 93 ms
+2026-04-02 19:15:14.199 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces()
+2026-04-02 19:15:14.202 [parallel-7] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId()
+2026-04-02 19:15:14.214 [parallel-7] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId() completed in 12 ms
+2026-04-02 19:15:14.215 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces() completed in 15 ms
+2026-04-02 19:15:14.432 [parallel-2] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces()
+2026-04-02 19:15:14.433 [parallel-2] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId()
+2026-04-02 19:15:14.433 [parallel-2] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId() completed in 0 ms
+2026-04-02 19:15:14.433 [parallel-2] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces() completed in 1 ms
+2026-04-02 19:16:05.889 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces()
+2026-04-02 19:16:05.890 [parallel-7] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId()
+2026-04-02 19:16:05.890 [parallel-7] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId() completed in 0 ms
+2026-04-02 19:16:05.890 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces() completed in 0 ms
+2026-04-02 19:16:06.098 [parallel-5] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces()
+2026-04-02 19:16:06.098 [parallel-5] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId()
+2026-04-02 19:16:06.098 [parallel-5] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId() completed in 0 ms
+2026-04-02 19:16:06.098 [parallel-5] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces() completed in 0 ms
+2026-04-02 19:16:12.768 [reactor-http-nio-4] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.createWorkspace()
+2026-04-02 19:16:12.769 [reactor-http-nio-4] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.createWorkspace()
+2026-04-02 19:16:12.798 [reactor-http-nio-4] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.createWorkspace() completed in 28 ms
+2026-04-02 19:16:12.798 [reactor-http-nio-4] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.createWorkspace() completed in 31 ms
+2026-04-02 19:16:13.136 [reactor-tcp-nio-2] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Populating members for workspace: 18
+2026-04-02 19:16:13.167 [reactor-tcp-nio-2] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Found 1 member records
+2026-04-02 19:16:13.202 [parallel-3] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces()
+2026-04-02 19:16:13.203 [parallel-3] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId()
+2026-04-02 19:16:13.203 [parallel-3] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId() completed in 0 ms
+2026-04-02 19:16:13.203 [parallel-3] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces() completed in 0 ms
+2026-04-02 19:16:13.251 [reactor-tcp-nio-2] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Fetching workspace by ID: 18
+2026-04-02 19:16:13.453 [reactor-tcp-nio-3] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Found workspace entity: Team 1
+2026-04-02 19:16:13.456 [reactor-tcp-nio-3] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Populating members for workspace: 18
+2026-04-02 19:16:13.562 [reactor-tcp-nio-3] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Found 1 member records
+2026-04-02 19:16:17.520 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById()
+2026-04-02 19:16:17.525 [parallel-1] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers()
+2026-04-02 19:16:17.525 [parallel-1] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers()
+2026-04-02 19:16:17.528 [parallel-1] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers() completed in 2 ms
+2026-04-02 19:16:17.528 [parallel-1] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers() completed in 3 ms
+2026-04-02 19:16:17.601 [parallel-2] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers()
+2026-04-02 19:16:17.601 [parallel-2] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers()
+2026-04-02 19:16:17.601 [parallel-2] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers() completed in 0 ms
+2026-04-02 19:16:17.601 [parallel-2] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers() completed in 0 ms
+2026-04-02 19:16:18.490 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById() completed in 969 ms
+2026-04-02 19:16:18.495 [parallel-7] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspaceById()
+2026-04-02 19:16:18.495 [parallel-7] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Fetching workspace by ID: 18
+2026-04-02 19:16:18.497 [parallel-7] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspaceById() completed in 1 ms
+2026-04-02 19:16:18.508 [reactor-tcp-nio-3] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Found workspace entity: Team 1
+2026-04-02 19:16:18.508 [reactor-tcp-nio-3] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Populating members for workspace: 18
+2026-04-02 19:16:18.519 [reactor-tcp-nio-3] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Found 1 member records
+2026-04-02 19:16:18.600 [parallel-3] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById()
+2026-04-02 19:16:18.602 [parallel-3] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById() completed in 2 ms
+2026-04-02 19:16:41.893 [parallel-5] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces()
+2026-04-02 19:16:41.893 [parallel-5] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId()
+2026-04-02 19:16:41.894 [parallel-5] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId() completed in 0 ms
+2026-04-02 19:16:41.894 [parallel-5] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces() completed in 0 ms
+2026-04-02 19:16:41.909 [reactor-tcp-nio-2] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Fetching workspace by ID: 18
+2026-04-02 19:16:41.929 [reactor-tcp-nio-1] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Found workspace entity: Team 1
+2026-04-02 19:16:41.930 [reactor-tcp-nio-1] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Populating members for workspace: 18
+2026-04-02 19:16:41.942 [reactor-tcp-nio-1] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Found 1 member records
+2026-04-02 19:16:41.998 [parallel-1] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces()
+2026-04-02 19:16:41.998 [parallel-1] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId()
+2026-04-02 19:16:41.998 [parallel-1] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId() completed in 0 ms
+2026-04-02 19:16:41.998 [parallel-1] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces() completed in 0 ms
+2026-04-02 19:16:42.027 [reactor-tcp-nio-2] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Fetching workspace by ID: 18
+2026-04-02 19:16:42.038 [reactor-tcp-nio-8] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Found workspace entity: Team 1
+2026-04-02 19:16:42.039 [reactor-tcp-nio-8] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Populating members for workspace: 18
+2026-04-02 19:16:42.050 [reactor-tcp-nio-8] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Found 1 member records
+2026-04-02 19:16:53.636 [parallel-5] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById()
+2026-04-02 19:16:53.638 [parallel-5] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById() completed in 2 ms
+2026-04-02 19:16:53.649 [parallel-6] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers()
+2026-04-02 19:16:53.650 [parallel-6] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers()
+2026-04-02 19:16:53.651 [parallel-6] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers() completed in 1 ms
+2026-04-02 19:16:53.651 [parallel-6] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers() completed in 2 ms
+2026-04-02 19:16:53.688 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById()
+2026-04-02 19:16:53.689 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById() completed in 1 ms
+2026-04-02 19:16:53.738 [parallel-1] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers()
+2026-04-02 19:16:53.738 [parallel-1] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers()
+2026-04-02 19:16:53.738 [parallel-1] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers() completed in 0 ms
+2026-04-02 19:16:53.738 [parallel-1] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers() completed in 0 ms
+2026-04-02 19:17:18.725 [reactor-http-nio-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.addMemberToWorkspace()
+2026-04-02 19:17:18.727 [reactor-http-nio-7] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.addMemberToWorkspace()
+2026-04-02 19:17:18.730 [reactor-http-nio-7] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.addMemberToWorkspace() completed in 3 ms
+2026-04-02 19:17:18.731 [reactor-http-nio-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.addMemberToWorkspace() completed in 6 ms
+2026-04-02 19:17:18.823 [reactor-tcp-nio-3] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Populating members for workspace: 18
+2026-04-02 19:17:24.278 [reactor-tcp-nio-3] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Found 2 member records
+2026-04-02 19:17:24.316 [parallel-3] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers()
+2026-04-02 19:17:24.316 [parallel-3] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers()
+2026-04-02 19:17:24.316 [parallel-3] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers() completed in 0 ms
+2026-04-02 19:17:24.316 [parallel-3] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers() completed in 0 ms
+2026-04-02 19:17:46.555 [parallel-6] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers()
+2026-04-02 19:17:46.555 [parallel-6] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers()
+2026-04-02 19:17:46.556 [parallel-6] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers() completed in 0 ms
+2026-04-02 19:17:46.557 [parallel-6] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers() completed in 0 ms
+2026-04-02 19:17:46.576 [parallel-2] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById()
+2026-04-02 19:17:46.586 [parallel-2] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById() completed in 10 ms
+2026-04-02 19:17:46.590 [parallel-2] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspaceById()
+2026-04-02 19:17:46.590 [parallel-2] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Fetching workspace by ID: 18
+2026-04-02 19:17:46.591 [parallel-2] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspaceById() completed in 0 ms
+2026-04-02 19:17:46.598 [reactor-tcp-nio-2] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Found workspace entity: Team 1
+2026-04-02 19:17:46.598 [reactor-tcp-nio-2] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Populating members for workspace: 18
+2026-04-02 19:17:46.622 [reactor-tcp-nio-3] DEBUG com.smarttask.workspace.service.WorkspaceService - [DEBUG] Found 2 member records
+2026-04-02 19:17:46.713 [parallel-4] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers()
+2026-04-02 19:17:46.713 [parallel-4] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers()
+2026-04-02 19:17:46.715 [parallel-4] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers() completed in 1 ms
+2026-04-02 19:17:46.715 [parallel-4] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers() completed in 1 ms
+2026-04-02 19:17:46.718 [parallel-6] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById()
+2026-04-02 19:17:46.724 [parallel-6] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById() completed in 4 ms
+2026-04-02 19:18:16.836 [parallel-8] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById()
+2026-04-02 19:18:16.837 [parallel-8] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById() completed in 1 ms
+2026-04-02 19:18:16.883 [parallel-4] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers()
+2026-04-02 19:18:16.889 [parallel-4] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers()
+2026-04-02 19:18:16.894 [parallel-4] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers() completed in 4 ms
+2026-04-02 19:18:16.896 [parallel-4] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers() completed in 12 ms
+2026-04-02 19:18:26.248 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById()
+2026-04-02 19:18:26.263 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById() completed in 14 ms
+2026-04-02 19:18:26.298 [parallel-1] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers()
+2026-04-02 19:18:26.298 [parallel-1] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers()
+2026-04-02 19:18:26.299 [parallel-1] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers() completed in 0 ms
+2026-04-02 19:18:26.299 [parallel-1] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers() completed in 0 ms
+2026-04-02 19:18:37.634 [parallel-4] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers()
+2026-04-02 19:18:37.637 [parallel-4] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers()
+2026-04-02 19:18:37.638 [parallel-4] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers() completed in 1 ms
+2026-04-02 19:18:37.639 [parallel-4] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers() completed in 4 ms
+2026-04-02 19:18:37.642 [parallel-6] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById()
+2026-04-02 19:18:37.643 [parallel-6] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById() completed in 2 ms
+2026-04-02 19:18:37.677 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById()
+2026-04-02 19:18:37.679 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceById() completed in 2 ms
+2026-04-02 19:18:37.707 [parallel-1] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers()
+2026-04-02 19:18:37.707 [parallel-1] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers()
+2026-04-02 19:18:37.708 [parallel-1] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspaceMembers() completed in 0 ms
+2026-04-02 19:18:37.709 [parallel-1] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getWorkspaceMembers() completed in 1 ms
+2026-04-02 19:18:43.565 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.deleteWorkspace()
+2026-04-02 19:18:43.565 [parallel-7] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.deleteWorkspace()
+2026-04-02 19:18:43.566 [parallel-7] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.deleteWorkspace() completed in 1 ms
+2026-04-02 19:18:43.567 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.deleteWorkspace() completed in 3 ms
+2026-04-02 19:18:43.797 [parallel-3] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces()
+2026-04-02 19:18:43.799 [parallel-3] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId()
+2026-04-02 19:18:43.799 [parallel-3] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId() completed in 0 ms
+2026-04-02 19:18:43.799 [parallel-3] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces() completed in 1 ms
+2026-04-02 19:18:43.999 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][ENTER] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces()
+2026-04-02 19:18:43.999 [parallel-7] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][ENTER] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId()
+2026-04-02 19:18:44.007 [parallel-7] DEBUG com.smarttask.workspace.service.WorkspaceService - [TRACE][EXIT] com.smarttask.workspace.service.WorkspaceService.getWorkspacesByUserId() completed in 7 ms
+2026-04-02 19:18:44.007 [parallel-7] DEBUG c.s.workspace.controller.WorkspaceController - [TRACE][EXIT] com.smarttask.workspace.controller.WorkspaceController.getMyWorkspaces() completed in 8 ms

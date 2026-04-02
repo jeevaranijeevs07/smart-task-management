@@ -1,0 +1,49 @@
+{
+  "properties": [
+    {
+      "name": "jwt.secret",
+      "type": "java.lang.String",
+      "description": "Secret key used to sign JWT tokens."
+    },
+    {
+      "name": "jwt.expiration",
+      "type": "java.lang.Long",
+      "description": "JWT token expiration time in milliseconds."
+    },
+    {
+      "name": "app.frontend-base-url",
+      "type": "java.lang.String",
+      "description": "Frontend base URL used to construct links."
+    },
+    {
+      "name": "app.mail.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enable or disable outbound application emails."
+    },
+    {
+      "name": "app.mail.from",
+      "type": "java.lang.String",
+      "description": "From address used for outbound application emails."
+    },
+    {
+      "name": "spring.flyway.url",
+      "type": "java.lang.String",
+      "description": "Flyway JDBC URL used by database migration runner."
+    },
+    {
+      "name": "spring.flyway.user",
+      "type": "java.lang.String",
+      "description": "Flyway database username used by database migration runner."
+    },
+    {
+      "name": "spring.flyway.password",
+      "type": "java.lang.String",
+      "description": "Flyway database password used by database migration runner."
+    },
+    {
+      "name": "spring.flyway.baseline-on-migrate",
+      "type": "java.lang.Boolean",
+      "description": "Whether to baseline an existing schema before migrate."
+    }
+  ]
+}

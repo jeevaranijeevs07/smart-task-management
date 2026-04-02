@@ -1,16 +1,18 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { createPortal } from 'react-dom';
-import { LayoutDashboard, Layers, Bell, Settings, Plus, LogOut, ChevronUp, ChevronLeft, Menu } from 'lucide-react';
+import { LayoutDashboard, Layers, Bell, Settings, History, Plus, LogOut, ChevronUp, ChevronLeft, Menu } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import { API_ENDPOINTS } from '../config/apiConfig';
 import useWebSocket from '../hooks/useWebSocket';
+import { useUI } from '../context/UIContext';
 
 const Sidebar = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { user, logout } = useAuth();
+    const { isSidebarOpen, closeSidebar } = useUI();
     const [profileOpen, setProfileOpen] = useState(false);
     const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(() => localStorage.getItem('smarttask_sidebar_collapsed') === 'true');
@@ -21,8 +23,20 @@ const Sidebar = () => {
         { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
         { icon: Layers, label: 'Workspaces', path: '/dashboard', hash: '#workspaces' },
         { icon: Bell, label: 'Notifications', path: '/dashboard', hash: '#notifications', badge: unreadCount },
+        { icon: History, label: 'Activity', path: '/dashboard', hash: '#activity' },
         { icon: Settings, label: 'Settings', path: '/settings' },
     ];
+
+    const [isMobile, setIsMobile] = useState(() => {
+        if (typeof window === 'undefined') return false;
+        return window.innerWidth <= 768;
+    });
+
+    useEffect(() => {
+        const onResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener('resize', onResize);
+        return () => window.removeEventListener('resize', onResize);
+    }, []);
 
     const handleLogout = () => {
         logout();
@@ -86,8 +100,39 @@ const Sidebar = () => {
         return () => { isMounted = false; };
     }, [location.pathname, location.hash]);
 
+    const handleNavClick = () => {
+        if (isMobile) {
+            closeSidebar();
+        }
+    };
+
+    useEffect(() => {
+        if (!isMobile) {
+            closeSidebar();
+        }
+    }, [isMobile, closeSidebar]);
+
+    useEffect(() => {
+        if (!isSidebarOpen && isMobile) {
+            setProfileOpen(false);
+        }
+    }, [isSidebarOpen, isMobile]);
+
+    useEffect(() => {
+        if (isMobile) {
+            closeSidebar();
+        }
+    }, [location.pathname, location.hash, isMobile, closeSidebar]);
+
     return (
-        <aside className={`sidebar${isCollapsed ? ' collapsed' : ''}`}>
+        <>
+            {isMobile && (
+                <div
+                    className={`sidebar-backdrop ${isSidebarOpen ? 'visible' : ''}`}
+                    onClick={closeSidebar}
+                />
+            )}
+            <aside className={`sidebar${isCollapsed ? ' collapsed' : ''}${isSidebarOpen ? ' mobile-open' : ''}`}>
             <div className="sidebar-top">
                 <button
                     className="sidebar-toggle-btn"
@@ -109,6 +154,7 @@ const Sidebar = () => {
                             to={item.path + (item.hash || '')}
                             className={`sidebar-link${isActive ? ' active' : ''}`}
                             title={item.label}
+                            onClick={handleNavClick}
                         >
                             <Icon size={20} />
                             {!isCollapsed && <span>{item.label}</span>}
@@ -187,7 +233,8 @@ const Sidebar = () => {
                 ,
                 document.body
             )}
-        </aside>
+            </aside>
+        </>
     );
 };
 

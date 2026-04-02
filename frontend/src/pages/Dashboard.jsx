@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Plus, Layers, Users, ArrowRight,
-    Layout, Clock, Inbox, Target, Sparkles, X, Bell, ChevronDown, Trash2, MessageSquare, ChevronRight, Check
+    Layout, Clock, Inbox, Target, Sparkles, X, Bell, ChevronDown, Trash2, MessageSquare, ChevronRight, Check, History
 } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -15,6 +15,59 @@ import useSSE from '../hooks/useSSE';
 
 const RECENT_WORKSPACES_KEY = 'smarttask_recent_workspaces';
 const NOTIFICATION_SWIPE_DELETE_WIDTH = 112;
+const parseNotificationDate = (value) => {
+    if (value === null || value === undefined) return null;
+    if (value instanceof Date) return Number.isNaN(value.getTime()) ? null : value;
+
+    if (typeof value === 'number') {
+        const ms = value < 1_000_000_000_000 ? value * 1000 : value;
+        const parsed = new Date(ms);
+        return Number.isNaN(parsed.getTime()) ? null : parsed;
+    }
+
+    if (Array.isArray(value)) {
+        const [year, month, day, hour = 0, minute = 0, second = 0, nano = 0] = value.map(Number);
+        if (!year || !month || !day) return null;
+        const milli = Math.floor((Number(nano) || 0) / 1_000_000);
+        const parsed = new Date(year, month - 1, day, hour, minute, second, milli);
+        return Number.isNaN(parsed.getTime()) ? null : parsed;
+    }
+
+    if (typeof value === 'object') {
+        const year = Number(value.year);
+        const month = Number(value.monthValue ?? value.month);
+        const day = Number(value.dayOfMonth ?? value.day);
+        const hour = Number(value.hour ?? 0);
+        const minute = Number(value.minute ?? 0);
+        const second = Number(value.second ?? 0);
+        const nano = Number(value.nano ?? 0);
+
+        if (year && month && day) {
+            const milli = Math.floor(nano / 1_000_000);
+            const parsed = new Date(year, month - 1, day, hour, minute, second, milli);
+            return Number.isNaN(parsed.getTime()) ? null : parsed;
+        }
+    }
+
+    if (typeof value === 'string') {
+        const trimmed = value.trim();
+        if (!trimmed) return null;
+        const normalized = trimmed.includes('T') ? trimmed : trimmed.replace(' ', 'T');
+        const cappedFraction = normalized.replace(/\.(\d{3})\d+/, '.$1');
+        const parsed = new Date(cappedFraction);
+        return Number.isNaN(parsed.getTime()) ? null : parsed;
+    }
+
+    return null;
+};
+const formatNotificationDateTime = (value) => {
+    const parsed = parseNotificationDate(value);
+    return parsed ? parsed.toLocaleString() : new Date().toLocaleString();
+};
+const formatNotificationTime = (value) => {
+    const parsed = parseNotificationDate(value);
+    return parsed ? parsed.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+};
 
 const Dashboard = () => {
     const { user } = useAuth();
@@ -31,6 +84,8 @@ const Dashboard = () => {
     const showFab = localStorage.getItem('smarttask_showTips') !== 'false';
     const [notifications, setNotifications] = useState([]);
     const [notificationsLoading, setNotificationsLoading] = useState(false);
+    const [activities, setActivities] = useState([]);
+    const [activitiesLoading, setActivitiesLoading] = useState(false);
     const [markingAllRead, setMarkingAllRead] = useState(false);
     const [showUnreadOnly, setShowUnreadOnly] = useState(false);
     const [acceptingNotificationId, setAcceptingNotificationId] = useState(null);
@@ -116,6 +171,19 @@ const Dashboard = () => {
         }
     };
 
+    const fetchActivities = async () => {
+        setActivitiesLoading(true);
+        try {
+            const res = await api.get(API_ENDPOINTS.ACTIVITIES.RECENT);
+            setActivities(Array.isArray(res.data) ? res.data : []);
+        } catch (err) {
+            toast.error(err.response?.data?.message || 'Failed to load activity');
+            setActivities([]);
+        } finally {
+            setActivitiesLoading(false);
+        }
+    };
+
     const handleOpenWorkspace = (workspace) => {
         const workspaceId = workspace?.id ?? workspace?.workspaceId;
         if (!workspaceId) {
@@ -128,7 +196,7 @@ const Dashboard = () => {
             localStorage.setItem(RECENT_WORKSPACES_KEY, JSON.stringify(next));
             return next;
         });
-        navigate(`/workspace/${workspaceId}/members`);
+        navigate(`/workspace/${workspaceId}`);
     };
 
     const handleCreate = async (e) => {
@@ -148,9 +216,11 @@ const Dashboard = () => {
         }
     };
 
+
     const isNewUser = !isLoading && workspaces.length === 0;
     const isWorkspacesOnly = location.hash === '#workspaces';
     const isNotificationsOnly = location.hash === '#notifications';
+    const isActivityOnly = location.hash === '#activity';
     const displayedWorkspaces = useMemo(() => {
         if (isWorkspacesOnly) return workspaces;
         if (recentWorkspaceIds.length === 0) return [];
@@ -168,6 +238,12 @@ const Dashboard = () => {
             fetchNotifications();
         }
     }, [isNotificationsOnly]);
+
+    useEffect(() => {
+        if (isActivityOnly) {
+            fetchActivities();
+        }
+    }, [isActivityOnly]);
 
     // WebSocket: prepend new notifications in real time
     const handleWsNotification = useCallback((data) => {
@@ -228,6 +304,16 @@ const Dashboard = () => {
     const toggleSection = (section) => {
         setOpenSection((prev) => (prev === section ? '' : section));
     };
+
+    useEffect(() => {
+        if (isNotificationsOnly) {
+            setOpenSection('notifications');
+            return;
+        }
+        if (isActivityOnly) {
+            setOpenSection('activities');
+        }
+    }, [isNotificationsOnly, isActivityOnly]);
 
     const handleMarkAsRead = async (notificationId) => {
         try {
@@ -343,7 +429,7 @@ const Dashboard = () => {
 
                 {/* Quick Actions Row */}
                 {
-                    !isWorkspacesOnly && !isNotificationsOnly && (
+                    !isWorkspacesOnly && !isNotificationsOnly && !isActivityOnly && (
                         <div className="stats-row" style={{ gap: '1rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
                             <motion.div
                                 whileHover={{ y: -3 }}
@@ -608,7 +694,7 @@ const Dashboard = () => {
                                                                     </h4>
                                                                 </div>
                                                                 <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: canAcceptInvitation(notification) ? '0.75rem' : 0 }}>
-                                                                    {new Date(notification.createdAt).toLocaleString()}
+                                                                    {formatNotificationDateTime(notification.createdAt)}
                                                                 </p>
                                                                 {canAcceptInvitation(notification) && (
                                                                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
@@ -641,6 +727,62 @@ const Dashboard = () => {
                                                     </div>
                                                 );
                                             })}
+                                        </div>
+                                    )}
+                                </section>
+                            </div>
+                        </>
+                    ) : isActivityOnly ? (
+                        <>
+                            <div className="settings-accordion" style={{ marginTop: 0 }}>
+                                <button className="settings-accordion-header" onClick={() => toggleSection('activities')}>
+                                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                        <History size={18} /> Activity
+                                    </span>
+                                    <ChevronDown size={18} className={openSection === 'activities' ? 'accordion-chevron open' : 'accordion-chevron'} />
+                                </button>
+                            </div>
+
+                            <div className={`accordion-content ${openSection === 'activities' ? 'open' : ''}`}>
+                                <section className="settings-section" style={{ marginTop: 0, borderTopLeftRadius: 0, borderTopRightRadius: 0 }}>
+                                    {activitiesLoading ? (
+                                        <p style={{ color: 'var(--text-muted)' }}>Loading activity...</p>
+                                    ) : activities.length === 0 ? (
+                                        <div className="panel-empty" style={{ padding: '3rem 1rem', textAlign: 'center' }}>
+                                            <History size={28} style={{ opacity: 0.5 }} />
+                                            <p style={{ marginTop: '0.75rem' }}>No activity yet.</p>
+                                        </div>
+                                    ) : (
+                                        <div style={{ display: 'grid', gap: '0.75rem' }}>
+                                            {activities.map((activity, index) => (
+                                                <div
+                                                    key={activity.id ?? `${activity.createdAt}-${index}`}
+                                                    className="glass"
+                                                    style={{
+                                                        padding: '1rem',
+                                                        borderRadius: 'var(--radius-md)',
+                                                        border: '1px solid rgba(255,255,255,0.07)',
+                                                        display: 'flex',
+                                                        justifyContent: 'space-between',
+                                                        gap: '1rem',
+                                                        alignItems: 'flex-start'
+                                                    }}
+                                                >
+                                                    <div style={{ flex: 1 }}>
+                                                        <p style={{ fontSize: '0.9rem', color: 'var(--text-primary)', marginBottom: '0.3rem' }}>
+                                                            {activity.description || `${activity.userName || 'User'} performed ${String(activity.action || 'ACTIVITY').replaceAll('_', ' ')}`}
+                                                        </p>
+                                                        <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                                                            {activity.workspaceName || 'Workspace'}
+                                                            {activity.cardTitle ? ` • Card: ${activity.cardTitle}` : ''}
+                                                            {activity.userName ? ` • By: ${activity.userName}` : ''}
+                                                        </p>
+                                                    </div>
+                                                    <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
+                                                        {formatNotificationDateTime(activity.createdAt)}
+                                                    </span>
+                                                </div>
+                                            ))}
                                         </div>
                                     )}
                                 </section>
@@ -834,7 +976,7 @@ const Dashboard = () => {
                                                                 <span style={{ fontSize: '0.7rem', color: 'var(--accent-primary)', fontWeight: 600 }}>Click to mark as read</span>
                                                                 <span style={{ color: 'var(--text-muted)', fontSize: '0.7rem' }}>•</span>
                                                                 <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: 4 }}>
-                                                                    <Clock size={10} /> {new Date(mention.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                                                    <Clock size={10} /> {formatNotificationTime(mention.createdAt)}
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -1014,8 +1156,11 @@ const Dashboard = () => {
                             <div style={{ display: 'grid', gap: '0.75rem', maxHeight: '50vh', overflowY: 'auto', paddingRight: '0.5rem' }}>
                                 {workspaces.filter(ws => {
                                     const role = ws.role || (ws.members?.find(m => String(m.userId) === String(user?.id))?.role) || 'MEMBER';
-                                    if (quickActionType === 'invite' || quickActionType === 'boards') {
+                                    if (quickActionType === 'boards') {
                                         return role === 'OWNER' || role === 'ADMIN';
+                                    }
+                                    if (quickActionType === 'invite') {
+                                        return Boolean(role);
                                     }
                                     return true;
                                 }).map((ws) => (

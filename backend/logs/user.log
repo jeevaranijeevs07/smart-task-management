@@ -1,0 +1,43 @@
+2026-04-02 18:40:12.584 [reactor-http-nio-2] DEBUG com.smarttask.user.controller.UserController - [TRACE][ENTER] com.smarttask.user.controller.UserController.login()
+2026-04-02 18:40:12.665 [reactor-http-nio-2] DEBUG com.smarttask.user.service.UserService - [TRACE][ENTER] com.smarttask.user.service.UserService.login()
+2026-04-02 18:40:12.741 [reactor-http-nio-2] DEBUG com.smarttask.user.service.UserService - [TRACE][EXIT] com.smarttask.user.service.UserService.login() completed in 75 ms
+2026-04-02 18:40:12.758 [reactor-http-nio-2] DEBUG com.smarttask.user.controller.UserController - [TRACE][EXIT] com.smarttask.user.controller.UserController.login() completed in 175 ms
+2026-04-02 18:40:52.042 [reactor-http-nio-3] DEBUG com.smarttask.user.controller.UserController - [TRACE][ENTER] com.smarttask.user.controller.UserController.register()
+2026-04-02 18:40:52.055 [reactor-http-nio-3] DEBUG com.smarttask.user.service.UserService - [TRACE][ENTER] com.smarttask.user.service.UserService.registerUser()
+2026-04-02 18:40:52.070 [reactor-http-nio-3] DEBUG com.smarttask.user.service.UserService - [TRACE][EXIT] com.smarttask.user.service.UserService.registerUser() completed in 14 ms
+2026-04-02 18:40:52.071 [reactor-http-nio-3] DEBUG com.smarttask.user.controller.UserController - [TRACE][EXIT] com.smarttask.user.controller.UserController.register() completed in 28 ms
+2026-04-02 18:41:10.167 [reactor-http-nio-3] DEBUG com.smarttask.user.controller.UserController - [TRACE][ENTER] com.smarttask.user.controller.UserController.login()
+2026-04-02 18:41:10.168 [reactor-http-nio-3] DEBUG com.smarttask.user.service.UserService - [TRACE][ENTER] com.smarttask.user.service.UserService.login()
+2026-04-02 18:41:10.168 [reactor-http-nio-3] DEBUG com.smarttask.user.service.UserService - [TRACE][EXIT] com.smarttask.user.service.UserService.login() completed in 0 ms
+2026-04-02 18:41:10.170 [reactor-http-nio-3] DEBUG com.smarttask.user.controller.UserController - [TRACE][EXIT] com.smarttask.user.controller.UserController.login() completed in 1 ms
+2026-04-02 18:41:48.749 [reactor-http-nio-3] DEBUG com.smarttask.user.controller.UserController - [TRACE][ENTER] com.smarttask.user.controller.UserController.login()
+2026-04-02 18:41:48.750 [reactor-http-nio-3] DEBUG com.smarttask.user.service.UserService - [TRACE][ENTER] com.smarttask.user.service.UserService.login()
+2026-04-02 18:41:48.752 [reactor-http-nio-3] DEBUG com.smarttask.user.service.UserService - [TRACE][EXIT] com.smarttask.user.service.UserService.login() completed in 1 ms
+2026-04-02 18:41:48.752 [reactor-http-nio-3] DEBUG com.smarttask.user.controller.UserController - [TRACE][EXIT] com.smarttask.user.controller.UserController.login() completed in 3 ms
+2026-04-02 19:13:01.347 [reactor-http-nio-4] DEBUG com.smarttask.user.controller.UserController - [TRACE][ENTER] com.smarttask.user.controller.UserController.login()
+2026-04-02 19:13:01.355 [reactor-http-nio-4] DEBUG com.smarttask.user.service.UserService - [TRACE][ENTER] com.smarttask.user.service.UserService.login()
+2026-04-02 19:13:01.367 [reactor-http-nio-4] DEBUG com.smarttask.user.service.UserService - [TRACE][EXIT] com.smarttask.user.service.UserService.login() completed in 12 ms
+2026-04-02 19:13:01.367 [reactor-http-nio-4] DEBUG com.smarttask.user.controller.UserController - [TRACE][EXIT] com.smarttask.user.controller.UserController.login() completed in 22 ms
+2026-04-02 19:15:12.785 [reactor-http-nio-2] DEBUG com.smarttask.user.controller.UserController - [TRACE][ENTER] com.smarttask.user.controller.UserController.login()
+2026-04-02 19:15:12.788 [reactor-http-nio-2] DEBUG com.smarttask.user.service.UserService - [TRACE][ENTER] com.smarttask.user.service.UserService.login()
+2026-04-02 19:15:12.791 [reactor-http-nio-2] INFO  com.smarttask.user.service.UserService - [LOGIN_ATTEMPT] email=userten@gmail.com
+2026-04-02 19:15:12.799 [reactor-http-nio-2] DEBUG com.smarttask.user.service.UserService - [TRACE][EXIT] com.smarttask.user.service.UserService.login() completed in 10 ms
+2026-04-02 19:15:12.799 [reactor-http-nio-2] DEBUG com.smarttask.user.controller.UserController - [TRACE][EXIT] com.smarttask.user.controller.UserController.login() completed in 13 ms
+2026-04-02 19:15:12.979 [reactor-tcp-nio-3] DEBUG com.smarttask.user.service.UserService - [LOGIN_DB] User found in database email=userten@gmail.com
+2026-04-02 19:15:13.210 [reactor-tcp-nio-3] INFO  com.smarttask.user.service.UserService - [LOGIN_SUCCESS] userId=15 email=userten@gmail.com
+2026-04-02 19:15:41.672 [reactor-http-nio-2] DEBUG com.smarttask.user.controller.UserController - [TRACE][ENTER] com.smarttask.user.controller.UserController.updateCurrentUser()
+2026-04-02 19:15:41.673 [reactor-http-nio-2] DEBUG com.smarttask.user.service.UserService - [TRACE][ENTER] com.smarttask.user.service.UserService.updateProfile()
+2026-04-02 19:15:41.694 [reactor-http-nio-2] DEBUG com.smarttask.user.service.UserService - [TRACE][EXIT] com.smarttask.user.service.UserService.updateProfile() completed in 21 ms
+2026-04-02 19:15:41.694 [reactor-http-nio-2] DEBUG com.smarttask.user.controller.UserController - [TRACE][EXIT] com.smarttask.user.controller.UserController.updateCurrentUser() completed in 22 ms
+2026-04-02 19:17:11.540 [parallel-8] DEBUG c.smarttask.user.controller.UserSearchController - [TRACE][ENTER] com.smarttask.user.controller.UserSearchController.searchUsers()
+2026-04-02 19:17:11.540 [parallel-8] DEBUG com.smarttask.user.service.UserSearchService - [TRACE][ENTER] com.smarttask.user.service.UserSearchService.searchUsers()
+2026-04-02 19:17:11.543 [parallel-8] DEBUG com.smarttask.user.service.UserSearchService - [TRACE][EXIT] com.smarttask.user.service.UserSearchService.searchUsers() completed in 1 ms
+2026-04-02 19:17:11.543 [parallel-8] DEBUG c.smarttask.user.controller.UserSearchController - [TRACE][EXIT] com.smarttask.user.controller.UserSearchController.searchUsers() completed in 2 ms
+2026-04-02 19:17:14.022 [parallel-1] DEBUG c.smarttask.user.controller.UserSearchController - [TRACE][ENTER] com.smarttask.user.controller.UserSearchController.searchUsers()
+2026-04-02 19:17:14.023 [parallel-1] DEBUG com.smarttask.user.service.UserSearchService - [TRACE][ENTER] com.smarttask.user.service.UserSearchService.searchUsers()
+2026-04-02 19:17:14.024 [parallel-1] DEBUG com.smarttask.user.service.UserSearchService - [TRACE][EXIT] com.smarttask.user.service.UserSearchService.searchUsers() completed in 0 ms
+2026-04-02 19:17:14.024 [parallel-1] DEBUG c.smarttask.user.controller.UserSearchController - [TRACE][EXIT] com.smarttask.user.controller.UserSearchController.searchUsers() completed in 2 ms
+2026-04-02 19:19:01.295 [parallel-6] DEBUG com.smarttask.user.controller.UserController - [TRACE][ENTER] com.smarttask.user.controller.UserController.deleteCurrentUser()
+2026-04-02 19:19:01.299 [parallel-6] DEBUG com.smarttask.user.service.UserService - [TRACE][ENTER] com.smarttask.user.service.UserService.deleteCurrentUser()
+2026-04-02 19:19:01.313 [parallel-6] DEBUG com.smarttask.user.service.UserService - [TRACE][EXIT] com.smarttask.user.service.UserService.deleteCurrentUser() completed in 15 ms
+2026-04-02 19:19:01.314 [parallel-6] DEBUG com.smarttask.user.controller.UserController - [TRACE][EXIT] com.smarttask.user.controller.UserController.deleteCurrentUser() completed in 20 ms

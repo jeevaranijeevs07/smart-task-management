@@ -1,0 +1,320 @@
+2026-04-02 18:38:21.009 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 9.0.1.Final
+2026-04-02 18:38:21.334 [main] INFO  com.smarttask.BackendApplication - Starting BackendApplication v0.0.1-SNAPSHOT using Java 17.0.17 with PID 14640 (C:\Users\JEEVA\LEMS\smart-task-management\backend\target\backend-0.0.1-SNAPSHOT.jar started by JEEVA in C:\Users\JEEVA\LEMS\smart-task-management\backend)
+2026-04-02 18:38:21.341 [main] INFO  com.smarttask.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-02 18:38:23.266 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-04-02 18:38:23.271 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2026-04-02 18:38:23.650 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 366 ms. Found 17 R2DBC repository interfaces.
+2026-04-02 18:38:23.748 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-04-02 18:38:23.756 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-04-02 18:38:23.818 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.activity.repository.ActivityLogRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.822 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.board.repository.BoardListRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.836 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.board.repository.BoardMemberRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.840 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.board.repository.BoardRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.841 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.card.repository.CardAttachmentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.842 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.card.repository.CardChecklistItemRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.843 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.card.repository.CardChecklistRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.855 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.card.repository.CardCommentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.859 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.card.repository.CardLabelRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.866 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.card.repository.CardMemberRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.873 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.card.repository.CardRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.876 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.notification.repository.NotificationRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.877 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.user.repository.PasswordResetTokenRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.878 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.user.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.887 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.workspace.repository.WorkspaceInvitationRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.889 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.workspace.repository.WorkspaceMemberRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.893 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.workspace.repository.WorkspaceRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 18:38:23.919 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 125 ms. Found 0 Redis repository interfaces.
+2026-04-02 18:38:35.659 [main] INFO  o.s.b.s.a.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 8870c81b-76e4-473d-a9f6-4583593b2d42
+
+2026-04-02 18:38:38.997 [reactor-tcp-nio-2] INFO  io.asyncer.r2dbc.mysql.client.ReactorNettyClient - Response: OkMessage{isEndOfRows=false, affectedRows=0, lastInsertId=0, serverStatuses=2, warnings=1, information='', systemVariables={}}, reports 1 warning(s)
+2026-04-02 18:38:39.067 [reactor-tcp-nio-2] INFO  io.asyncer.r2dbc.mysql.client.ReactorNettyClient - Response: OkMessage{isEndOfRows=false, affectedRows=0, lastInsertId=0, serverStatuses=2, warnings=1, information='', systemVariables={}}, reports 1 warning(s)
+2026-04-02 18:38:41.084 [main] INFO  o.s.boot.reactor.netty.NettyWebServer - Netty started on port 8080 (http)
+2026-04-02 18:38:41.233 [main] INFO  com.smarttask.BackendApplication - Started BackendApplication in 21.543 seconds (process running for 22.921)
+2026-04-02 18:38:43.201 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/smart_task_db (MySQL 8.0)
+2026-04-02 18:38:43.397 [main] INFO  o.f.c.i.schemahistory.JdbcTableSchemaHistory - Repair of failed migration in Schema History table `smart_task_db`.`flyway_schema_history` not necessary. No failed migration detected.
+2026-04-02 18:38:43.449 [main] INFO  org.flywaydb.core.internal.command.DbRepair - Successfully repaired schema history table `smart_task_db`.`flyway_schema_history` (execution time 00:00.126s).
+2026-04-02 18:38:43.584 [main] INFO  org.flywaydb.core.internal.command.DbValidate - Successfully validated 16 migrations (execution time 00:00.037s)
+2026-04-02 18:38:43.624 [main] INFO  org.flywaydb.core.internal.command.DbMigrate - Current version of schema `smart_task_db`: 16
+2026-04-02 18:38:43.638 [main] INFO  org.flywaydb.core.internal.command.DbMigrate - Schema `smart_task_db` is up to date. No migration necessary.
+2026-04-02 19:13:36.968 [SpringApplicationShutdownHook] INFO  o.s.boot.reactor.netty.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-02 19:13:37.015 [netty-shutdown] INFO  o.s.boot.reactor.netty.GracefulShutdown - Graceful shutdown complete
+2026-04-02 19:14:40.793 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 9.0.1.Final
+2026-04-02 19:14:40.893 [main] INFO  com.smarttask.BackendApplication - Starting BackendApplication v0.0.1-SNAPSHOT using Java 17.0.17 with PID 3752 (C:\Users\JEEVA\LEMS\smart-task-management\backend\target\backend-0.0.1-SNAPSHOT.jar started by JEEVA in C:\Users\JEEVA\LEMS\smart-task-management\backend)
+2026-04-02 19:14:40.893 [main] INFO  com.smarttask.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-02 19:14:41.884 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-04-02 19:14:41.885 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+2026-04-02 19:14:42.120 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 224 ms. Found 17 R2DBC repository interfaces.
+2026-04-02 19:14:42.184 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-04-02 19:14:42.187 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-04-02 19:14:42.211 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.activity.repository.ActivityLogRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.213 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.board.repository.BoardListRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.215 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.board.repository.BoardMemberRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.216 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.board.repository.BoardRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.218 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.card.repository.CardAttachmentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.219 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.card.repository.CardChecklistItemRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.219 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.card.repository.CardChecklistRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.219 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.card.repository.CardCommentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.220 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.card.repository.CardLabelRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.221 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.card.repository.CardMemberRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.223 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.card.repository.CardRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.226 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.notification.repository.NotificationRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.227 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.user.repository.PasswordResetTokenRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.228 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.user.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.228 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.workspace.repository.WorkspaceInvitationRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.229 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.workspace.repository.WorkspaceMemberRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.229 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.smarttask.workspace.repository.WorkspaceRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-04-02 19:14:42.230 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 27 ms. Found 0 Redis repository interfaces.
+2026-04-02 19:14:46.348 [reactor-tcp-nio-2] INFO  io.asyncer.r2dbc.mysql.client.ReactorNettyClient - Response: OkMessage{isEndOfRows=false, affectedRows=0, lastInsertId=0, serverStatuses=2, warnings=1, information='', systemVariables={}}, reports 1 warning(s)
+2026-04-02 19:14:46.388 [reactor-tcp-nio-2] INFO  io.asyncer.r2dbc.mysql.client.ReactorNettyClient - Response: OkMessage{isEndOfRows=false, affectedRows=0, lastInsertId=0, serverStatuses=2, warnings=1, information='', systemVariables={}}, reports 1 warning(s)
+2026-04-02 19:14:47.302 [main] INFO  o.s.boot.reactor.netty.NettyWebServer - Netty started on port 8080 (http)
+2026-04-02 19:14:47.375 [main] INFO  com.smarttask.BackendApplication - Started BackendApplication in 7.547 seconds (process running for 8.275)
+2026-04-02 19:14:48.869 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/smart_task_db (MySQL 8.0)
+2026-04-02 19:14:49.011 [main] INFO  o.f.c.i.schemahistory.JdbcTableSchemaHistory - Repair of failed migration in Schema History table `smart_task_db`.`flyway_schema_history` not necessary. No failed migration detected.
+2026-04-02 19:14:49.049 [main] INFO  org.flywaydb.core.internal.command.DbRepair - Successfully repaired schema history table `smart_task_db`.`flyway_schema_history` (execution time 00:00.098s).
+2026-04-02 19:14:49.186 [main] INFO  org.flywaydb.core.internal.command.DbValidate - Successfully validated 16 migrations (execution time 00:00.055s)
+2026-04-02 19:14:49.236 [main] INFO  org.flywaydb.core.internal.command.DbMigrate - Current version of schema `smart_task_db`: 16
+2026-04-02 19:14:49.275 [main] INFO  org.flywaydb.core.internal.command.DbMigrate - Schema `smart_task_db` is up to date. No migration necessary.
+2026-04-02 19:15:14.077 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:14.071 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:14.103 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:15:14.103 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:15:14.347 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:14.350 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:15:14.412 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:14.419 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:15:14.449 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:14.449 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:15:14.529 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:14.531 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:15:21.380 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:21.381 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:15:22.866 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:22.867 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:15:22.899 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:22.900 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:15:24.577 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:24.578 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:15:24.612 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:24.613 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:15:25.828 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:25.829 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:15:25.946 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:25.947 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:15:41.631 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:41.631 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:15:59.634 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:59.635 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:15:59.794 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:15:59.795 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:05.885 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:05.886 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:05.926 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:05.941 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:06.082 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:06.084 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:06.085 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:06.085 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:06.149 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:06.149 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:06.204 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:06.206 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:12.727 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:12.728 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:13.198 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:13.199 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:13.624 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:13.624 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:16.081 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:16.083 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:17.473 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:17.473 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:17.514 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:17.514 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:17.517 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:17.518 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:17.519 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:17.520 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:17.596 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:17.597 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:18.596 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:18.597 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:18.618 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:18.619 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:18.609 [reactor-http-nio-7] WARN  io.netty.util.concurrent.AbstractEventExecutor - A task raised an exception. Task: io.netty.channel.nio.AbstractNioChannel$1@3436e6a3
+java.lang.NullPointerException: Cannot invoke "io.netty.channel.IoRegistration.isValid()" because "registration" is null
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.removeReadOp(AbstractNioChannel.java:268)
+	at io.netty.channel.nio.AbstractNioChannel.clearReadPending0(AbstractNioChannel.java:223)
+	at io.netty.channel.nio.AbstractNioChannel.access$000(AbstractNioChannel.java:53)
+	at io.netty.channel.nio.AbstractNioChannel$1.run(AbstractNioChannel.java:66)
+	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:148)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:141)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:535)
+	at io.netty.channel.SingleThreadIoEventLoop.run(SingleThreadIoEventLoop.java:201)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:1195)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2026-04-02 19:16:18.695 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:18.696 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:28.310 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:28.312 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:28.368 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:28.368 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:41.887 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:41.888 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:41.888 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:41.888 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:41.933 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:41.933 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:41.993 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:41.994 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:41.999 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:42.000 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:42.000 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:42.000 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:42.049 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:42.050 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:42.075 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:42.075 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:43.535 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:43.539 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:46.331 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:46.332 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:46.332 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:46.333 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:50.332 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:50.333 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:51.341 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:51.344 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:53.631 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:53.631 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:53.642 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:53.644 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:53.670 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:53.676 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:53.674 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:53.680 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:53.731 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:53.731 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:53.747 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:53.748 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:53.827 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:53.891 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:16:53.969 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:16:53.981 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:11.534 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:11.537 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:14.015 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:14.016 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:18.683 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:18.683 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:24.311 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:24.312 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:37.916 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:37.922 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:38.087 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:38.089 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:46.551 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:46.552 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:46.553 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:46.553 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:46.558 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:46.562 [reactor-http-nio-1] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:46.562 [reactor-http-nio-1] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:46.558 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:46.566 [reactor-http-nio-5] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:46.566 [reactor-http-nio-5] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:46.677 [reactor-http-nio-5] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:46.678 [reactor-http-nio-5] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:46.696 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:46.707 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:46.698 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:46.707 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:46.709 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:46.709 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:46.822 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:46.824 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:46.882 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:46.883 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:46.939 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:46.940 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:51.701 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:51.702 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:17:56.410 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:17:56.410 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:16.736 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:16.736 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:16.820 [reactor-http-nio-5] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:16.822 [reactor-http-nio-5] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:16.827 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:16.827 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:16.828 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:16.828 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:16.831 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:16.837 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:16.831 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:16.868 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:21.327 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:21.328 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:26.093 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:26.095 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:26.214 [reactor-http-nio-5] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:26.216 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:26.217 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:26.228 [reactor-http-nio-5] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:26.232 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:26.233 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:26.234 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:26.247 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:26.235 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:26.266 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:37.626 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:37.627 [reactor-http-nio-2] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:37.628 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:37.628 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:37.630 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:37.630 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:37.670 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:37.672 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:37.675 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:37.676 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:37.689 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:37.689 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:37.731 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:37.738 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:37.797 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:37.798 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:43.561 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:43.561 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:43.790 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:43.791 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:43.795 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:43.795 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:43.931 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:43.932 [reactor-http-nio-7] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:43.972 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:43.978 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:44.065 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:44.067 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:44.219 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:44.224 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:46.221 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:46.221 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:47.444 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:47.445 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:47.470 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:47.470 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:48.823 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:48.823 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:48.826 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:48.825 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:49.976 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:49.979 [reactor-http-nio-8] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:18:50.081 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:18:50.081 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:19:01.277 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Authenticating user 15 with role USER
+2026-04-02 19:19:01.281 [reactor-http-nio-4] INFO  c.s.common.security.JwtAuthenticationFilter - JWT Filter: Setting authentication in context
+2026-04-02 19:19:20.549 [SpringApplicationShutdownHook] INFO  o.s.boot.reactor.netty.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-02 19:19:20.553 [netty-shutdown] INFO  o.s.boot.reactor.netty.GracefulShutdown - Graceful shutdown complete

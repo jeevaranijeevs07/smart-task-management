@@ -1,0 +1,19 @@
+2026-04-02 19:15:24.619 [parallel-3] DEBUG c.s.activity.controller.ActivityLogController - [TRACE][ENTER] com.smarttask.activity.controller.ActivityLogController.getRecentActivities()
+2026-04-02 19:15:24.641 [parallel-3] DEBUG c.s.activity.controller.ActivityLogController - [TRACE][EXIT] com.smarttask.activity.controller.ActivityLogController.getRecentActivities() completed in 23 ms
+2026-04-02 19:15:24.647 [parallel-3] INFO  c.s.activity.controller.ActivityLogController - Fetching recent activities for user: 15
+2026-04-02 19:15:24.647 [parallel-3] DEBUG com.smarttask.activity.service.ActivityLogService - [TRACE][ENTER] com.smarttask.activity.service.ActivityLogService.getRecentActivitiesForUser()
+2026-04-02 19:15:24.658 [parallel-3] DEBUG com.smarttask.activity.service.ActivityLogService - [TRACE][EXIT] com.smarttask.activity.service.ActivityLogService.getRecentActivitiesForUser() completed in 10 ms
+2026-04-02 19:16:13.131 [reactor-tcp-nio-2] DEBUG com.smarttask.activity.service.ActivityLogService - [TRACE][ENTER] com.smarttask.activity.service.ActivityLogService.logActivity()
+2026-04-02 19:16:13.136 [reactor-tcp-nio-2] DEBUG com.smarttask.activity.service.ActivityLogService - [TRACE][EXIT] com.smarttask.activity.service.ActivityLogService.logActivity() completed in 5 ms
+2026-04-02 19:16:46.338 [parallel-1] DEBUG c.s.activity.controller.ActivityLogController - [TRACE][ENTER] com.smarttask.activity.controller.ActivityLogController.getRecentActivities()
+2026-04-02 19:16:46.339 [parallel-1] DEBUG c.s.activity.controller.ActivityLogController - [TRACE][EXIT] com.smarttask.activity.controller.ActivityLogController.getRecentActivities() completed in 1 ms
+2026-04-02 19:16:46.342 [parallel-1] INFO  c.s.activity.controller.ActivityLogController - Fetching recent activities for user: 15
+2026-04-02 19:16:46.342 [parallel-1] DEBUG com.smarttask.activity.service.ActivityLogService - [TRACE][ENTER] com.smarttask.activity.service.ActivityLogService.getRecentActivitiesForUser()
+2026-04-02 19:16:46.343 [parallel-1] DEBUG com.smarttask.activity.service.ActivityLogService - [TRACE][EXIT] com.smarttask.activity.service.ActivityLogService.getRecentActivitiesForUser() completed in 0 ms
+2026-04-02 19:17:18.815 [reactor-tcp-nio-3] DEBUG com.smarttask.activity.service.ActivityLogService - [TRACE][ENTER] com.smarttask.activity.service.ActivityLogService.logActivity()
+2026-04-02 19:17:18.815 [reactor-tcp-nio-3] DEBUG com.smarttask.activity.service.ActivityLogService - [TRACE][EXIT] com.smarttask.activity.service.ActivityLogService.logActivity() completed in 0 ms
+2026-04-02 19:18:48.829 [parallel-7] DEBUG c.s.activity.controller.ActivityLogController - [TRACE][ENTER] com.smarttask.activity.controller.ActivityLogController.getRecentActivities()
+2026-04-02 19:18:48.830 [parallel-7] DEBUG c.s.activity.controller.ActivityLogController - [TRACE][EXIT] com.smarttask.activity.controller.ActivityLogController.getRecentActivities() completed in 0 ms
+2026-04-02 19:18:48.831 [parallel-7] INFO  c.s.activity.controller.ActivityLogController - Fetching recent activities for user: 15
+2026-04-02 19:18:48.831 [parallel-7] DEBUG com.smarttask.activity.service.ActivityLogService - [TRACE][ENTER] com.smarttask.activity.service.ActivityLogService.getRecentActivitiesForUser()
+2026-04-02 19:18:48.831 [parallel-7] DEBUG com.smarttask.activity.service.ActivityLogService - [TRACE][EXIT] com.smarttask.activity.service.ActivityLogService.getRecentActivitiesForUser() completed in 0 ms

@@ -45,17 +45,20 @@ public class EmailService {
      */
     public Mono<Void> sendInvitationEmail(String toEmail, String workspaceName, String inviteLink) {
         if (!mailEnabled) {
-            log.info("Email delivery disabled. Skipping invitation email to {}", toEmail);
+            log.info("[EMAIL][INVITATION] Delivery disabled. Skipping invitation email to={}", maskEmail(toEmail));
             return Mono.empty();
         }
         if (mailHost == null || mailHost.isBlank()) {
-            log.warn("spring.mail.host is not configured. Skipping invitation email to {}", toEmail);
+            log.warn("[EMAIL][INVITATION] spring.mail.host missing. Skipping invitation email to={}",
+                    maskEmail(toEmail));
             return Mono.empty();
         }
 
         final String fromAddress = resolveFromAddress();
         final String subject = "Invitation to join workspace: " + workspaceName;
         final String body = buildInvitationBody(workspaceName, inviteLink);
+        log.debug("[EMAIL][INVITATION] Preparing message from={} to={} host={} workspace={}",
+                fromAddress, maskEmail(toEmail), mailHost, workspaceName);
 
         return Mono.fromCallable(() -> {
             MimeMessage message = mailSender.createMimeMessage();
@@ -68,9 +71,91 @@ public class EmailService {
             return true;
         })
                 .subscribeOn(Schedulers.boundedElastic())
-                .doOnSuccess(ignored -> log.info("Invitation email sent to {}", toEmail))
-                .doOnError(error -> log.error("Failed to send invitation email to {}: {}", toEmail, error.getMessage(),
+                .doOnSuccess(ignored -> log.info("[EMAIL][INVITATION] Sent invitation email to={}",
+                        maskEmail(toEmail)))
+                .doOnError(error -> log.error("[EMAIL][INVITATION] Failed to send invitation email to={} reason={}",
+                        maskEmail(toEmail), error.getMessage(),
                         error))
+                .then();
+    }
+
+    /**
+     * Constructs and sends a password reset email if mail services are enabled.
+     */
+    public Mono<Void> sendPasswordResetEmail(String toEmail, String resetLink) {
+        if (!mailEnabled) {
+            log.info("[EMAIL][PASSWORD_RESET] Delivery disabled. Skipping password reset email to={}",
+                    maskEmail(toEmail));
+            return Mono.empty();
+        }
+        if (mailHost == null || mailHost.isBlank()) {
+            log.warn("[EMAIL][PASSWORD_RESET] spring.mail.host missing. Skipping password reset email to={}",
+                    maskEmail(toEmail));
+            return Mono.empty();
+        }
+
+        final String fromAddress = resolveFromAddress();
+        final String subject = "Reset your SmartTask password";
+        final String body = buildPasswordResetBody(resetLink);
+        log.debug("[EMAIL][PASSWORD_RESET] Preparing message from={} to={} host={}",
+                fromAddress, maskEmail(toEmail), mailHost);
+
+        return Mono.fromCallable(() -> {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, false, StandardCharsets.UTF_8.name());
+            helper.setTo(toEmail);
+            helper.setFrom(fromAddress);
+            helper.setSubject(subject);
+            helper.setText(body, false);
+            mailSender.send(message);
+            return true;
+        })
+                .subscribeOn(Schedulers.boundedElastic())
+                .doOnSuccess(ignored -> log.info("[EMAIL][PASSWORD_RESET] Sent password reset email to={}",
+                        maskEmail(toEmail)))
+                .doOnError(error -> log.error("[EMAIL][PASSWORD_RESET] Failed to send password reset email to={} reason={}",
+                        maskEmail(toEmail),
+                        error.getMessage(), error))
+                .then();
+    }
+
+    /**
+     * Sends a workspace-added notification email for users who were directly added.
+     */
+    public Mono<Void> sendWorkspaceAddedEmail(String toEmail, String workspaceName) {
+        if (!mailEnabled) {
+            log.info("[EMAIL][WORKSPACE_ADDED] Delivery disabled. Skipping workspace-added email to={}",
+                    maskEmail(toEmail));
+            return Mono.empty();
+        }
+        if (mailHost == null || mailHost.isBlank()) {
+            log.warn("[EMAIL][WORKSPACE_ADDED] spring.mail.host missing. Skipping workspace-added email to={}",
+                    maskEmail(toEmail));
+            return Mono.empty();
+        }
+
+        String safeWorkspaceName = (workspaceName == null || workspaceName.isBlank()) ? "Workspace" : workspaceName;
+        final String fromAddress = resolveFromAddress();
+        final String subject = "You've been added to workspace: " + safeWorkspaceName;
+        final String body = buildWorkspaceAddedBody(safeWorkspaceName);
+        log.debug("[EMAIL][WORKSPACE_ADDED] Preparing message from={} to={} host={} workspace={}",
+                fromAddress, maskEmail(toEmail), mailHost, safeWorkspaceName);
+
+        return Mono.fromCallable(() -> {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, false, StandardCharsets.UTF_8.name());
+            helper.setTo(toEmail);
+            helper.setFrom(fromAddress);
+            helper.setSubject(subject);
+            helper.setText(body, false);
+            mailSender.send(message);
+            return true;
+        })
+                .subscribeOn(Schedulers.boundedElastic())
+                .doOnSuccess(ignored -> log.info("[EMAIL][WORKSPACE_ADDED] Sent workspace-added email to={}",
+                        maskEmail(toEmail)))
+                .doOnError(error -> log.error("[EMAIL][WORKSPACE_ADDED] Failed to send workspace-added email to={} reason={}",
+                        maskEmail(toEmail), error.getMessage(), error))
                 .then();
     }
 
@@ -97,5 +182,47 @@ public class EmailService {
                 + inviteLink + "\n\n"
                 + "If you were not expecting this invitation, you can ignore this email.\n\n"
                 + "Smart Task Team";
+    }
+
+    /**
+     * Generates the plain-text body for password reset emails.
+     */
+    private String buildPasswordResetBody(String resetLink) {
+        return "Hello,\n\n"
+                + "We received a request to reset your SmartTask password.\n"
+                + "Use this link to set a new password (valid for 15 minutes):\n"
+                + resetLink + "\n\n"
+                + "If you did not request a password reset, you can ignore this email.\n\n"
+                + "Smart Task Team";
+    }
+
+    /**
+     * Generates the plain-text body for direct workspace-added emails.
+     */
+    private String buildWorkspaceAddedBody(String workspaceName) {
+        return "Hello,\n\n"
+                + "You have been added to the workspace \"" + workspaceName + "\".\n"
+                + "Sign in to SmartTask to start collaborating.\n\n"
+                + "Smart Task Team";
+    }
+
+    private String maskEmail(String email) {
+        if (email == null || email.isBlank()) {
+            return "n/a";
+        }
+        String normalized = email.trim().toLowerCase();
+        int atIndex = normalized.indexOf('@');
+        if (atIndex <= 0) {
+            return "***";
+        }
+        String local = normalized.substring(0, atIndex);
+        String domain = normalized.substring(atIndex);
+        if (local.length() == 1) {
+            return local.charAt(0) + "***" + domain;
+        }
+        if (local.length() == 2) {
+            return local.substring(0, 1) + "***" + domain;
+        }
+        return local.substring(0, 2) + "***" + domain;
     }
 }

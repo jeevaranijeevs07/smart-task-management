@@ -16,17 +16,22 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const location = useLocation();
-  const { theme } = useAuth();
+  const { theme, isAuthenticated } = useAuth();
 
-  // Force dark mode on public pages, otherwise obey user preference
+  // Force dark mode only on selected public pages.
   useEffect(() => {
-    const publicPaths = ['/', '/login', '/register', '/forgot-password', '/reset-password'];
-    if (publicPaths.includes(location.pathname)) {
+    const darkModeOnlyRoutes = ['/', '/login', '/register', '/forgot-password', '/reset-password'];
+    const forceDarkMode = darkModeOnlyRoutes.includes(location.pathname);
+
+    if (forceDarkMode) {
       document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-      document.documentElement.setAttribute('data-theme', theme);
+      return;
     }
-  }, [location.pathname, theme]);
+
+    // Signed-in users keep their preference elsewhere.
+    // Signed-out users get light theme on non-home pages.
+    document.documentElement.setAttribute('data-theme', isAuthenticated ? theme : 'light');
+  }, [location.pathname, theme, isAuthenticated]);
 
   return (
     <div className="min-h-screen">

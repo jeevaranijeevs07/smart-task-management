@@ -111,6 +111,55 @@ const NotificationPanel = ({ onClose }) => {
     };
 
     const filteredNotifications = showUnreadOnly ? notifications.filter(n => !n.isRead) : notifications;
+    const parseNotificationDate = (value) => {
+        if (value === null || value === undefined) return null;
+        if (value instanceof Date) return Number.isNaN(value.getTime()) ? null : value;
+
+        if (typeof value === 'number') {
+            const ms = value < 1_000_000_000_000 ? value * 1000 : value;
+            const parsed = new Date(ms);
+            return Number.isNaN(parsed.getTime()) ? null : parsed;
+        }
+
+        if (Array.isArray(value)) {
+            const [year, month, day, hour = 0, minute = 0, second = 0, nano = 0] = value.map(Number);
+            if (!year || !month || !day) return null;
+            const milli = Math.floor((Number(nano) || 0) / 1_000_000);
+            const parsed = new Date(year, month - 1, day, hour, minute, second, milli);
+            return Number.isNaN(parsed.getTime()) ? null : parsed;
+        }
+
+        if (typeof value === 'object') {
+            const year = Number(value.year);
+            const month = Number(value.monthValue ?? value.month);
+            const day = Number(value.dayOfMonth ?? value.day);
+            const hour = Number(value.hour ?? 0);
+            const minute = Number(value.minute ?? 0);
+            const second = Number(value.second ?? 0);
+            const nano = Number(value.nano ?? 0);
+
+            if (year && month && day) {
+                const milli = Math.floor(nano / 1_000_000);
+                const parsed = new Date(year, month - 1, day, hour, minute, second, milli);
+                return Number.isNaN(parsed.getTime()) ? null : parsed;
+            }
+        }
+
+        if (typeof value === 'string') {
+            const trimmed = value.trim();
+            if (!trimmed) return null;
+            const normalized = trimmed.includes('T') ? trimmed : trimmed.replace(' ', 'T');
+            const cappedFraction = normalized.replace(/\.(\d{3})\d+/, '.$1');
+            const parsed = new Date(cappedFraction);
+            return Number.isNaN(parsed.getTime()) ? null : parsed;
+        }
+
+        return null;
+    };
+    const formatNotificationDateTime = (value) => {
+        const parsed = parseNotificationDate(value);
+        return parsed ? parsed.toLocaleString() : new Date().toLocaleString();
+    };
 
     return (
         <motion.div
@@ -242,7 +291,7 @@ const NotificationPanel = ({ onClose }) => {
                                         {n.message}
                                     </h4>
                                     <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: canAcceptInvitation(n) ? '0.75rem' : 0 }}>
-                                        {new Date(n.createdAt).toLocaleString()}
+                                        {formatNotificationDateTime(n.createdAt)}
                                     </p>
                                     {canAcceptInvitation(n) && (
                                         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
